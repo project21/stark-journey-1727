@@ -1,0 +1,11 @@
+
+<p>
+<%@dealss.each do |deal|%>
+<a href="/view/show?deal_id=<%=deal.id%>"><%=deal.item_name%></a>
+  <% deal.stores.each do |club| %>
+    <%= club.store_name %>
+    <%=club.address%>
+     <a href="/view/show?deal_id=<%=deal.id%>">view</a>
+  <%end%>  
+<%end%>
+</p>

@@ -1,0 +1,20 @@
+<div class="container">
+Please dont share deals that requires coupon or online deals
+<%= form_for @deal ,:url=>{:action =>"create"} do |c|%>
+      
+<%= c.collection_select( :category_id, Category.all ,:id,:category_name,:prompt=>"category") %><br/>
+<table>
+<tr><td><label>Brand</label></td><td><%=c.text_field :brand%></td></tr>
+<tr><td><label>size</label></td><td><%= c.text_field :size%></td></tr>
+<tr><td><label>Product</label></td><td><%= c.text_field :item_name %></td></tr>
+<tr><td><label>Price</label></td><td><%= c.text_field :price %></td></tr>
+<%=c.fields_for :stores do |s| %>
+<tr><td><label>Store</label></td><td><%=s.text_field :store_name %></td></tr>
+<%= s.hidden_field :city_id,:value => @city.id%>
+<tr><td><label>Cross street</label></td><td><%=s.text_field :address %></td></tr>
+<%end%>           
+<tr><td><%= c.submit "post"%></td></tr>
+</table>      
+<%end%>
+
+</div>

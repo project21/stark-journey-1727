@@ -1,0 +1,5 @@
+<%= form_for :cities, :url=>{:action =>"next"} do |f| %>
+<%= collection_select(nil,:city_id, City.all, :id, :name ,:prompt=>"Select your city") %>
+
+<%=f.submit "continue" %>
+<%end%>

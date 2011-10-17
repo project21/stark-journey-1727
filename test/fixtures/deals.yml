@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  size: MyString
+  item_name: MyString
+  brand: MyString
+  price: 9.99
+  stars: 1
+
+two:
+  size: MyString
+  item_name: MyString
+  brand: MyString
+  price: 9.99
+  stars: 1

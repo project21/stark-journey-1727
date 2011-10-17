@@ -1,0 +1,5 @@
+<h1>United States</h1>
+<%@cities.each do |city| %>
+<a href="/deal/city?city_id=<%=city.id%>"><%=city.name%></a><br/>
+<%end%>
+

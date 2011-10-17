@@ -1,0 +1,7 @@
+<%@dealss.each do |deal|%>
+<span><%=deal.item_name%><span>
+<% deal.stores.each do |club| %>
+    <%= club.store_name %>
+     <%= club.address %>
+  <%end%>
+<%end%>

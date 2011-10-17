@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Deals</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div>
+<%=@city.name %>
+<%=link_to 'All deals',{:controller=>"deal",:action =>"show" }%>
+<%=link_to 'New deals',{:controller=>"deal",:action =>"new_deals" }%>
+<%=link_to 'All cities',{:controller=>"deal",:action =>"all_cities" }%>
+<%=link_to 'Retailers',{:controller=>"deal",:action =>"retailers" }%>
+</div>
+<div="category">
+<ul class="categories">
+<li><%= link_to 'Electronics',{:controller=>"category",:action =>"electro" }%></li>
+<li><%= link_to 'Grocery',{:controller=>"category",:action =>"index" }%></li>
+<li><%= link_to 'Clothing',{:controller=>"category",:action =>"clothing" }%></li>
+<li><%= link_to 'Restaurant',{:controller=>"category",:action =>"restaurant" }%></li>
+<li><%= link_to 'Entertainment',{:controller=>"category",:action =>"entertain" }%></li>
+<li><%= link_to 'Activities &Events',{:controller=>"category",:action =>"activity" }%></li>
+<li><%= link_to 'Health &Beauty',{:controller=>"category",:action =>"health" }%></li>
+</ul>
+</div>
+<%= yield %>
+
+</body>
+</html>

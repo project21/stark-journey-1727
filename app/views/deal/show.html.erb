@@ -1,0 +1,14 @@
+
+
+<div class="container">
+ <%=link_to "list a deal",{:controller=>"deal",:action =>"new" }%>
+Share with your community the deal you spot today 
+<% @store_deals.each do |store_deal| %>
+  <%= store_deal.deal.item_name %>
+  <%= store_deal.store.store_name %>
+
+
+<%end%>
+
+  <%=link_to "vote up",{:controller=>"deal",:action =>"vote_up" }%>
+</div>
