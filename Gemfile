@@ -22,7 +22,7 @@ group :assets do
   gem 'coffee-rails', "~> 3.1.0.rc"
   gem 'uglifier'
 end
-gem 'activerecord-postgresql-adapter'
+
 group :production do
 gem 'pg'
 gem 'therubyracer'
