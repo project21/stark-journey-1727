@@ -1,14 +1,20 @@
 
 
 <div class="container">
+
+<div>
  <%=link_to "list a deal",{:controller=>"deal",:action =>"new" }%>
-Share with your community the deal you spot today 
+Share with your community the deal you spot today <br/>
 <% @store_deals.each do |store_deal| %>
-  <%= store_deal.deal.item_name %>
+ <a href="/comment/index?deal_id=<%=store_deal.deal.id%>"><%= store_deal.deal.brand%> &nbsp;<%= store_deal.deal.size%>&nbsp;<%= store_deal.deal.item_name %></a>
+ for <%= store_deal.deal.price %>
   <%= store_deal.store.store_name %>
-
-
+  <%= store_deal.store.address %>
+  <%=time_ago_in_words(store_deal.deal.created_at)%>
+<%=pluralize(store_deal.deal.comments.count,"comment")%>
+<a href="/comment/index?deal_id=<%=store_deal.deal.id%>">view</a>
+ <%=link_to "vote up",{:controller=>"deal",:action =>"vote_up" }%>
 <%end%>
-
-  <%=link_to "vote up",{:controller=>"deal",:action =>"vote_up" }%>
+ 
+  </div>
 </div>

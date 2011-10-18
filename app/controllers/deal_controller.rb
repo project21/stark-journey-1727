@@ -37,8 +37,11 @@ class DealController < ApplicationController
     #  @m=@ms.vote_for
     # @m=@deal.votes
    # end
-    @store_deals=StoreDeal.where("stores.city_id = ?", session[:city_id]).includes(:deal, :store => [:city])
-  end
+    @store_deals=StoreDeal.where("stores.city_id = ?", session[:city_id]).includes(:deal, :store)
+     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+    
+   
+   end
 end 
 
 def vote_up
@@ -59,6 +62,8 @@ def vote_up
    
    @deal.build_category
    #mention time (how long the deal is going to be till)
+   @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+
   end
 
   def all_cities
@@ -68,6 +73,8 @@ def vote_up
     end
   #@city=City.find(params[:city_id]) 
  # session[:city_id] = @city.id
+ @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+
   end
 
   def city
@@ -81,15 +88,23 @@ def vote_up
       @city = City.find(session[:city_id])
       @deals=@city.deals
     end
+  @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+
   end
 
   def retailers
      unless session[:city_id].nil? || session[:city_id].blank?
       @city = City.find(session[:city_id])
     end
+    @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+
   end
 
   def search
+    @city = City.find(session[:city_id])
+     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+    @deals = @search.all
+   
   end
 
   def questions

@@ -1,11 +1,16 @@
 
 <p>
 <%@dealss.each do |deal|%>
-<a href="/view/show?deal_id=<%=deal.id%>"><%=deal.item_name%></a>
+<a href="/comment/index?deal_id=<%=deal.id%>"><%=deal.brand%>&nbsp;<%=deal.size%>
+&nbsp;<%=deal.item_name%> </a>for <%=deal.price%>$
+<%=time_ago_in_words(deal.created_at)%>
+<%=pluralize(deal.comments.count,"comment")%>
   <% deal.stores.each do |club| %>
     <%= club.store_name %>
     <%=club.address%>
-     <a href="/view/show?deal_id=<%=deal.id%>">view</a>
+     <a href="/comment/index?deal_id=<%=deal.id%>">view</a>
+
   <%end%>  
+
 <%end%>
 </p>

@@ -1,3 +1,8 @@
+
+
+
 $('#comments').append("<%=escape_javascript(@comment.body) %> ");
+$('.time').html("<%=escape_javascript(@comment.created_at) %> ");
 
 $('#new-comment')[0].reset();
+    

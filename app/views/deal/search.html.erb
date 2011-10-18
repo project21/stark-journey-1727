@@ -1,2 +1,9 @@
-<h1>Deal#search</h1>
-<p>Find me in app/views/deal/search.html.erb</p>
+<%@deals.each do |deal|%>
+<%=deal.item_name%>
+<% deal.stores.each do |store| %>
+    <%= store.store_name %>
+    <%=store.address%>
+     <a href="/comment/index?deal_id=<%=deal.id%>">view</a>
+
+  <%end%>  
+<%end%>

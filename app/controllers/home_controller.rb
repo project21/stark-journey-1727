@@ -1,9 +1,10 @@
 class HomeController < ApplicationController
   def index
+    @city=City.find(params[:cities][:city_id]) 
   end
 
   def next
-   @city=City.find(params[:city_id]) 
+   @city=City.find(params[:cities][:city_id]) 
    session[:city_id] = @city.id
    redirect_to :controller=>"deal",:action =>"show" 
   end  

@@ -1,8 +1,7 @@
 class ViewController < ApplicationController
 	layout "header"
   def show
-  	@city = City.find(session[:city_id])
-  	 @deal=Deal.find(params[:deal_id])
+  	
   	# @comments=@deal.comments
   #	@viewdeals=@city.deals
   #	@viewdeals=Deal.where("city_id=? AND deal_id=?",session[:city_id],params[:deal_id]).includes(:stores)

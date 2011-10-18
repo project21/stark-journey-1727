@@ -13,6 +13,19 @@
 <%=link_to 'New deals',{:controller=>"deal",:action =>"new_deals" }%>
 <%=link_to 'All cities',{:controller=>"deal",:action =>"all_cities" }%>
 <%=link_to 'Retailers',{:controller=>"deal",:action =>"retailers" }%>
+
+<% if user_signed_in? %>
+    Signed in as <%= current_user.email %>. Not you?
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+  <% else %>
+    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+  <% end %>
+
+<%= form_for  @search,:url=>{:controller=>"deal",:action=>"search"} do |f| %>
+  
+    <%= f.text_field :item_name_contains %>
+    <%= f.submit "search" %>
+  <% end %>
 </div>
 <div="category">
 <ul class="categories">
