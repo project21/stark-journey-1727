@@ -45,8 +45,7 @@ class CommentsController < ApplicationController
     @deal=Deal.find(params[:comment][:deal_id])
     @comment = @deal.comments.build(params[:comment])
    # @comment = Comment.create(params[:comment])
-    if  @comment.save
-        
+    if  @comment.save 
        respond_with( @comment, :layout => !request.xhr? )
      else
       flash.now[:notice] = "Please sign up before posting a commment!" 

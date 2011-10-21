@@ -41,7 +41,7 @@ Deals::Application.routes.draw do
 
   get "home/new_deals"
 
-  get "home/q"
+  post "home/next"
  get 'deal/id'  
   devise_for :users
 match '/comment/index' => 'comments#index' ,:via=>:get
@@ -49,7 +49,6 @@ match 'deal/city/'  => "deal#city", :via=>:get
 match 'deals/:id'  => "deal#show", :via=>:get
 match 'home/next'  => "deal#show"
 resources :city, :deal,:store,:vote ,:category
-match 'home/next' => "home#next"
 match "category/electro" => 'category#electro'
 match "category/health" => 'category#health'
 match "category/activity" => 'category#activity'
