@@ -11,33 +11,18 @@ class DealController < ApplicationController
   @deal=@city.deals.build(params[:deal])
    if @deal.save
     redirect_to @deal
-     flash[:notice]="successfully created"
+     flash[:notice]="Thank you for sharing the deal with us"
     else
     render 'new' 
-   
+    flash[:notice]="Error occured"
   end 
   end
 
   def show
+    #@karma=current_user.karma
     unless session[:city_id].nil? || session[:city_id].blank?
      @city = City.find(session[:city_id])
-    # @deals=@city.deals
-   #   @onedeal=@deals.first
-    # @deal=@deals.find(params[:id])
-   #   @stores = @deal.collect(&:stores)
-
-    #  @onestore=@deal.find(params[:id])
-     # @store=@onestore.stores.first(params[:store_id])
-  #   @onedeal=@deals.find_with_ids(1) 
-  # @store=@onedeal.store_deals.collect
-    #  @store=@onedeal.stores.first(params[:store_id])
-      
-     #@showdeal=@onedeal.first(params[:deal_id])
-      #@category=Category.find(:all)
-   #   @ms=Deal.find(3)
-    #  @m=@ms.vote_for
-    # @m=@deal.votes
-   # end
+   
     @store_deals=StoreDeal.where("stores.city_id = ?", session[:city_id]).includes(:deal, :store)
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
    end
@@ -50,8 +35,9 @@ def vote_up
      @items=Deal.find(params[:id])
   unless current_user.voted_for?(@items) || current_user.voted_against?(@items) 
     current_user.vote_for(@items)
+    flash.now[:notice]="Thank you for voting"
   else
-    flash.now[:notice]="you already voted for this"
+    flash.now[:notice]="You already voted for this deal"
     respond_with(@items,:layout => !request.xhr?)
    
   end 
@@ -63,9 +49,19 @@ def vote_up
  end 
 
  def vote_down
- #   begin
-    @items=Deal.find(params[:id])
+     @city = City.find(session[:city_id])
+     @store_deals=StoreDeal.where("stores.city_id = ?", session[:city_id]).includes(:deal, :store)
+     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+     @items=Deal.find(params[:id])
+    unless current_user.voted_for?(@items) || current_user.voted_against?(@items)
     current_user.vote_against(@items)
+    flash.now[:notice]="Thank you for voting"
+    respond_with(@items,:layout => !request.xhr?)
+    else
+    flash.now[:notice]="You already voted for this deal"
+    respond_with(@items,:layout => !request.xhr?)
+   
+  end 
 #   render :nothing => true, :status => 200
 #  rescue ActiveRecord::RecordInvalid
  #   render :nothing => true, :status => 404
@@ -110,10 +106,9 @@ def vote_up
   def new_deals
     unless session[:city_id].nil? || session[:city_id].blank?
       @city = City.find(session[:city_id])
-      @deals=@city.deals
     end
   @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-
+  @deals = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).order("created_at DESC")
   end
 
   def retailers

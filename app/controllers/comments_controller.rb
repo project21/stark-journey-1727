@@ -46,10 +46,10 @@ class CommentsController < ApplicationController
     @comment = @deal.comments.build(params[:comment])
    # @comment = Comment.create(params[:comment])
     if  @comment.save
-       
+        
        respond_with( @comment, :layout => !request.xhr? )
      else
-      flash.now[:notice] = "Please sign up!" 
+      flash.now[:notice] = "Please sign up before posting a commment!" 
       respond_with( @comment, :layout => !request.xhr? )
     
      end     

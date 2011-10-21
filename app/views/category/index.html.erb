@@ -1,11 +1,15 @@
 
 <p>
+ <div class="note">
+  <%=flash[:notice]%>
+  </div>
 <%@dealss.each do |deal|%>
-<a href="/comment/index?deal_id=<%=deal.id%>"><%=deal.brand%>&nbsp;<%=deal.size%>
+<a href="/comment/index?deal_id=<%=deal.id%>"><%=deal.size%>&nbsp;<%=deal.brand%>
 &nbsp;<%=deal.item_name%> </a>for <%=deal.price%>$
 <%=pluralize(deal.plusminus,"vote")%>
-<%=link_to "vote down",vote_down_deal_path(deal),:method=>:post %>
- <%=link_to "vote up",vote_up_deal_path(deal),:method=>:post %>
+<%=link_to "vote down",vote_down_deal_path(deal),:method=>:post,:remote=>true %>
+ <%=link_to "vote up",vote_up_deal_path(deal),:method=>:post,:remote=>true %>
+
 <%=time_ago_in_words(deal.created_at)%>
 <%=pluralize(deal.comments.count,"comment")%>
   <% deal.stores.each do |club| %>
@@ -14,6 +18,6 @@
      <a href="/comment/index?deal_id=<%=deal.id%>">view</a>
 
   <%end%>  
-
 <%end%>
+
 </p>
