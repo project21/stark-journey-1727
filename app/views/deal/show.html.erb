@@ -8,13 +8,22 @@ Share with your community the deal you spot today <br/>
 <% @store_deals.each do |store_deal| %>
  <a href="/comment/index?deal_id=<%=store_deal.deal.id%>"><%= store_deal.deal.brand%> &nbsp;<%= store_deal.deal.size%>&nbsp;<%= store_deal.deal.item_name %></a>
  for <%= store_deal.deal.price %>
+ <%=pluralize(store_deal.deal.plusminus,"vote")%>
   <%= store_deal.store.store_name %>
   <%= store_deal.store.address %>
   <%=time_ago_in_words(store_deal.deal.created_at)%>
 <%=pluralize(store_deal.deal.comments.count,"comment")%>
 <a href="/comment/index?deal_id=<%=store_deal.deal.id%>">view</a>
- <%=link_to "vote up",{:controller=>"deal",:action =>"vote_up" }%>
+ <%=link_to "vote down",vote_down_deal_path(store_deal.deal),:method=>:post %>
+ <%=link_to "vote up",vote_up_deal_path(store_deal.deal),:method=>:post,:remote=>true %>
+
+
 <%end%>
- 
+  <div class="note">
+  <%=flash[:notice]%>
+  </div>
+
+   
+
   </div>
 </div>

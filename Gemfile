@@ -13,7 +13,7 @@ gem 'rack', '1.3.3'
 gem 'execjs'
 
 gem "meta_search",'>= 1.1.0.pre'
-#gem "kandadaboggu-vote_fu"
+gem "thumbs_up"
 
 # Gems used only for assets and not required
 # in production environments by default.

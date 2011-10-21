@@ -1,4 +1,5 @@
 class DealController < ApplicationController
+  respond_to :js
   before_filter :authenticate_user!, :only=>:new
   layout "header"
   def index
@@ -39,14 +40,37 @@ class DealController < ApplicationController
    # end
     @store_deals=StoreDeal.where("stores.city_id = ?", session[:city_id]).includes(:deal, :store)
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-    
-   
    end
 end 
 
 def vote_up
-    @items=Deal.find(3)
+    @city = City.find(session[:city_id])
+     @store_deals=StoreDeal.where("stores.city_id = ?", session[:city_id]).includes(:deal, :store)
+     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+     @items=Deal.find(params[:id])
+  unless current_user.voted_for?(@items) || current_user.voted_against?(@items) 
     current_user.vote_for(@items)
+  else
+    flash.now[:notice]="you already voted for this"
+    respond_with(@items,:layout => !request.xhr?)
+   
+  end 
+   # render :nothing => true, :status => 200
+ # rescue ActiveRecord::RecordInvalid
+  #  render :nothing => true, :status => 404
+  
+ #   end
+ end 
+
+ def vote_down
+ #   begin
+    @items=Deal.find(params[:id])
+    current_user.vote_against(@items)
+#   render :nothing => true, :status => 200
+#  rescue ActiveRecord::RecordInvalid
+ #   render :nothing => true, :status => 404
+  
+ #   end
  end 
   
   def update

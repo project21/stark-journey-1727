@@ -2,7 +2,6 @@ Deals::Application.routes.draw do
   resources :comments
 
   get "view/show"
-
   get "category/index"
    get "category/clothing"
   get "category/electro"
@@ -57,6 +56,13 @@ match "category/activity" => 'category#activity'
 match "category/restaurant" => 'category#restaurant'
 match "category/clothing" => 'category#clothing'
 match "category/entertain" => 'category#entertain'
+
+resources :deal do
+  member do
+    post :vote_up
+    post :vote_down
+  end
+end
 
  
 resources :cities do

@@ -11,4 +11,6 @@ class User < ActiveRecord::Base
   has_many :deals , :through=> :user_deal
   has_many :user_deals
   acts_as_voter
+  has_karma(:deals, :as => :submitter, :weight => 0.5)
+
 end

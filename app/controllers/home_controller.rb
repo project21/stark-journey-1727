@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @city=City.find(params[:cities][:city_id]) 
+   # @city=City.find(params[:cities][:city_id]) 
   end
 
   def next

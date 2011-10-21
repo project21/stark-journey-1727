@@ -3,6 +3,9 @@
 <%@dealss.each do |deal|%>
 <a href="/comment/index?deal_id=<%=deal.id%>"><%=deal.brand%>&nbsp;<%=deal.size%>
 &nbsp;<%=deal.item_name%> </a>for <%=deal.price%>$
+<%=pluralize(deal.plusminus,"vote")%>
+<%=link_to "vote down",vote_down_deal_path(deal),:method=>:post %>
+ <%=link_to "vote up",vote_up_deal_path(deal),:method=>:post %>
 <%=time_ago_in_words(deal.created_at)%>
 <%=pluralize(deal.comments.count,"comment")%>
   <% deal.stores.each do |club| %>
