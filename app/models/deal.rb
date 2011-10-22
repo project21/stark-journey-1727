@@ -7,6 +7,6 @@ class Deal < ActiveRecord::Base
 	has_many :store_deals
 	has_many :comments
 	accepts_nested_attributes_for :stores 
-	
-	 acts_as_voteable  
+	acts_as_voteable 
+	mount_uploader :image, ImageUploader 
 end

@@ -9,7 +9,7 @@
 <%=pluralize(deal.plusminus,"vote")%>
 <%=link_to "vote down",vote_down_deal_path(deal),:method=>:post,:remote=>true %>
  <%=link_to "vote up",vote_up_deal_path(deal),:method=>:post,:remote=>true %>
-
+<%=image_tag deal.image_url.to_s%>
 <%=time_ago_in_words(deal.created_at)%>
 <%=pluralize(deal.comments.count,"comment")%>
   <% deal.stores.each do |club| %>

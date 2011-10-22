@@ -1,6 +1,7 @@
 class CategoryController < ApplicationController
   layout "header"
   def index
+    
   	@city= City.find(session[:city_id])
 #  	@deals=@city.deals
 @dealss=Deal.where("category_id =? AND city_id=?",Category.find(2),session[:city_id]).includes(:stores,:comments).rank_tally(:atleast=> 20)

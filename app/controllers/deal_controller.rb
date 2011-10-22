@@ -19,13 +19,14 @@ class DealController < ApplicationController
   end
 
   def show
-    #@karma=current_user.karma
+   
     unless session[:city_id].nil? || session[:city_id].blank?
      @city = City.find(session[:city_id])
    
     @store_deals=StoreDeal.where("stores.city_id = ?", session[:city_id]).includes(:deal, :store)
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
    end
+ 
 end 
 
 def vote_up

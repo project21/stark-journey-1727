@@ -1,13 +1,14 @@
 
 
 <div class="container">
-<%=pluralize(@karma,"point")%>
+
 <div>
  <%=link_to "list a deal",{:controller=>"deal",:action =>"new" }%>
 Share with your community the deal you spot today <br/>
 <% @store_deals.each do |store_deal| %>
  <a href="/comment/index?deal_id=<%=store_deal.deal.id%>"><%= store_deal.deal.size%> &nbsp;<%= store_deal.deal.brand%>&nbsp;<%= store_deal.deal.item_name %></a>
  for <%= store_deal.deal.price %>
+<div class="image"> <%=image_tag store_deal.deal.image_url.to_s%></div>
  <%=pluralize(store_deal.deal.plusminus,"vote")%>
   <%= store_deal.store.store_name %>
   <%= store_deal.store.address %>

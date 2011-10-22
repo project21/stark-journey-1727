@@ -11,7 +11,7 @@ end
 gem 'devise'
 gem 'rack', '1.3.3'
 gem 'execjs'
-
+gem 'carrierwave'
 gem "meta_search",'>= 1.1.0.pre'
 gem "thumbs_up"
 
