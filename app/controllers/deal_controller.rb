@@ -7,6 +7,7 @@ class DealController < ApplicationController
   end
 
   def create
+   @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])  
   @city = City.find(session[:city_id])
   @deal=@city.deals.build(params[:deal])
    if @deal.save
@@ -14,7 +15,7 @@ class DealController < ApplicationController
      flash[:notice]="Thank you for sharing the deal with us"
     else
     render 'new' 
-    flash[:notice]="Error occured"
+    flash[:error]="Error occured,the deal was not saved"
   end 
   end
 
@@ -38,7 +39,7 @@ def vote_up
     current_user.vote_for(@items)
     flash.now[:notice]="Thank you for voting"
   else
-    flash.now[:notice]="You already voted for this deal"
+    flash.now[:error]="Sorry you already voted for this deal"
     respond_with(@items,:layout => !request.xhr?)
    
   end 
@@ -59,7 +60,7 @@ def vote_up
     flash.now[:notice]="Thank you for voting"
     respond_with(@items,:layout => !request.xhr?)
     else
-    flash.now[:notice]="You already voted for this deal"
+    flash.now[:error]="Sorry you already voted for this deal"
     respond_with(@items,:layout => !request.xhr?)
    
   end 

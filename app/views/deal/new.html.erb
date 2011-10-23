@@ -1,7 +1,8 @@
 <div class="container">
 Please dont share deals that requires coupon or online deals
 <%= form_for @deal ,:url=>{:action =>"create"},:html=>{:multipart=>true} do |c|%>
-      
+       <%= c.error_messages %>
+        
 <%= c.collection_select( :category_id, Category.all ,:id,:category_name,:prompt=>"category") %><br/>
 <table>
 <tr><td><label>Brand</label></td><td><%=c.text_field :brand%></td></tr>

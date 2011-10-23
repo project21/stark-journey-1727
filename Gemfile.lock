@@ -47,6 +47,7 @@ GEM
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
+    dynamic_form (1.1.4)
     erubis (2.7.0)
     excon (0.6.6)
     execjs (1.2.9)
@@ -153,6 +154,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 3.1.0.rc)
   devise
+  dynamic_form
   execjs
   fog
   jquery-rails
