@@ -8,7 +8,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::ImageScience
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+ # if Rails.env.production? || Rails.env.staging?
+     storage :fog
+ # else
+ # storage :file
+#end
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
@@ -46,4 +50,20 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+end
+
+module CarrierWave
+  module Storage
+    class Fog < Abstract
+      class File
+        def public_url
+          if host = @uploader.fog_host
+            "#{host}/#{path}"
+          else
+            "https://s3.amazonaws.com/#{@uploader.fog_directory}/#{path}"
+          end
+        end
+      end
+    end
+  end
 end

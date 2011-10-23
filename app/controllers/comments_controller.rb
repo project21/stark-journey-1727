@@ -5,12 +5,10 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @city = City.find(session[:city_id])
-     @deal=Deal.find(params[:deal_id])
+   @city = City.find(session[:city_id])
+   @deal=Deal.find(params[:deal_id])
    @comments = @deal.comments
    @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-
-
   end
 
   # GET /comments/1
@@ -51,15 +49,13 @@ class CommentsController < ApplicationController
       flash.now[:notice] = "Please sign up before posting a commment!" 
       respond_with( @comment, :layout => !request.xhr? )
     
-     end     
-    
+     end      
   end
 
   # PUT /comments/1
   # PUT /comments/1.json
   def update
  #   @comment = Comment.find(params[:id])
-
   end
 
   # DELETE /comments/1

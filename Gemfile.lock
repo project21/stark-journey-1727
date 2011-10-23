@@ -48,8 +48,20 @@ GEM
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
     erubis (2.7.0)
+    excon (0.6.6)
     execjs (1.2.9)
       multi_json (~> 1.0)
+    fog (0.11.0)
+      builder
+      excon (~> 0.6.5)
+      formatador (~> 0.2.0)
+      mime-types
+      multi_json (~> 1.0.3)
+      net-scp (~> 1.0.4)
+      net-ssh (~> 2.1.4)
+      nokogiri (~> 1.5.0)
+      ruby-hmac
+    formatador (0.2.1)
     hike (1.2.1)
     i18n (0.6.0)
     jquery-rails (1.0.14)
@@ -67,6 +79,10 @@ GEM
       activesupport (~> 3.1.0.alpha)
     mime-types (1.16)
     multi_json (1.0.3)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-ssh (2.1.4)
+    nokogiri (1.5.0)
     orm_adapter (0.0.5)
     pg (0.11.0)
     polyglot (0.3.2)
@@ -97,6 +113,7 @@ GEM
     raindrops (0.7.0)
     rake (0.9.2)
     rdoc (3.9.4)
+    ruby-hmac (0.4.0)
     sass (3.1.10)
     sass-rails (3.1.0.rc.7)
       actionpack (~> 3.1.0.rc6)
@@ -137,6 +154,7 @@ DEPENDENCIES
   coffee-rails (~> 3.1.0.rc)
   devise
   execjs
+  fog
   jquery-rails
   meta_search (>= 1.1.0.pre)
   pg
