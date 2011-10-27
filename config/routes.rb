@@ -1,6 +1,6 @@
 Deals::Application.routes.draw do
   resources :comments
-
+post "deal/new"
   get "view/show"
   get "category/index"
    get "category/clothing"

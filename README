@@ -1,5 +1,6 @@
 
 TODO
+#arrange deals by no of votes on show page
 #add morecategories to heroku
 #get an email from user when selecting a city
 #error vs notice
@@ -10,6 +11,10 @@ TODO
 #set ip address with city in session
 #enter morecatgories in drop down
 #specify minor cities
+#add username in the comment
+
+Inthe future
+people will be able to buy things online and we will claim a small percent portion
 
 
 

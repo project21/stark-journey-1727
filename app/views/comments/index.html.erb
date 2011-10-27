@@ -1,18 +1,29 @@
- 
-
+<div class="container">
+<div class="notice" ></div>
 <h3><%=@deal.size%>&nbsp;<%=@deal.brand%>&nbsp;<%=@deal.item_name%></h3>
-<div id="comments_count"></div>
-<div id="comments">
-<% @comments.each do |comment|%>
-<%=comment.body%>
-<%=time_ago_in_words(comment.created_at)%>&nbsp;ago
-<%end%>
-<%=pluralize(@comments.count,"comment")%>
+<div class="view-deal-border">
+<span class="view-image"> <%=image_tag (@deal.image_url.to_s )%></span>
+<span class="price"><%=@deal.price%>$</span>
+<span class="votes"><%=pluralize(@deal.plusminus,"vote")%></span>
+<%=link_to "vote up",vote_up_deal_path(@deal),:method=>:post,:remote=>true %>
+<%=link_to "vote down",vote_down_deal_path(@deal),:method=>:post,:remote=>true %>
+
 </div>
+
+<div id="comments_count"><%=pluralize(@comments.count,"comment")%></div>
+
+<% @comments.each do |comment|%>
+<div id="comments">
+<%=comment.body%>
+</div>
+<span class="time"><%=time_ago_in_words(comment.created_at)%>&nbsp;ago</span>
+<%end%>
+
 
 <%= form_for :comment,:remote => true,:url=>{:controller=>"comments",:action=>"create"},:html => { :id => 'new-comment'} do |f| %>
 <%= f.hidden_field :deal_id ,:value=>@deal.id%>
-  <%= f.text_area :body,:row=>"1" %>
+  <%= f.text_area :body,:rows=>"1" %><br/>
   <%= f.submit "post" %>
 <% end %>
-<div class="notice" ></div>
+
+</div>

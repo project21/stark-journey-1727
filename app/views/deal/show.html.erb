@@ -4,22 +4,22 @@
  <div class="note"> <%=flash[:notice]%> </div>
  <div class="error"><%=flash[:error]%></div>
 <div class="clear"></div>
- <%=link_to "list a deal",{:controller=>"deal",:action =>"new" }%>
-Share with your community the great price you spot today <br/>
+<span >Share with your community the great price you spot today <%=button_to "list a deal",{:controller=>"deal",:action =>"new"} ,{:class=>"list-button" }%></span>
+ <br/>
 <% @store_deals.each do |store_deal| %>
 <div style="float:left">
 <div class="deal">
  <a href="/comment/index?deal_id=<%=store_deal.deal.id%>"><%= store_deal.deal.size%> &nbsp;<%= store_deal.deal.brand%>&nbsp;<%= store_deal.deal.item_name %></a>
  for <%= store_deal.deal.price %><br/>
-<span class="image"> <%=image_tag (store_deal.deal.image_url.to_s or 'DSCN3796.JPG')%></span><br/>
+<span class="image"> <%=image_tag (store_deal.deal.image_url.to_s )%></span><br/>
   <%=link_to "vote down",vote_down_deal_path(store_deal.deal),:method=>:post,:remote=>true %>
  <%=link_to "vote up",vote_up_deal_path(store_deal.deal),:method=>:post,:remote=>true %>
   <%=pluralize(store_deal.deal.plusminus,"vote")%>
  <br/>
-<a class="view" href="/comment/index?deal_id=<%=store_deal.deal.id%>">view</a><br/>
+<a class="view-button" href="/comment/index?deal_id=<%=store_deal.deal.id%>">view</a><br/>
   <%= store_deal.store.store_name %>&nbsp;by&nbsp;
   <%= store_deal.store.address %><br/>
-<%=pluralize(store_deal.deal.comments.count,"comment")%>
+  <%=pluralize(store_deal.deal.comments.count,"comment")%>
 
  </div><br/>
  <span class="time">&nbsp; posted <%=time_ago_in_words(store_deal.deal.created_at)%>&nbsp;ago</span>
