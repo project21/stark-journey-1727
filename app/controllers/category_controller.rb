@@ -6,6 +6,7 @@ class CategoryController < ApplicationController
 #  	@deals=@city.deals
 @dealss=Deal.where("category_id =? AND city_id=?",Category.find(2),session[:city_id]).includes(:stores,:comments)
 @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+@category=Category.find(2)
 #@comments=@dealss.comments
 #@store_id=@deal.store_deals
    # @deal=@deals.find_with_ids(1)

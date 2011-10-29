@@ -1,6 +1,13 @@
-<%= form_for :city, :url=>{:action =>"next"} do |f| %>
+<div class="root-login">
+<h3>Please select your city before proceeding</h3>
+<span style="float:left">Discover deals spotted by your local community</span>
+<div class="v-line"></div>
+<div class="root-form">
+<%= form_for :city,:size=>"40", :url=>{:action =>"next"} do |f| %>
 <%= f.collection_select(:city_id, City.all, :id, :name ,:prompt=>"Select your city") %>
-
-
+<br/>
+<br/>
 <%=f.submit "continue" %>
 <%end%>
+</div>
+</div>
