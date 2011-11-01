@@ -1,18 +1,20 @@
 
 TODO
-#arrange deals by no of votes on show page
+
 #add morecategories to heroku
 #get an email from user when selecting a city
-#error vs notice
 #mark it as invalid
 #ask for prices of different things
 #price has to be validated
-#default image
 #set ip address with city in session
 #enter morecatgories in drop down
 #specify minor cities
 #add username in the comment
-
+#validate the root page
+#devise error messages
+#past deals
+#retailer form validation
+#flash messages display one at any time
 Inthe future
 people will be able to buy things online and we will claim a small percent portion
 retailers manage thir deals by cities

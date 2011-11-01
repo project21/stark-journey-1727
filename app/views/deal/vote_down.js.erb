@@ -1,2 +1,6 @@
-$('.note').html('<%=flash[:notice]%>');
-$('.error').html('<%=flash[:error]%>');
+<% if flash[:notice] %>
+$('.notice').html('<div class="note"><%=flash[:notice]%></div>');
+<%end%>
+<% if flash[:error] %>
+$('.errors').html('<div class="error"><%=flash[:error]%></div>');
+<%end%>

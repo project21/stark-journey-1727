@@ -12,7 +12,9 @@ class Deal < ActiveRecord::Base
 	validates_presence_of :item_name,:message=>"Please enter product name"
     validates_presence_of :price ,:message=>"Please enter price of the item "
     validates_length_of   :size ,:maximum=>5,:message=>"Should be number number of items or item size in lb,oz etc."
-
-
+    validates_presence_of :town ,:message=>"Please enter the city"
+    validates_length_of :state ,:is=>2,:message=>"Enter only 2 characters"
+    validates_length_of :zipcode, :is=>5, :message=>"Invalid zipcode"
+    
 
 end

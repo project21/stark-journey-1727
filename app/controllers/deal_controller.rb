@@ -20,11 +20,10 @@ class DealController < ApplicationController
   end
 
   def show
-   
     unless session[:city_id].nil? || session[:city_id].blank?
      @city = City.find(session[:city_id])
    
-    @store_deals=StoreDeal.where("stores.city_id = ?", session[:city_id]).includes(:deal, :store)
+    @deals=Deal.where("city_id = ?", session[:city_id]).includes( :stores).rank_tally()
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
    end
  
@@ -114,11 +113,13 @@ def vote_up
   end
 
   def retailers
+    @deal=Deal.new 
      unless session[:city_id].nil? || session[:city_id].blank?
       @city = City.find(session[:city_id])
     end
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-
+     @deal = @city.deals.build
+    @deal.stores.build
   end
 
   def search

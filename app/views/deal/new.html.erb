@@ -15,8 +15,9 @@ Please dont share deals that requires coupon or online deals
 <%=c.fields_for :stores do |s| %>
 <tr><td><label>Store</label></td><td><%=s.text_field :store_name %></td></tr>
 <%= s.hidden_field :city_id,:value => @city.id%>
-<tr><td><label>Cross street</label></td><td><%=s.text_field :address %></td></tr>
-<%end%>           
+<tr><td><label>Cross street</label></td><td><%=s.text_field :address %></td> </tr>
+<%end%>  
+
 <tr><td><%= c.submit "post"%></td></tr>
 </table>      
 <%end%>

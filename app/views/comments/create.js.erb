@@ -2,9 +2,8 @@
 
 
 
- <% if flash[:notice] %>
-$('.notice').html('<%= flash[:notice] %>');
-<%else%>
-$('#comments').append("<%=escape_javascript(@comment.body) %> ");
+
+$('.notice').html('<%= flash[:error] %>');
+$('.comment-display').append("<%=escape_javascript(render 'comment') %> ");
 $('#new-comment')[0].reset();
-  <%end%>
+  

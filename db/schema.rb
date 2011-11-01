@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111022033502) do
+ActiveRecord::Schema.define(:version => 20111101002819) do
 
   create_table "categories", :force => true do |t|
     t.string   "category_name"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20111022033502) do
     t.datetime "updated_at"
     t.text     "body"
     t.integer  "deal_id"
+    t.integer  "user_id"
   end
 
   create_table "deals", :force => true do |t|
@@ -48,9 +49,13 @@ ActiveRecord::Schema.define(:version => 20111022033502) do
     t.datetime "updated_at"
     t.integer  "city_id"
     t.integer  "category_id"
-    t.decimal  "price",        :precision => 5, :scale => 2, :default => 0.0
     t.integer  "submitter_id"
     t.string   "image"
+    t.string   "state"
+    t.string   "zipcode"
+    t.string   "town"
+    t.text     "details"
+    t.decimal  "price",        :precision => 5, :scale => 2
   end
 
   create_table "store_deals", :force => true do |t|
@@ -68,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20111022033502) do
     t.datetime "updated_at"
     t.string   "address"
     t.integer  "city_id"
+    t.string   "website"
   end
 
   create_table "user_deals", :force => true do |t|

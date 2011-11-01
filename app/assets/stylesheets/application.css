@@ -12,7 +12,7 @@ font-size:14px;
 background:#388DDC;
 background:-moz-linear-gradient(top, #388DDC, #AAC3DA 70%);
 background: -webkit-gradient(linear, 0 0, 0 80%,from(#388DDC),to(#C3CAE5));
-/*min-width:1020px;*/
+min-width:1020px;
 background-repeat:repeat-y;
 min-height:1000px;
 }
@@ -28,21 +28,25 @@ margin-top:200px;
  display:block;
  width:600px;
  height:200px;
- background:#DBE1EB;
+ background:#fff;
 	
 }
 .root-login h3{
 background:black;
 color:white;
 margin-top:0px;
-padding:6px;
+padding:8px;
 -moz-border-radius:6px;
- -webkit-border-radius:6px;
+-webkit-border-radius:6px;
  border-radius:6px;
 }
-.root-form{float:left;padding:10px;}
-.v-line{border-left:solid #BDBFC1 1px;height:150px;
-float:left;margin-left: 430px;}
+.top-border{border-top:solid green 2px;}
+.root-form{padding:10px;}
+.v-line{
+border-left:solid #BDBFC1 1px;
+height:130px;
+
+}
 .header-background{	
 background:#000514;
 height:50px;
@@ -144,6 +148,7 @@ border:solid #fff 3px;
 width:250;
 height:200px;
 border:solid #fff 3px;
+float:left;
 }
 .deal {
 margin:3px;	
@@ -162,7 +167,7 @@ float:left;
 -webkit-box-shadow: 0px 4px 1px #F0F2F5;
 box-shadow: 0px 4px 1px #F0F2F5;
 }
-.view-deal-border{
+.view-deal-border{float:left;
 background:#F0F2F5;	
 -moz-border-radius:3px;
  -webkit-border-radius:3px;
@@ -203,17 +208,17 @@ text-decoration:none;
 -webkit-border-radius:2px;
  border-radius:2px;
 }
-.price{
+.price{padding-left:5px;
 color:#E9711C;	
-position:fixed;	
 font-size:18px;
 font-weight:bold;
 margin-bottom:10%;
+
 }
-.votes{
-position:relative;	
+.votes{	
 font-size:18px;
 margin-bottom:40px;	
+padding-left:5px;
 }
 #comments_count{
 margin-top:15px;	
@@ -231,4 +236,43 @@ border:solid #C7DEF0 1px;
 -webkit-border-radius:2px;
  border-radius:2px;
  margin-top:5px;
+
+}
+.note{
+padding:4px;
+width:100%;
+background:#C6EFA4;	
+border:solid #7CDD2C 1px;	
+}
+.error{
+padding:4px;
+width:100%;
+background:#F09994;	
+border:solid #ED3126 1px;		
+}
+.vote-up
+{text-decoration:none;
+ padding:4px;
+ background:#ABB3BF;	
+-moz-border-radius:3px;
+-webkit-border-radius:3px;
+ border-radius:3px;
+ font-size:12px;
+ border:solid black 1px;	
+}
+.vote-down{
+text-decoration:none;
+ padding:4px;
+ background:#ABB3BF;	
+-moz-border-radius:3px;
+-webkit-border-radius:3px;
+ border-radius:3px;	
+ font-size:12px;
+  border:solid black 1px;		
+}
+.vote-up:hover{
+background:green;	
+}
+.vote-down:hover{
+background:red;	
 }

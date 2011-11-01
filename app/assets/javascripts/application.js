@@ -16,4 +16,6 @@ jQuery.ajaxSetup({
 });
 $(document).ready(function() {
 $(".man").click(function(){alert('great')});
+
+$('#city_city_id').selectmenu({style:'dropdown', menuWidth:'250'});
 });

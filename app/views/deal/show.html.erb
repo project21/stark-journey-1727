@@ -1,28 +1,33 @@
 
 
 <div class="container">
- <div class="note"> <%=flash[:notice]%> </div>
- <div class="error"><%=flash[:error]%></div>
+
+ <div class="notice"> <%=flash[:notice]%> </div>
+
+
+ <div class="errors"> <%=flash[:error]%></div>
+  
 <div class="clear"></div>
 <span >Share with your community the great price you spot today <%=button_to "list a deal",{:controller=>"deal",:action =>"new"} ,{:class=>"list-button" }%></span>
  <br/>
-<% @store_deals.each do |store_deal| %>
+<% @deals.each do |store_deal| %>
 <div style="float:left">
 <div class="deal">
- <a href="/comment/index?deal_id=<%=store_deal.deal.id%>"><%= store_deal.deal.size%> &nbsp;<%= store_deal.deal.brand%>&nbsp;<%= store_deal.deal.item_name %></a>
- for <%= store_deal.deal.price %><br/>
-<span class="image"> <%=image_tag (store_deal.deal.image_url.to_s )%></span><br/>
-  <%=link_to "vote down",vote_down_deal_path(store_deal.deal),:method=>:post,:remote=>true %>
- <%=link_to "vote up",vote_up_deal_path(store_deal.deal),:method=>:post,:remote=>true %>
-  <%=pluralize(store_deal.deal.plusminus,"vote")%>
+ <a href="/comment/index?deal_id=<%=store_deal.id%>"><%= store_deal.size%> &nbsp;<%= store_deal.brand%>&nbsp;<%= store_deal.item_name %></a>
+ for <%= store_deal.price %><br/>
+<span class="image"> <%=image_tag (store_deal.image_url.to_s )%></span><br/>
+  <%=link_to "vote down",vote_down_deal_path(store_deal),:method=>:post,:remote=>true %>
+ <%=link_to "vote up",vote_up_deal_path(store_deal),:method=>:post,:remote=>true %>
+  <%=pluralize(store_deal.plusminus,"vote")%>
  <br/>
-<a class="view-button" href="/comment/index?deal_id=<%=store_deal.deal.id%>">view</a><br/>
-  <%= store_deal.store.store_name %>&nbsp;by&nbsp;
-  <%= store_deal.store.address %><br/>
-  <%=pluralize(store_deal.deal.comments.count,"comment")%>
-
+<a class="view-button" href="/comment/index?deal_id=<%=store_deal.id%>">view</a><br/>
+ <% store_deal.stores.each do |store|%>
+  <%= store.store_name %>&nbsp;by&nbsp;
+  <%= store.address %><br/>
+<%end%>
+  <%=pluralize(store_deal.comments.count,"comment")%>
  </div><br/>
- <span class="time">&nbsp; posted <%=time_ago_in_words(store_deal.deal.created_at)%>&nbsp;ago</span>
+ <span class="time">&nbsp; posted <%=time_ago_in_words(store_deal.created_at)%>&nbsp;ago</span>
  </div>
 <%end%>
 

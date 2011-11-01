@@ -1,28 +1,36 @@
 <div class="container">
-<div class="notice" ></div>
-<h3><%=@deal.size%>&nbsp;<%=@deal.brand%>&nbsp;<%=@deal.item_name%></h3>
+<% if flash[:error] %>
+<div class="error" ><%=flash[:error] %></div>
+<%end%>
+
+<h3><%=@deal.size%>&nbsp;<%=@deal.brand%>&nbsp;<%=@deal.item_name%>&nbsp;at&nbsp;<%=@store.store.store_name%></h3>
 <div class="view-deal-border">
 <span class="view-image"> <%=image_tag (@deal.image_url.to_s )%></span>
-<span class="price"><%=@deal.price%>$</span>
-<span class="votes"><%=pluralize(@deal.plusminus,"vote")%></span>
-<%=link_to "vote up",vote_up_deal_path(@deal),:method=>:post,:remote=>true %>
-<%=link_to "vote down",vote_down_deal_path(@deal),:method=>:post,:remote=>true %>
+<span class="price"><%=@deal.price%>$</span><br/><br/>
+<span class="votes"><%=pluralize(@deal.plusminus,"vote")%></span><br/><br/>
 
+<%=link_to "vote down",vote_down_deal_path(@deal),:method=>:post,:remote=>true ,:class=>"vote-down" %>
+<%=link_to "vote up",vote_up_deal_path(@deal),:method=>:post,:remote=>true,:class=>"vote-up" %><br/><br/>
+<%=@store.store.store_name%>&nbsp;at&nbsp;<%=@store.store.address%>
 </div>
-
+<div class="clear"></div>
 <div id="comments_count"><%=pluralize(@comments.count,"comment")%></div>
 
 <% @comments.each do |comment|%>
 <div id="comments">
+<% if comment.user%>
+<%=comment.user.email%>&nbsp;said<br/>
 <%=comment.body%>
+<%end%>
 </div>
 <span class="time"><%=time_ago_in_words(comment.created_at)%>&nbsp;ago</span>
 <%end%>
-
-
+<div class="comment-display"></div>
+<div class="notice"><%=flash[:error]%></div>
 <%= form_for :comment,:remote => true,:url=>{:controller=>"comments",:action=>"create"},:html => { :id => 'new-comment'} do |f| %>
 <%= f.hidden_field :deal_id ,:value=>@deal.id%>
   <%= f.text_area :body,:rows=>"1" %><br/>
+  <%= f.hidden_field :user_id,:value => current_user.id%>
   <%= f.submit "post" %>
 <% end %>
 

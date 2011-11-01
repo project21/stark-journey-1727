@@ -1,14 +1,15 @@
 class CommentsController < ApplicationController
-# before_filter :authenticate_user!, :only=>:create
+ #before_filter :authenticate_user!, :only=>:create
   layout "header"
-  respond_to  :js
+  respond_to :js
   # GET /comments
   # GET /comments.json
   def index
    @city = City.find(session[:city_id])
    @deal=Deal.find(params[:deal_id])
-   @comments = @deal.comments
+   @comments = @deal.comments.includes(:user)
    @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+   @store=StoreDeal.find(@deal)
   end
 
   # GET /comments/1
@@ -44,12 +45,14 @@ class CommentsController < ApplicationController
     @comment = @deal.comments.build(params[:comment])
    # @comment = Comment.create(params[:comment])
     if  @comment.save 
-       respond_with( @comment, :layout => !request.xhr? )
+       #respond_with( @comment, :layout => !request.xhr? )
+       #flash.now[:error] = "Please sign up before posti"
      else
-      flash.now[:notice] = "Please sign up before posting a commment!" 
-      respond_with( @comment, :layout => !request.xhr? )
-    
-     end      
+      flash.now[:error] = "Please write the comment before submitting" 
+     #respond_with( @comment, :layout => !request.xhr? )
+     render "index"
+     end 
+        
   end
 
   # PUT /comments/1
