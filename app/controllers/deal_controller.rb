@@ -1,6 +1,6 @@
 class DealController < ApplicationController
   respond_to :js
-  before_filter :authenticate_user!, :only=>:new
+  before_filter :authenticate_user!, :only=>[:new,:retailers]
   layout "header"
   def index
     
