@@ -9,7 +9,7 @@ post "deal/new"
   get "category/entertain"
   get "category/restaurant"
   get "category/activity"
-
+  
   get "deal/index"
   post "deal/create"
   get "deal/new"
@@ -40,23 +40,28 @@ post "deal/new"
   get "home/retailers"
 
   get "home/new_deals"
-
+ 
   post "home/next"
  get 'deal/id'  
   devise_for :users
 match '/comment/index' => 'comments#index' ,:via=>:get
 match 'deal/city/'  => "deal#city", :via=>:get
 match 'deals/:id'  => "deal#show", :via=>:get
-match 'home/next'  => "deal#show"
-resources :city, :deal,:store,:vote ,:category
+match 'home/next'  => "deal#show" 
+resources :city,:store,:vote ,:category
 match "category/electro" => 'category#electro'
 match "category/health" => 'category#health'
 match "category/activity" => 'category#activity'
 match "category/restaurant" => 'category#restaurant'
 match "category/clothing" => 'category#clothing'
 match "category/entertain" => 'category#entertain'
+match "deal/retailers" => 'deal#retailer_create'
+resources :deals,:controller=>"deal" do
 
-resources :deal do
+   collection do
+    get :show, :as => :show
+  end
+
   member do
     post :vote_up
     post :vote_down
@@ -80,11 +85,6 @@ end
 
 
    
- # resources :posts do
- # member do
- #   post :vote_up
-  #end
-#end
 
 root :to => "home#index"
   # The priority is based upon order of creation:

@@ -15,7 +15,7 @@
 <td>
 <div class="root-form">
 <%= form_for :city,:size=>"40", :url=>{:action =>"next"} do |f| %>
-<%= f.collection_select(:city_id, City.all, :id, :name ,:prompt=>"Select your city") %>
+<%= f.collection_select(:city_id, City.all, :id, :name ,:prompt=>"select your city") %>
 <br/>
 <br/>
 <%=f.submit "continue" %>

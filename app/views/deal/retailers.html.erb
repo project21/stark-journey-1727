@@ -1,5 +1,5 @@
 <div class="container">
-<%= form_for @deal ,:url=>{:action =>"create"},:html=>{:multipart=>true} do |f|%>
+<%= form_for @deal ,:url=>{:action =>"retailer_create"},:html=>{:multipart=>true} do |f|%>
    <%= f.error_messages %>
         
 <%= f.collection_select( :category_id, Category.all ,:id,:category_name,:prompt=>"category") %><br/>

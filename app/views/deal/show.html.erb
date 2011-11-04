@@ -2,11 +2,14 @@
 
 <div class="container">
 
- <div class="notice"> <%=flash[:notice]%> </div>
-
-
- <div class="errors"> <%=flash[:error]%></div>
-  
+ <div class="notice"> </div>
+ <div class="errors"> </div>
+ <% if flash[:error]%>
+ <div class="error"> <%=flash[:error]%></div>
+     <%end%>
+     <% if flash[:notice]%>
+  <div class="note"> <%=flash[:notice]%></div>
+     <%end%>
 <div class="clear"></div>
 <span >Share with your community the great price you spot today <%=button_to "list a deal",{:controller=>"deal",:action =>"new"} ,{:class=>"list-button" }%></span>
  <br/>

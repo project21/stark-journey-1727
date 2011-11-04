@@ -3,7 +3,12 @@ class DealController < ApplicationController
   before_filter :authenticate_user!, :only=>[:new,:retailers]
   layout "header"
   def index
-    
+     unless session[:city_id].nil? || session[:city_id].blank?
+     @city = City.find(session[:city_id])
+   
+    @deals=Deal.where("city_id = ?", session[:city_id]).includes( :stores).rank_tally()
+     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+   end
   end
 
   def create
@@ -19,6 +24,19 @@ class DealController < ApplicationController
   end 
   end
 
+   def retailer_create
+  @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])  
+  @city = City.find(session[:city_id])
+  @deal=@city.deals.build(params[:deal])
+   if @deal.save
+    redirect_to @deal
+     flash[:notice]="Thank you for choosing spotdeals"
+    else
+    render 'retailers' 
+    flash[:error]="Error occured,data was not saved"
+  end 
+  end
+  
   def show
     unless session[:city_id].nil? || session[:city_id].blank?
      @city = City.find(session[:city_id])
