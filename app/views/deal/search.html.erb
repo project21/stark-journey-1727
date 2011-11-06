@@ -1,9 +1,31 @@
-<%@deals.each do |deal|%>
-<%=deal.item_name%>
-<% deal.stores.each do |store| %>
-    <%= store.store_name %>
-    <%=store.address%>
-     <a href="/comment/index?deal_id=<%=deal.id%>">view</a>
+<div class="container">
 
-  <%end%>  
+ <div class="notice">
+  <%=flash[:notice]%>
+  <div class="errors"><%=flash[:error]%></div>
+  </div>
+
+<%@deals.each do |deal|%>
+
+<div >
+ 
+<span class="image"><%=image_tag deal.image_url.to_s%></span>
+<a href="/comment/index?deal_id=<%=deal.id%>"><%=deal.size%>&nbsp;<%=deal.brand%>
+&nbsp;<%=deal.item_name%> </a>for <%=deal.price%>$
+<%=link_to "vote down",vote_down_deal_path(deal),:method=>:post,:remote=>true %>
+ <%=link_to "vote up",vote_up_deal_path(deal),:method=>:post,:remote=>true %>
+<%=pluralize(deal.plusminus,"vote")%><br/>
+<a class="view-button" href="/comment/index?deal_id=<%=deal.id%>">view</a><br/>
+    <% deal.stores.each do |club| %>
+    <%= club.store_name %>&nbsp;by
+    <%=club.address%> <br/>
+    <%=pluralize(deal.comments.count,"comment")%>
+</div>
+<br/>
+<span class="time"><%=time_ago_in_words(deal.created_at)%>&nbsp;ago</span>
+
+  <%end%> 
+  <div class="underline"></div> 
 <%end%>
+
+</div>

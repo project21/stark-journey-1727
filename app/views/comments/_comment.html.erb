@@ -1,5 +1,6 @@
 
 <div id="comments">
-<%=@comment.user.email%>&nbsp;said<br/>
-<%=@comment.body%>
+<span class="inline_tables"><%=image_tag ("rails.png")%></span>
+<span class="inline_tables"><%=@comment.user.username%>&nbsp;said<br/>
+<%=@comment.body%></span>
 </div>

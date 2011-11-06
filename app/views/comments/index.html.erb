@@ -19,7 +19,8 @@
 <% @comments.each do |comment|%>
 <div id="comments">
 <% if comment.user%>
-<%=comment.user.email%>&nbsp;said<br/>
+<span class="inline_tables"><%=image_tag ("rails.png")%></span>
+<span class="inline_tables"><%=comment.user.username%>&nbsp;said</span><br/>
 <%=comment.body%>
 <%end%>
 </div>

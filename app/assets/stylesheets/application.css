@@ -236,6 +236,7 @@ border:solid #C7DEF0 1px;
 -webkit-border-radius:2px;
  border-radius:2px;
  margin-top:5px;
+ height:50px;
 
 }
 .note{
@@ -275,4 +276,17 @@ background:green;
 }
 .vote-down:hover{
 background:red;	
+}
+.inline_tables{
+  display: inline-table;
+  position: relative;float:left;
+}
+span.inline_tables img{
+	height:50px;
+	width:50px;
+}
+.underline{
+border-top:solid #dedede 1px;
+width:600px;
+margin-left:25px;
 }

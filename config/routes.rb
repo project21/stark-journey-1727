@@ -82,9 +82,7 @@ resources :cities do
     get :electro
   end
 end
-
-
-   
+  
 
 root :to => "home#index"
   # The priority is based upon order of creation:

@@ -39,11 +39,20 @@ class DealController < ApplicationController
   
   def show
     unless session[:city_id].nil? || session[:city_id].blank?
-     @city = City.find(session[:city_id])
-   
-    @deals=Deal.where("city_id = ?", session[:city_id]).includes( :stores).rank_tally()
+     @city = City.find_by_id(session[:city_id])
+     @deals=Deal.where("city_id = ?", session[:city_id]).includes( :stores).rank_tally()
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-   end
+     @address=request.remote_ip
+   #  if Ip.find_by_ip_address (@address)
+    # Ip.increment_counter(:ip_count,@ip.id)
+    # @login_count=Ip.find(2).ip_count
+  # else
+    @ip=Ip.create(:ip_address=>@address)
+    @ip.save
+ #  end
+ else
+     redirect_to :controller=>"home" ,:action=>"index" 
+ end
  
 end 
 
@@ -52,26 +61,31 @@ def vote_up
      @store_deals=StoreDeal.where("stores.city_id = ?", session[:city_id]).includes(:deal, :store)
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
      @items=Deal.find(params[:id])
+if user_signed_in?
   unless current_user.voted_for?(@items) || current_user.voted_against?(@items) 
     current_user.vote_for(@items)
     flash.now[:notice]="Thank you for voting"
   else
     flash.now[:error]="Sorry you already voted for this deal"
     respond_with(@items,:layout => !request.xhr?)
-   
-  end 
+  end  
+
+else
+
+ flash.now[:error]="You have to sign up to vote "
+end
+end 
    # render :nothing => true, :status => 200
  # rescue ActiveRecord::RecordInvalid
   #  render :nothing => true, :status => 404
   
  #   end
- end 
-
  def vote_down
      @city = City.find(session[:city_id])
      @store_deals=StoreDeal.where("stores.city_id = ?", session[:city_id]).includes(:deal, :store)
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
      @items=Deal.find(params[:id])
+if user_signed_in?
     unless current_user.voted_for?(@items) || current_user.voted_against?(@items)
     current_user.vote_against(@items)
     flash.now[:notice]="Thank you for voting"
@@ -79,15 +93,16 @@ def vote_up
     else
     flash.now[:error]="Sorry you already voted for this deal"
     respond_with(@items,:layout => !request.xhr?)
-   
-  end 
+    end
+ else
+ flash.now[:error]="You have to sign up to vote "
+ end  
+end 
 #   render :nothing => true, :status => 200
 #  rescue ActiveRecord::RecordInvalid
  #   render :nothing => true, :status => 404
   
- #   end
- end 
-  
+ #   end  
   def update
     
    

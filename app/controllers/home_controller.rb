@@ -1,7 +1,13 @@
 class HomeController < ApplicationController
    
   def index
-   # @city=City.find(params[:cities][:city_id]) 
+ if user_signed_in?
+    redirect_to :controller=>"deal" ,:action=>"show"
+ else   
+   unless session[:city_id].nil? || session[:city_id].blank? 
+    redirect_to :controller=>"deal" ,:action=>"show"
+   end
+  end 
   end
 
   def next
