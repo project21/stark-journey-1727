@@ -42,14 +42,7 @@ class DealController < ApplicationController
      @city = City.find_by_id(session[:city_id])
      @deals=Deal.where("city_id = ?", session[:city_id]).includes( :stores).rank_tally()
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-     @address=request.remote_ip
-   #  if Ip.find_by_ip_address (@address)
-    # Ip.increment_counter(:ip_count,@ip.id)
-    # @login_count=Ip.find(2).ip_count
-  # else
-    @ip=Ip.create(:ip_address=>@address)
-    @ip.save
- #  end
+   
  else
      redirect_to :controller=>"home" ,:action=>"index" 
  end
