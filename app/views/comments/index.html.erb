@@ -3,7 +3,7 @@
 <div class="error" ><%=flash[:error] %></div>
 <%end%>
 
-<h3><%=@deal.size%>&nbsp;<%=@deal.brand%>&nbsp;<%=@deal.item_name%>&nbsp;at&nbsp;<%=@store.store.store_name%></h3>
+<h3><%=@deal.size%>&nbsp;<%=@deal.brand%>&nbsp;<%=@deal.item_name%>&nbsp;at&nbsp;</h3>
 <div class="view-deal-border">
 <span class="view-image"> <%=image_tag (@deal.image_url.to_s )%></span>
 <span class="price"><%=@deal.price%>$</span><br/><br/>
@@ -11,7 +11,7 @@
 
 <%=link_to "vote down",vote_down_deal_path(@deal),:method=>:post,:remote=>true ,:class=>"vote-down" %>
 <%=link_to "vote up",vote_up_deal_path(@deal),:method=>:post,:remote=>true,:class=>"vote-up" %><br/><br/>
-<%=@store.store.store_name%>&nbsp;at&nbsp;<%=@store.store.address%>
+
 </div>
 <div class="clear"></div>
 <div id="comments_count"><%=pluralize(@comments.count,"comment")%></div>

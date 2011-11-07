@@ -24,6 +24,7 @@
   <%=pluralize(store_deal.plusminus,"vote")%>
  <br/>
 <a class="view-button" href="/comment/index?deal_id=<%=store_deal.id%>">view</a><br/>
+ <%=link_to "flagg this",flagg_deal_path(store_deal),:method=>:post,:remote=>true,:confirm=>"Are you sure, want to flag this?" %>
  <% store_deal.stores.each do |store|%>
   <%= store.store_name %>&nbsp;by&nbsp;
   <%= store.address %><br/>

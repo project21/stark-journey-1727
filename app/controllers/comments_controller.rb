@@ -9,8 +9,11 @@ class CommentsController < ApplicationController
    @deal=Deal.find(params[:deal_id])
    @comments = @deal.comments.includes(:user)
    @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-   @store=StoreDeal.find(@deal)
+  # @store=StoreDeal.find(@deal.id)
+  current_user.update_attribute(:last_sign_in_at,Time.now)
   end
+
+ 
 
   # GET /comments/1
   # GET /comments/1.json
@@ -34,7 +37,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
-   # @comment = Comment.find(params[:id])
+    @comment = Comment.find(params[:id])
     #owner of the deal should be able to edit his own deal
   end
 

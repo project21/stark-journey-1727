@@ -9,10 +9,12 @@ TODO
 #set ip address with city in session
 #enter more catgories in drop down
 #specify minor cities
-
+#show deal you commented on and voted on
 #devise error messages
 #past deals
 #flash messages display one at any time
+
+#subtract your own comments
 Inthe future
 people will be able to buy things online and we will claim a small percent portion
 retailers manage thir deals by cities
