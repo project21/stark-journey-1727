@@ -40,9 +40,15 @@ class DealController < ApplicationController
   def show
     unless session[:city_id].nil? || session[:city_id].blank?
      @city = City.find_by_id(session[:city_id])
-     @deals=Deal.where("city_id = ?", session[:city_id]).includes( :stores).rank_tally()
+     @deals=Deal.where("city_id = ?", session[:city_id]).includes( :stores).rank_tally(:limit=>30)
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-   
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments)
+    # @comments = @mydeals.first.comments.includes(:user)
+      @last_signed=current_user.last_sign_in_at
+     # @old_comments=@comments.where("created_at < ?",@last_signed).count
+     # @new_comments=@comments.count-@old_comments
+    end
  else
      redirect_to :controller=>"home" ,:action=>"index" 
  end
@@ -65,7 +71,7 @@ if user_signed_in?
 
 else
 
- flash.now[:error]="You have to sign up to vote "
+ flash.now[:error]="You have to login or sign up to vote for this deal "
 end
 end 
    # render :nothing => true, :status => 200
@@ -88,17 +94,11 @@ if user_signed_in?
     respond_with(@items,:layout => !request.xhr?)
     end
  else
- flash.now[:error]="You have to sign up to vote "
+ flash.now[:error]="You have to login or sign up to vote for this deal "
  end  
 end 
-#   render :nothing => true, :status => 200
-#  rescue ActiveRecord::RecordInvalid
- #   render :nothing => true, :status => 404
-  
- #   end  
-  def update
-    
-   
+
+  def update 
   end 
 
   def new
@@ -106,7 +106,7 @@ end
    @city = City.find(session[:city_id])
    @deal = @city.deals.build
    @deal.stores.build
-   
+   current_user.deals.build
    @deal.build_category
    #mention time (how long the deal is going to be till)
    @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
@@ -155,7 +155,32 @@ end
    
   end
 
-  def questions
-  end
+def flagg
+if user_signed_in?  
+@deal=Deal.find(params[:id])
+unless @deal.flagged
+@deal.update_attribute(:flagged,true)
+flash.now[:error]="You have flagged this deal,we will take care of it"
+respond_with(:layout => !request.xhr?)
+else
+  flash.now[:error]="This deal has already been flagged"
+end
+
+else
+flash.now[:error]="You have to login or sign up to flag this deal"
+end
+end
+ 
+   
+  def profile
+      @city = City.find(session[:city_id])
+      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+      @mydeals=current_user.deals.includes(:stores,:comments)
+    #   @comments = @mydeals.first.comments.includes(:user)
+      @last_signed=current_user.last_sign_in_at
+     # @old_comments=@comments.where("created_at < ?",@last_signed).count
+    #  @new_comments=@comments.count-@old_comments
+     
+end
 
 end

@@ -2,5 +2,6 @@
 <div id="comments">
 <span class="inline_tables"><%=image_tag ("rails.png")%></span>
 <span class="inline_tables"><%=@comment.user.username%>&nbsp;said<br/>
-<%=@comment.body%></span>
+<%=@comment.body%></span><br/>
 </div>
+<span class="time"><%=time_ago_in_words(@comment.created_at)%>&nbsp;ago</span>

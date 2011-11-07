@@ -1,5 +1,6 @@
 Deals::Application.routes.draw do
-  resources :comments
+  resources :comments  
+    
 post "deal/new"
   get "view/show"
   get "category/index"
@@ -25,7 +26,7 @@ post "deal/new"
 
   get "deal/search"
   
-  get "deal/questions"
+  get "deal/profile"
 
   get "city/index"
 
@@ -65,6 +66,7 @@ resources :deals,:controller=>"deal" do
   member do
     post :vote_up
     post :vote_down
+    post :flagg
   end
 end
 
