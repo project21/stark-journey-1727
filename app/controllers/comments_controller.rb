@@ -9,8 +9,18 @@ class CommentsController < ApplicationController
    @deal=Deal.find(params[:deal_id])
    @comments = @deal.comments.includes(:user)
    @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-  # @store=StoreDeal.find(@deal.id)
-  current_user.update_attribute(:last_sign_in_at,Time.now)
+  
+   #comment alert
+   #@total_comments=0
+   if user_signed_in?
+     current_user.update_attribute(:last_sign_in_at,Time.now)
+     @comments = @deal.comments
+     @last_signed=current_user.last_sign_in_at
+     @old_comments=@comments.where("created_at < ?",@last_signed).count
+     @new_comments=@comments.count-@old_comments
+   #  @total_comments+=@new_comments
+     end
+     # @store=StoreDeal.find(@deal.id)
   end
 
  

@@ -26,10 +26,10 @@
 
   <span class="user-status">
 <% if user_signed_in? %>
-<% unless @new_comments==0 %>
-<div style="color:red" ><%=pluralize(@new_comments,"comment")%></div>
+<% unless @total_comments==0 %>
+<div style="color:red" ><%=pluralize(@total_comments,"comment")%></div>
 <%else%>
-<div style="display:none;"><%=@new_comments%></div>
+<div style="display:none;"><%=@total_comments%></div>
 <%end%>
     <a href="/deal/profile" ><%= current_user.username %></a>. <%=pluralize(current_user.karma,"point")%>
 

@@ -1,4 +1,4 @@
-class DealController < ApplicationController
+  class DealController < ApplicationController
   respond_to :js
   before_filter :authenticate_user!, :only=>[:new,:retailers]
   layout "header"
@@ -42,13 +42,17 @@ class DealController < ApplicationController
      @city = City.find_by_id(session[:city_id])
      @deals=Deal.where("city_id = ?", session[:city_id]).includes( :stores).rank_tally(:limit=>30)
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+     @total_comments=0
      if user_signed_in?
-     @mydeals=current_user.deals.includes(:stores,:comments)
-    # @comments = @mydeals.first.comments.includes(:user)
-      @last_signed=current_user.last_sign_in_at
-     # @old_comments=@comments.where("created_at < ?",@last_signed).count
-     # @new_comments=@comments.count-@old_comments
-    end
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
+     @last_signed=current_user.last_sign_in_at
+     @old_comments=@comments.where("created_at < ?",@last_signed).count
+     @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
+     end
  else
      redirect_to :controller=>"home" ,:action=>"index" 
  end
@@ -110,6 +114,18 @@ end
    @deal.build_category
    #mention time (how long the deal is going to be till)
    @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+    #comment alert
+    @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
+     @last_signed=current_user.last_sign_in_at
+     @old_comments=@comments.where("created_at < ?",@last_signed).count
+     @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
+     end
 
   end
 
@@ -121,6 +137,18 @@ end
   #@city=City.find(params[:city_id]) 
  # session[:city_id] = @city.id
  @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+ #comment alert
+     @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
+     @last_signed=current_user.last_sign_in_at
+     @old_comments=@comments.where("created_at < ?",@last_signed).count
+     @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
+     end
 
   end
 
@@ -136,6 +164,18 @@ end
     end
   @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
   @deals = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).order("created_at DESC")
+  #comment alert
+   @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
+     @last_signed=current_user.last_sign_in_at
+     @old_comments=@comments.where("created_at < ?",@last_signed).count
+     @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
+     end
   end
 
   def retailers
@@ -146,13 +186,36 @@ end
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
      @deal = @city.deals.build
     @deal.stores.build
+     #comment alert
+     @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
+     @last_signed=current_user.last_sign_in_at
+     @old_comments=@comments.where("created_at < ?",@last_signed).count
+     @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
+     end
   end
 
   def search
     @city = City.find(session[:city_id])
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     @deals = @search.all
-   
+   #comment alert
+     @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
+     @last_signed=current_user.last_sign_in_at
+     @old_comments=@comments.where("created_at < ?",@last_signed).count
+     @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
+     end
   end
 
 def flagg
@@ -175,11 +238,17 @@ end
   def profile
       @city = City.find(session[:city_id])
       @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-      @mydeals=current_user.deals.includes(:stores,:comments)
-    #   @comments = @mydeals.first.comments.includes(:user)
-      @last_signed=current_user.last_sign_in_at
-     # @old_comments=@comments.where("created_at < ?",@last_signed).count
-    #  @new_comments=@comments.count-@old_comments
+      @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
+     @last_signed=current_user.last_sign_in_at
+     @old_comments=@comments.where("created_at < ?",@last_signed).count
+     @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
+     end
      
 end
 

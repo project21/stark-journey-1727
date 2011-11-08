@@ -3,10 +3,10 @@
 your points<br/>
 credits
 <%@mydeals.each do |mydeal|  %>
-<% unless @new_comments==0 %>
-<div ><%=pluralize(@new_comments,"New comment")%></div>
+<% unless @total_comments==0 %>
+<div ><%=pluralize(@total_comments,"New comment")%></div>
 <%else%>
-<div style="display:none;"><%=@new_comments%></div>
+<div style="display:none;"><%=@total_comments%></div>
 <%end%>
 <a href="/comment/index?deal_id=<%=mydeal.id%>"><%=mydeal.size%>&nbsp;<%=mydeal.brand%>
 &nbsp;<%=mydeal.item_name%> </a>for <%=mydeal.price%>$ <br/>
