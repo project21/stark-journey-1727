@@ -12,7 +12,11 @@ credits
 <a href="/comment/index?deal_id=<%=mydeal.id%>"><%=mydeal.size%>&nbsp;<%=mydeal.brand%>
 &nbsp;<%=mydeal.item_name%> </a>for <%=mydeal.price%>$ <br/>
 <span class="image"><%=image_tag mydeal.image_url.to_s%></span><br/>
-
+<%=link_to "delete" ,delete_deal_path(mydeal),:confirm=>"Are you sure want to delete this deal",:method=>:delete%>
+<%=link_to "edit" ,edit_deal_path(mydeal)%>
+<% if mydeal.flagged %>
+<div>This deal has been flagged ,Please delete the deal or make necessary corrections</div>
+<%end%>
 <%=pluralize(mydeal.plusminus,"vote")%>
 <% mydeal.stores.each do |store| %>
 <%=store.store_name%>

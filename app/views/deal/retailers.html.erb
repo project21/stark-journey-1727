@@ -7,7 +7,9 @@
 <tr><td><label>Brand</label></td><td><%=f.text_field :brand%></td></tr>
 <tr><td><label>size/quantity/hours</label></td><td><%= f.text_field :size%></td></tr>
 <tr><td><label>Product/service name*</label></td><td><%= f.text_field :item_name %></td></tr>
-<tr><td><label>Price*</label></td><td><%= f.text_field :price %></td></tr>
+<tr><td><label>Deal Price*</label></td><td><%= f.text_field :price %></td></tr>
+<tr><td><label>Regular Price*</label></td><td><%= f.text_field :reg_price %></td></tr>
+<tr><td><label>Deal end date</label></td><td><%=f.date_select  :end_date,:start_year=>2011,:order => [:month,:day,:year]%> if not specified will be marked as untill sold</td></tr>
 <tr><td><label>Image of the product/business</label></td><td><%= f.file_field :image %></td></tr>
  <%= f.hidden_field :image_cache %>
 <%= f.hidden_field :submitter_id,:value => current_user.id%>
@@ -19,7 +21,7 @@
 <tr><td><label>City*</label><%=f.text_field :town,:size=>"20" %></td><td><label>state*</label><%=f.text_field :state,:size=>"5" %>
 <label>zipcode*</label><%=f.text_field :zipcode,:size=>"10" %></td>
 </tr>  
-
+<tr><td><label>phone number*</label></td><td><%= f.text_field :phone %></td></tr>
 
 </table>
 <label>Tell us about your business and how else would you want us to advertise and improve your business</label><br/><%=f.text_area :details,:rows=>"6",:cols=>"60"%> <br/>   <%= f.submit "post"%>                   

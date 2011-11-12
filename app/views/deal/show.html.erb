@@ -18,6 +18,7 @@
 <div class="deal">
  <a href="/comment/index?deal_id=<%=store_deal.id%>"><%= store_deal.size%> &nbsp;<%= store_deal.brand%>&nbsp;<%= store_deal.item_name %></a>
  for <%= store_deal.price %><br/>
+ <%= store_deal.end_date %>
 <span class="image"> <%=image_tag (store_deal.image_url.to_s )%></span><br/>
   <%=link_to "vote down",vote_down_deal_path(store_deal),:method=>:post,:remote=>true %>
  <%=link_to "vote up",vote_up_deal_path(store_deal),:method=>:post,:remote=>true %>
@@ -31,6 +32,9 @@
 <%end%>
   <%=pluralize(store_deal.comments.count,"comment")%>
  </div><br/>
+ 
+ 
+
  <span class="time">&nbsp; posted <%=time_ago_in_words(store_deal.created_at)%>&nbsp;ago</span>
  </div>
 <%end%>

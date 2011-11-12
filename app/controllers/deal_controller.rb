@@ -17,7 +17,7 @@
   @deal=@city.deals.build(params[:deal])
    if @deal.save
     redirect_to @deal
-     flash[:notice]="Thank you for sharing the deal with us"
+     flash[:notice]="Thank you for sharing the deal with us,you can view it on your profile"
     else
     render 'new' 
     flash[:error]="Error occured,the deal was not saved"
@@ -30,7 +30,7 @@
   @deal=@city.deals.build(params[:deal])
    if @deal.save
     redirect_to @deal
-     flash[:notice]="Thank you for choosing spotdeals"
+     flash[:notice]="Thank you for choosing spotdeals,you can view your deals on your profile"
     else
     render 'retailers' 
     flash[:error]="Error occured,data was not saved"
@@ -103,6 +103,28 @@ if user_signed_in?
 end 
 
   def update 
+     @city = City.find(session[:city_id])
+     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+     @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
+     @last_signed=current_user.last_sign_in_at
+     @old_comments=@comments.where("created_at < ?",@last_signed).count
+     @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
+     end
+       
+       @deal= Deal.find(params[:id])
+ 
+    if @deal.update_attributes(params[:deal])
+      redirect_to :action => 'show'
+      flash[:notice]="Thank you ,your deal has been updated,you can view it on your profile"
+    else
+      render :edit
+    end
   end 
 
   def new
@@ -248,8 +270,31 @@ end
      @new_comments=@comments.count-@old_comments
      @total_comments+=@new_comments
          end
-     end
-     
+     end   
+end
+
+def delete
+    @deal=Deal.find(params[:id])
+    @deal.destroy
+    redirect_to :controller=>"deal",:action=>"profile"
+end
+
+def edit
+    @city = City.find(session[:city_id])
+     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+      @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
+     @last_signed=current_user.last_sign_in_at
+     @old_comments=@comments.where("created_at < ?",@last_signed).count
+     @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
+     end   
+    @deal=Deal.find(params[:id])
+  
 end
 
 end

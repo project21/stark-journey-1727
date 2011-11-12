@@ -41,10 +41,12 @@ post "deal/new"
   get "home/retailers"
 
   get "home/new_deals"
- 
+  get "deal/edit"
   post "home/next"
- get 'deal/id'  
+  get 'deal/id'  
   devise_for :users
+  match "deal/create" => "deal#create" ,:via =>:put
+match "deals/:id/delete" =>'deal#delete'
 match '/comment/index' => 'comments#index' ,:via=>:get
 match 'deal/city/'  => "deal#city", :via=>:get
 match 'deals/:id'  => "deal#show", :via=>:get
@@ -67,6 +69,8 @@ resources :deals,:controller=>"deal" do
     post :vote_up
     post :vote_down
     post :flagg
+    delete :delete 
+    get  :edit 
   end
 end
 
