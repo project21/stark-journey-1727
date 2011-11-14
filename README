@@ -5,8 +5,6 @@ TODO
 #get an email from user when selecting a city
 #mark it as invalid
 #ask for prices of different things
-#price has to be validated as format of
-#set ip address with city in session
 #enter more catgories in drop down
 #specify minor cities
 #show deal you commented on and voted on
@@ -16,6 +14,8 @@ TODO
 #validate address
 #remove points when flagged
 #subtract your own comments
+#claim your business
+#conditional validation
 Inthe future
 people will be able to buy things online and we will claim a small percent portion
 retailers manage thir deals by cities

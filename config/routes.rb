@@ -70,7 +70,8 @@ resources :deals,:controller=>"deal" do
     post :vote_down
     post :flagg
     delete :delete 
-    get  :edit 
+    get  :edit
+    get :edit_retailer 
   end
 end
 

@@ -34,6 +34,16 @@
     else
     render 'retailers' 
     flash[:error]="Error occured,data was not saved"
+      @total_comments=0
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
+     @last_signed=current_user.last_sign_in_at
+     @old_comments=@comments.where("created_at < ?",@last_signed).count
+     @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+        
+     end
   end 
   end
   
@@ -219,7 +229,7 @@ end
      @new_comments=@comments.count-@old_comments
      @total_comments+=@new_comments
          end
-     end
+     end  
   end
 
   def search
@@ -280,6 +290,24 @@ def delete
 end
 
 def edit
+    @city = City.find(session[:city_id])
+     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+      @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
+     @last_signed=current_user.last_sign_in_at
+     @old_comments=@comments.where("created_at < ?",@last_signed).count
+     @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
+     end   
+    @deal=Deal.find(params[:id])
+  
+end
+
+def edit_retailer
     @city = City.find(session[:city_id])
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
       @total_comments=0
