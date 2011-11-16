@@ -1,14 +1,19 @@
 <div class="container">
 Please dont share deals that requires coupon or online deals
+
 <%= form_for @deal ,:url=>{:action =>"create"},:html=>{:multipart=>true} do |c|%>
-       <%= c.error_messages %>
-        
+     <%= c.error_messages %>       
 <%= c.collection_select( :category_id, Category.all ,:id,:category_name,:prompt=>"category") %><br/>
 <table>
 <tr><td><label>Brand</label></td><td><%=c.text_field :brand%></td></tr>
 <tr><td><label>size</label></td><td><%= c.text_field :size%></td></tr>
-<tr><td><label>Product</label></td><td><%= c.text_field :item_name %></td></tr>
-<tr><td><label>Price</label></td><td><%= c.text_field :price %></td></tr>
+<tr><td><label>quantity</label></td><td><%= c.text_field :quantity%></td></tr>	
+<tr><td><label>Product</label></td><td><%= c.text_field :item_name %></td></tr>	
+<tr><td><%= c.radio_button :fixed_price, true,:class=>"fixed-price" %>Actual deal price</td><td><%= c.radio_button :fixed_price,false, :class=>"percent-off" %>Buy n items get percent off or item free</td></tr>
+<tr class="ui-helper-hidden fixed"><td><label>Price</label></td><td><%= c.text_field :price %></td></tr>
+<tr class="ui-helper-hidden percent" ><td><label>percent off</label></td><td><%= c.text_field :percent_off %></td></tr>
+<tr class="ui-helper-hidden percent" ><td>or</td></tr>
+<tr class="ui-helper-hidden percent"><td><label>n items free</label></td><td><%= c.text_field :n_item_free %></td></tr>
 <tr><td><label>Image</label></td><td><%= c.file_field :image %></td></tr>
  <%= c.hidden_field :image_cache %>
 <%= c.hidden_field :submitter_id,:value => current_user.id%>

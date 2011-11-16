@@ -17,28 +17,38 @@
 <% @deals.each do |store_deal| %>
 <div style="float:left">
 <div class="deal">
- <a href="/comment/index?deal_id=<%=store_deal.id%>"><%= store_deal.size%> &nbsp;<%= store_deal.brand%>&nbsp;<%=truncate( store_deal.item_name)%></a>
- for <%= store_deal.price %><br/>
+ <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>"><%= store_deal.size%> &nbsp;<%= truncate(store_deal.brand,:length=>15)%><br/><%=truncate( store_deal.item_name,:length=>30)%></a><br/>
+ for&nbsp;<span class="item-price"><%= store_deal.price %></span><br/>
 
- 
 <span class="image"> <%=image_tag (store_deal.image_url.to_s )%></span><br/>
-  <%=link_to "vote down",vote_down_deal_path(store_deal),:method=>:post,:remote=>true %>
- <%=link_to "vote up",vote_up_deal_path(store_deal),:method=>:post,:remote=>true %>
+<div style="margin-bottom:6px;margin-left:10px;">
+  <%=link_to image_tag("down.png"),vote_down_deal_path(store_deal),:method=>:post,:remote=>true,:class=>"vote-down" %>
+ <%=link_to image_tag("up.png"),vote_up_deal_path(store_deal),:method=>:post,:remote=>true,:class=>"vote-up" %>
   <%=pluralize(store_deal.plusminus,"vote")%>
- <br/>
-<a class="view-button" href="/comment/index?deal_id=<%=store_deal.id%>">view</a><br/>
- <%=link_to "flagg this",flagg_deal_path(store_deal),:method=>:post,:remote=>true,:confirm=>"Are you sure, want to flag this?" %>
+ </div>
+ <div style="margin-left:15px;">
+<a class="view-button" href="/comment/index?deal_id=<%=store_deal.id%>">view</a>
+</div>
  <% store_deal.stores.each do |store|%>
-  <%= store.store_name %>&nbsp;by&nbsp;
-  <%= store.address %><br/>
+ <div class="store-name">
+  <%=truncate(store.store_name,:length=>15) %>&nbsp;by&nbsp;
+  <%=truncate( store.address,:length=>15 )%></div>
 <%end%>
-  <%=pluralize(store_deal.comments.count,"comment")%>
- </div><br/>
- 
- 
-
+  <%=pluralize(store_deal.comments.count,"comment")%><br/>
+  <% unless store_deal.flagged %>
+ <%=link_to "flagg this",flagg_deal_path(store_deal),:method=>:post,:remote=>true,:confirm=>"Are you sure, want to flag this?" ,:class=>"flag"%>
+ <%if store_deal.official%>
+ <div>Official</div>
+ <%end%>
+ <%else%>
+ <span class="flagged">flagged</span>
+ <%end%>
+ </div>	
+ <br/>
  <span class="time">&nbsp; posted <%=time_ago_in_words(store_deal.created_at)%>&nbsp;ago</span>
  </div>
-<%end%>
+  <%end%>
+ </div>
 
-</div>
+
+

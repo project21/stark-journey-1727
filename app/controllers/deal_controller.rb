@@ -193,9 +193,18 @@ end
   def new_deals
     unless session[:city_id].nil? || session[:city_id].blank?
       @city = City.find(session[:city_id])
-    end
+    end  
   @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
   @deals = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).order("created_at DESC")
+  @deals.each do |deal|
+  unless deal.fixed_price
+       unless deal.n_item_free.nil?
+        @off_free=deal.n_item_free
+      else 
+        @off_free=deal.percent_off
+       end 
+    end 
+    end  
   #comment alert
    @total_comments=0
      if user_signed_in?
@@ -206,7 +215,8 @@ end
      @old_comments=@comments.where("created_at < ?",@last_signed).count
      @new_comments=@comments.count-@old_comments
      @total_comments+=@new_comments
-         end
+     
+    end
      end
   end
 

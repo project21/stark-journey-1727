@@ -2,8 +2,11 @@
 <% if flash[:error] %>
 <div class="error" ><%=flash[:error] %></div>
 <%end%>
-
-<h3><%=@deal.size%>&nbsp;<%=@deal.brand%>&nbsp;<%=@deal.item_name%>&nbsp;at&nbsp;</h3>
+<%if @deal.official%>
+<div>OFFICIAL</div>
+<%end%>
+<h3><%=@deal.size%>&nbsp;<%=@deal.brand%>&nbsp;<%=@deal.item_name%>&nbsp;at&nbsp;<%@store.each do |store|%>
+<%=store.store.store_name%><%end%></h3>
 <div class="view-deal-border">
 <span class="view-image"> <%=image_tag (@deal.image_url.to_s )%></span>
 <span class="price"><%=@deal.price%>$</span><br/><br/>
@@ -15,7 +18,11 @@
 <%=@saving %>&nbsp;off
 <%end%>
 <% unless @deal.end_date.nil? %>
+   <% if distance_of_time_in_words(@deal.end_date,Date.today).to_i>0 %>
  Deal ending in&nbsp;<%=distance_of_time_in_words(@deal.end_date,Date.today) %>
+      <%else%>
+         Deal is closed
+       <%end%>		
  <%end%>
  <%unless @deal.available_items.nil? %>
  only&nbsp;<%=@deal.available_items%>&nbsp;available
@@ -38,8 +45,10 @@
 <div class="notice"><%=flash[:error]%></div>
 <%= form_for :comment,:remote => true,:url=>{:controller=>"comments",:action=>"create"},:html => { :id => 'new-comment'} do |f| %>
 <%= f.hidden_field :deal_id ,:value=>@deal.id%>
-  <%= f.text_area :body,:rows=>"4" %><br/>
+  <%= f.text_area :body,:rows=>"4",:cols=>"90" %><br/>
+  <% if user_signed_in? %>
   <%= f.hidden_field :user_id,:value => current_user.id%>
+  <%end%>
   <%= f.submit "post" %>
 <% end %>
 

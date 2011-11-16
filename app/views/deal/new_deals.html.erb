@@ -8,8 +8,19 @@
 <%@deals.each do |deal|%>
 <div style="float:left">
 <div class="deal">
-<a href="/comment/index?deal_id=<%=deal.id%>"><%=deal.size%>&nbsp;<%=deal.brand%>
-&nbsp;<%=deal.item_name%> </a>for <%=deal.price%>$<br/>
+<% if deal.fixed_price%>
+<a href="/comment/index?deal_id=<%=deal.id%>"><%=deal.size%>&nbsp;<%=truncate(deal.brand,:length=>30)%><br/>
+<%=truncate(deal.item_name,:length=>30)%> </a><br/>for <%=deal.price%>$<br/>
+<%else%>
+   <a href="/comment/index?deal_id=<%=deal.id%>">Buy&nbsp;<%=deal.quantity%>&nbsp;<%=deal.size%>&nbsp;<%=truncate(deal.brand,:length=>30)%><br/>
+<%=truncate(deal.item_name,:length=>30)%> </a>&nbsp;and get<br/>
+ <% unless deal.n_item_free.nil? %>
+    <%=deal.n_item_free.to_s + "free"%>
+    <%else%> 
+    <%=deal.percent_off.to_s + "%off"%>
+    <%end%>  
+ <br/>
+<%end%>
 <span class="image"> <%=image_tag (deal.image_url.to_s )%></span><br/>
 <%=link_to "vote down",vote_down_deal_path(deal),:method=>:post,:remote=>true %>
  <%=link_to "vote up",vote_up_deal_path(deal),:method=>:post,:remote=>true %>
@@ -17,10 +28,18 @@
  <a href="/comment/index?deal_id=<%=deal.id%>">view</a>
 <br/>
   <% deal.stores.each do |club| %>
-    <%= club.store_name %>
-    <%=club.address%><br/>
+    <%= truncate(club.store_name,:length=>15) %>&nbsp;by&nbsp;
+    <%=truncate(club.address,:length=>15)%><br/>
      <%end%> 
         <%=pluralize(deal.comments.count,"comment")%><br/>
+         <% unless deal.flagged %>
+      <%=link_to "flagg this",flagg_deal_path(deal),:method=>:post,:remote=>true,:confirm=>"Are you sure, want to flag this?" %>
+        <%if deal.official%>
+       <span>Official</span>
+       <%end%>
+       <%else%>
+   <span>flagged</span>
+<%end%>
      </div><br/>
   
    <span class="time"> posted&nbsp;<%=time_ago_in_words(deal.created_at)%>&nbsp;ago</span>

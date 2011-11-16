@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
      @new_comments=@comments.count-@old_comments
      @total_comments+=@new_comments
      end
-     # @store=StoreDeal.find(@deal.id)
+    @store=StoreDeal.where("deal_id=?",@deal).includes(:store)
   end
 
  

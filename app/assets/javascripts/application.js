@@ -18,4 +18,29 @@ $(document).ready(function() {
 $(".man").click(function(){alert('great')});
 
 $('#city_city_id').selectmenu({style:'dropdown', menuWidth:'250'});
+
+$("input.fixed-price").click(function(){
+  $("tr.fixed").toggleClass("ui-helper-hidden");
+  $("tr.percent").addClass("ui-helper-hidden");	
+});
+
+$("input.percent-off").click(function(){
+  $("tr.percent").toggleClass("ui-helper-hidden");
+   $("tr.fixed").addClass("ui-helper-hidden");	
+});
+
+$('#deal_percent_off').removeAttr("disabled");
+$('#deal_n_item_free').removeAttr("disabled");
+
+$("#deal_percent_off").click(function(){
+	$('#deal_percent_off').removeAttr("disabled");
+ 	$('input#deal_n_item_free').attr("disabled","disabled");
+ });
+   
+$("#deal_n_item_free").click(function(){
+$('#deal_n_item_free').removeAttr("disabled");
+$('input#deal_percent_off').attr("disabled","disabled");
+ });
+
+
 });

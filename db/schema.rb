@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111112235739) do
+ActiveRecord::Schema.define(:version => 20111115205010) do
 
   create_table "categories", :force => true do |t|
     t.string   "category_name"
@@ -55,15 +55,19 @@ ActiveRecord::Schema.define(:version => 20111112235739) do
     t.string   "zipcode"
     t.string   "town"
     t.text     "details"
-    t.decimal  "price",           :precision => 5, :scale => 2
-    t.boolean  "flagged",                                       :default => false
+    t.decimal  "price"
+    t.boolean  "flagged",         :default => false
     t.integer  "user_id"
     t.decimal  "reg_price"
     t.date     "end_date"
     t.boolean  "until_sold"
     t.string   "phone"
     t.integer  "available_items"
-    t.boolean  "official",                                      :default => false
+    t.boolean  "official",        :default => false
+    t.integer  "quantity"
+    t.integer  "n_item_free"
+    t.integer  "percent_off"
+    t.boolean  "fixed_price"
   end
 
   create_table "ips", :force => true do |t|

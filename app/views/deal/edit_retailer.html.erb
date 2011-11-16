@@ -5,9 +5,14 @@
 <%= f.collection_select( :category_id, Category.all ,:id,:category_name,:prompt=>"category") %><br/>
 <table>
 <tr><td><label>Brand</label></td><td><%=f.text_field :brand%></td></tr>
-<tr><td><label>size/quantity/hours</label></td><td><%= f.text_field :size%></td></tr>
+<tr><td><label>size/hours</label></td><td><%= f.text_field :size%></td></tr>
+<tr><td><label>quantity</label></td><td><%= f.text_field :quantity%></td></tr>
 <tr><td><label>Product/service name*</label></td><td><%= f.text_field :item_name %></td></tr>
-<tr><td><label>Deal Price*</label></td><td><%= f.text_field :price %></td></tr>
+<tr><td><%= f.radio_button :fixed_price, true,:class=>"fixed-price" %>Actual deal price</td><td><%= f.radio_button :fixed_price,false, :class=>"percent-off" %>Buy n items get percent off or item free</td></tr>
+<tr class="ui-helper-hidden fixed"><td><label>Price</label></td><td><%= f.text_field :price %></td></tr>
+<tr class="ui-helper-hidden percent" ><td><label>percent off</label></td><td><%= f.text_field :percent_off %></td></tr>
+<tr class="ui-helper-hidden percent" ><td>or</td></tr>
+<tr class="ui-helper-hidden percent"><td><label>n items free</label></td><td><%= f.text_field :n_item_free %></td></tr>
 <tr><td><label>Regular Price*</label></td><td><%= f.text_field :reg_price %></td></tr>
 <tr><td><label>Deal end date</label></td><td><%=f.date_select  :end_date,:start_year=>2011,:order => [:month,:day,:year],:prompt => {:month => 'Select month',:day => 'Select day', :year => 'Select year'}%> if not specified will be marked as untill sold</td></tr>
 <tr><td><label>No. of items available</label></td><td><%= f.text_field :available_items %></td></tr>
