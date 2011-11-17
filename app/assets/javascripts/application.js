@@ -30,7 +30,7 @@ $("input.percent-off").click(function(){
 });
 
 $('#deal_percent_off').removeAttr("disabled");
-$('#deal_n_item_free').removeAttr("disabled");
+$('#deal_n_item_free').removeAttr("disabled");		
 
 $("#deal_percent_off").click(function(){
 	$('#deal_percent_off').removeAttr("disabled");

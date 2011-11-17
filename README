@@ -1,6 +1,7 @@
 
 TODO
-
+#owner name in comments
+#remove alerts by hiding them
 #add more categories to heroku
 #get an email from user when selecting a city
 #mark it as invalid
