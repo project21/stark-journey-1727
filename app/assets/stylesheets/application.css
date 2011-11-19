@@ -176,7 +176,7 @@ background : -webkit-gradient(linear, left top, left bottombottom, from(rgb(168,
 .container{
 margin-top:20px;	
 float:left;	
-width:73%;
+width:1000px;
 margin-right:3%;
 background:#fff;
 -moz-border-radius:3px;
@@ -187,6 +187,7 @@ background:#fff;
 }
 .user-status a{float:left;color:white;text-decoration:none;}
 span a.username{color:white;font-weight:bold;text-decoration:none;}
+.user-status span.sign-up a{color:white;}
 .city-title{
 float:left;
 font-size:18px;
@@ -197,6 +198,11 @@ width:150;
 height:100px;
 border:solid #fff 3px;
 }
+.comment-bar-alert{padding:5px;
+width:100%;
+background:#D67D43; 
+border:solid #C76423 1px;}
+a.profile-item{font-weight:bold; float:left;}
 .view-image img{
 width:250;
 height:200px;
@@ -229,7 +235,7 @@ background:#F0F2F5;
  border-right:solid #B6BBC3 1px;
  border-top:solid #B6BBC3 1px;
  border-bottom:solid #B6BBC3 1px;
- width:500px;
+ width:430px;
  -moz-box-shadow: 4px 4px 1px #F0F2F5;
 -webkit-box-shadow: 4px 4px 1px #F0F2F5;
 box-shadow: 4px 4px 1px #F0F2F5;	
@@ -269,19 +275,19 @@ background: -webkit-gradient(linear, 0 0, 0 50%, from(#2FB40E) to(10%,#7FED64));
  background:-moz-linear-gradient(top, #B3630F, #E6A560 100%);
  margin-bottom:10px; 
 }
-.price{padding-left:5px;
+.price{padding:5px;
 color:#E9711C;	
-font-size:20px;
+font-size:22px;
 font-weight:bold;
-margin-bottom:10%;
-background:black;
-padding:5px;
+background:black; 
 -moz-border-radius:2px;
 -webkit-border-radius:2px;
  border-radius:2px;
+float:left;
+width:130px;
 }
 .votes-inside{	
-font-size:20px;	
+font-size:24px;	
 font-weight:bold;
 }
 #comments_count{
@@ -291,7 +297,11 @@ width:700px;
 background:#E8DCA1;	
 border:solid #C0750C 1px;
 }
-#comments{
+.line{
+ border-bottom:solid #dedede 1px; 
+ width:700px;
+}
+/*#comments{
 padding:4px;
 width:700px;
 background:#C7DEF0;	
@@ -310,7 +320,7 @@ border:solid #7591D1 1px;
 -webkit-border-radius:2px;
  border-radius:2px;
  margin-top:5px;
-}
+}*/
 .post-button{
 padding:6px 16px 6px 16px;
  background:#0D4FDE;
@@ -365,10 +375,10 @@ text-decoration:none;
   border:solid #dedede 1px;		
 }
 .vote-up img:hover{
-background:green;	
+background:#9BEE6D;	
 }
 .vote-down img:hover{
-background:red;	
+background:#FC7A69;	
 }
 .votes{
   padding:2px;
@@ -379,10 +389,15 @@ background:red;
 .inline_tables{
   display: inline-table;
   position: relative;float:left;
+ width:700px;
 }
-span.inline_tables img{
-	height:50px;
-	width:50px;
+.inline_table{
+  display: inline-table;
+  position: relative;float:left;
+}
+span.inline_table img{
+	height:40px;
+	width:40px;
 }
 .underline{
 border-top:solid #dedede 1px;
@@ -440,6 +455,7 @@ text-decoration:underline;
 color:#1632F8;
 font-weight:bolder;
 }
+.price-text{font-size:18px;float:left;}
 .item-price{
 color:#D10505;
 font-weight:bold;	

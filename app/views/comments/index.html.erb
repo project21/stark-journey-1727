@@ -8,14 +8,26 @@
 <%=store.store.store_name%><%end%></h3>
 <div class="view-deal-border">
 <span class="view-image"> <%=image_tag (@deal.image_url.to_s )%></span>
+    <% if @deal.fixed_price%>
+         <% if @deal.quantity>1 %>
+        Buy&nbsp; <%=@deal.quantity%>&nbsp;for
+         <%end%>
+    <div class="price"><%=@deal.price%>$</div>
+    <div class="votes-inside"><%=pluralize(@deal.plusminus,"vote")%></div>
+    <span><b>Cross street:<b></span>
+    <%@store.each do |store|%>
+    <span class="address"><%=store.store.address%><%end%></span><br/>
+    <%=link_to image_tag("down.png"),vote_down_deal_path(@deal),:method=>:post,:remote=>true ,:class=>"vote-down" %>
+    <%=link_to image_tag("up.png"),vote_up_deal_path(@deal),:method=>:post,:remote=>true,:class=>"vote-up" %>
+    <%else%>
+     Buy <%=@deal.quantity%>&nbsp;<%=@deal.size%>&nbsp;and get
+             <% unless @deal.n_item_free.nil? %>
+             <span class="item-price"><%=@deal.n_item_free.to_s + "free"%></span>
+             <%else%> 
+             <span class="item-price"><%=@deal.percent_off.to_s + "%off"%></span>
+             <%end%>
+     <%end%>
 
-<span>Price:</span><span class="price"><%=@deal.price%>$</span><br/><br/>
-<span class="votes-inside"><%=pluralize(@deal.plusminus,"vote")%></span><br/><br/>
-<span>Cross street:</span>
-<%@store.each do |store|%>
-<span class="address"><%=store.store.address%><%end%></span><br/>
-<%=link_to "vote down",vote_down_deal_path(@deal),:method=>:post,:remote=>true ,:class=>"vote-down" %>
-<%=link_to "vote up",vote_up_deal_path(@deal),:method=>:post,:remote=>true,:class=>"vote-up" %>
 <%else%>
 <div><b>OFFICIAL</b></div>
 
@@ -23,36 +35,61 @@
 <%=store.store.store_name%><%end%></h3>
 <div class="view-deal-border">
 <span class="view-image"> <%=image_tag (@deal.image_url.to_s )%></span>
+<% if @deal.fixed_price%>
+         <% if @deal.quantity>1 %>
+        Buy&nbsp; <%=@deal.quantity%>&nbsp;for
+         <%end%>
 <span class="price"><%=@deal.price%>$</span><br/><br/>
-<span class="votes"><%=pluralize(@deal.plusminus,"vote")%></span><br/><br/>
-<%if @saving %>
-<%=@saving %>&nbsp;off
-<%end%>
+   <%if @saving %>
+   <%=@saving %>&nbsp;off
+   <%end%>
+ <%else%>
+ Buy <%=@deal.quantity%>&nbsp;<%=@deal.size%>&nbsp;and get
+             <% unless @deal.n_item_free.nil? %>
+             <span class="item-price"><%=@deal.n_item_free.to_s + "free"%></span>
+             <%else%> 
+             <span class="item-price"><%=@deal.percent_off.to_s + "%off"%></span>
+             <%end%>
+ <%end%>  
 <% unless @deal.end_date.nil? %>
-   <% if distance_of_time_in_words(@deal.end_date,Date.today).to_i>0 %>
- Deal ending in&nbsp;<%=distance_of_time_in_words(@deal.end_date,Date.today) %>
-      <%else%>
+     <% if distance_of_time_in_words(@deal.end_date,Date.today).to_i>0 || distance_of_time_in_words(@deal.end_date,Date.today)=="about 1 month" %>
+      Deal ending in&nbsp;<%=distance_of_time_in_words(@deal.end_date,Date.today) %>
+     <%else%>
          Deal is closed
-       <%end%>		
+        
+     <%end%>		
  <%end%>
  <%unless @deal.available_items.nil? %>
  only&nbsp;<%=@deal.available_items%>&nbsp;available
  <%end%>
-
+<span class="votes"><%=pluralize(@deal.plusminus,"vote")%></span><br/><br/>
+<%=link_to image_tag("down.png"),vote_down_deal_path(@deal),:method=>:post,:remote=>true ,:class=>"vote-down" %>
+    <%=link_to image_tag("up.png"),vote_up_deal_path(@deal),:method=>:post,:remote=>true,:class=>"vote-up" %>
  <%end%>
 </div>
+<%if @deal.official%>
+<%@store.each do |store|%>
+<%=store.store.address%><%end%>
+<%=@deal.town%>
+<%=@deal.state%>
+<%=@deal.zipcode%>
+<%end%>
+
 <div class="clear"></div>
 <div id="comments_count"><%=pluralize(@comments.count,"comment")%></div>
 
 <% @comments.each do |comment|%>
 <div id="comments">
 <% if comment.user%>
-<span class="inline_tables"><%=image_tag ("rails.png")%></span>
-<span class="inline_tables"><%=comment.user.username%>&nbsp;said</span><br/>
-<%=comment.body%>
+<span class="inline_table"><%=image_tag ("rails.png")%></span>
+<span class="inline_tables"><span style="text-decoration:underline;"><%=comment.user.username%></span>&nbsp;<span style="color:#808080;">said</span><br/>
+<%=comment.body%></span><br/>
 <%end%>
 </div>
+
+<div class="clear"></div>
 <span class="time"><%=time_ago_in_words(comment.created_at)%>&nbsp;ago</span>
+<div class="line"></div>
 <%end%>
 <div class="comment-display"></div>
 Add a comment

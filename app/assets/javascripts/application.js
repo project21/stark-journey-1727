@@ -42,5 +42,65 @@ $('#deal_n_item_free').removeAttr("disabled");
 $('input#deal_percent_off').attr("disabled","disabled");
  });
 
+$('#size').click(function(e){e.preventDefault();
+    $('.size-instruction').dialog({
+         autoOpen:false,
+         width:300,
+         height:100,
+         position:'center'
+  });
+  $('.size-instruction').dialog('open');
+});
+
+$('#actual').click(function(e){e.preventDefault();
+    $('.actual-instruction').dialog({
+         autoOpen:false,
+         width:300,
+         height:100,
+         position:'center'
+  });
+  $('.actual-instruction').dialog('open');
+});
+
+$('#free-or').click(function(e){e.preventDefault();
+    $('.not-fixed-instruction').dialog({
+         autoOpen:false,
+         width:300,
+         height:100,
+         position:'center'
+  });
+  $('.not-fixed-instruction').dialog('open');
+});
+
+$('#off').click(function(e){e.preventDefault();
+    $('.percent-off').dialog({
+         autoOpen:false,
+         width:300,
+         height:100,
+         position:'center'
+  });
+  $('.percent-off').dialog('open');
+});
+
+$('#free').click(function(e){e.preventDefault();
+    $('.free-item').dialog({
+         autoOpen:false,
+         width:300,
+         height:100,
+         position:'center'
+  });
+  $('.free-item').dialog('open');
+});
+
+$('#street').click(function(e){e.preventDefault();
+    $('.street-instruction').dialog({
+         autoOpen:false,
+         width:300,
+         height:100,
+         position:'center'
+  });
+  $('.street-instruction').dialog('open');
+});
+
 
 });

@@ -1,19 +1,46 @@
 <div class="container">
-
-your points<br/>
-credits
+<div class="clear"></div>
+Your points: <%=pluralize(current_user.karma,"point")%><br/>
+credits:0<br/>
 <% unless @total_comments==0 %>
-<div ><%=pluralize(@total_comments,"New comment")%></div>
+<div class="comment-bar-alert" ><%=pluralize(@total_comments,"You have New comment")%></div>
 <%else%>
 <div style="display:none;"><%=@total_comments%></div>
 <%end%>
+<div style="float:left;padding-right:10px;">
 <%@mydeals.each do |mydeal|  %>
-
 <% if mydeal.flagged %>
 <div class="flagged">
-<a href="/comment/index?deal_id=<%=mydeal.id%>"><%=mydeal.size%>&nbsp;<%=mydeal.brand%>
+
+<span class="image"><%=image_tag mydeal.image_url.to_s%></span>
+<a class="profile-item" href="/comment/index?deal_id=<%=mydeal.id%>"><%=mydeal.size%>&nbsp;<%=mydeal.brand%>
 &nbsp;<%=mydeal.item_name%> </a>for <%=mydeal.price%>$ <br/>
-<span class="image"><%=image_tag mydeal.image_url.to_s%></span><br/>
+ <%=pluralize(mydeal.plusminus,"vote")%><br/>
+ <% mydeal.stores.each do |store| %>
+  <%=store.store_name%><br/>
+  <%end%>
+  <%=pluralize(mydeal.comments.count,"comment")%><br/>
+   <% if mydeal.official%>
+   <%=link_to "edit" ,edit_retailer_deal_path(mydeal)%>
+   <%else%>
+   <%=link_to "edit" ,edit_deal_path(mydeal)%>
+   <%end%>
+<%=link_to "delete" ,delete_deal_path(mydeal),:confirm=>"Are you sure want to delete this deal",:method=>:delete%>
+
+  <% if mydeal.flagged %>
+  <div>This deal has been flagged ,Please delete the deal or make necessary corrections</div>
+  <%end%> 
+  
+   </div>
+<%else%>
+<span class="image"><%=image_tag mydeal.image_url.to_s%></span>
+<a class="profile-item" href="/comment/index?deal_id=<%=mydeal.id%>"><%=mydeal.size%>&nbsp;<%=mydeal.brand%>
+&nbsp;<%=mydeal.item_name%> </a> <%=mydeal.price%>$ <br/>
+<%=pluralize(mydeal.plusminus,"vote")%><br/>
+<% mydeal.stores.each do |store| %>
+<%=store.store_name%><br/>
+<%end%>
+<%=pluralize(mydeal.comments.count,"comment")%><br/>	
 <% if mydeal.official%>
 <%=link_to "edit" ,edit_retailer_deal_path(mydeal)%>
 <%else%>
@@ -24,39 +51,10 @@ credits
 <% if mydeal.flagged %>
 <div>This deal has been flagged ,Please delete the deal or make necessary corrections</div>
 <%end%>
-<%=pluralize(mydeal.plusminus,"vote")%>
-<% mydeal.stores.each do |store| %>
-<%=store.store_name%>
-<%=store.address%>
-<%end%>
-   
-  <%=pluralize(mydeal.comments.count,"comment")%>
 
+<%end%>
+<%end%>
 </div>
-<%else%>
-<a href="/comment/index?deal_id=<%=mydeal.id%>"><%=mydeal.size%>&nbsp;<%=mydeal.brand%>
-&nbsp;<%=mydeal.item_name%> </a>for <%=mydeal.price%>$ <br/>
-<span class="image"><%=image_tag mydeal.image_url.to_s%></span><br/>
-<% if mydeal.official%>
-<%=link_to "edit" ,edit_retailer_deal_path(mydeal)%>
-<%else%>
-<%=link_to "edit" ,edit_deal_path(mydeal)%>
-<%end%>
-<%=link_to "delete" ,delete_deal_path(mydeal),:confirm=>"Are you sure want to delete this deal",:method=>:delete%>
 
-<% if mydeal.flagged %>
-<div>This deal has been flagged ,Please delete the deal or make necessary corrections</div>
-<%end%>
-<%=pluralize(mydeal.plusminus,"vote")%>
-<% mydeal.stores.each do |store| %>
-<%=store.store_name%>
-<%=store.address%>
-<%end%>
-   
-  <%=pluralize(mydeal.comments.count,"comment")%>
-
-
-<%end%>
-<%end%>
 
 </div>

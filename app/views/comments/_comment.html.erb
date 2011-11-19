@@ -1,7 +1,6 @@
 
-<span class="comment-flash">
-<span class="inline_tables"><%=image_tag ("rails.png")%></span>
+<span class="inline_table"><%=image_tag ("rails.png")%></span>
 <span class="inline_tables"><%=@comment.user.username%>&nbsp;said<br/>
 <%=@comment.body%></span><br/>
-</span>
-<span class="time"><%=time_ago_in_words(@comment.created_at)%>&nbsp;ago</span>
+<div class="clear"></div>
+<div class="time"><%=time_ago_in_words(@comment.created_at)%>&nbsp;ago</div>

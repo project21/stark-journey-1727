@@ -1,31 +1,40 @@
 <div class="container">
-Please dont share deals that requires coupon or online deals
-
+Please dont share deals that requires coupon or online deals<br/>
+Asterik (*) means that field is required<br/>
+n is any number (1-9)
 <%= form_for @deal ,:url=>{:action =>"create"},:html=>{:multipart=>true} do |c|%>
      <%= c.error_messages %>       
 <%= c.collection_select( :category_id, Category.all ,:id,:category_name,:prompt=>"category") %><br/>
 <table>
 <tr><td><label>Brand</label></td><td><%=c.text_field :brand%></td></tr>
-<tr><td><label>size</label></td><td><%= c.text_field :size%></td></tr>
+<tr><td><label>size</label></td><td><%= c.text_field :size%><a href="#" id="size">?<span></td></tr>
 <tr><td><label>quantity</label></td><td><%= c.text_field :quantity%></td></tr>	
-<tr><td><label>Product</label></td><td><%= c.text_field :item_name %></td></tr>	
-<tr><td><%= c.radio_button :fixed_price, true,:class=>"fixed-price" %>Actual deal price</td><td><%= c.radio_button :fixed_price,false, :class=>"percent-off" %>Buy n items get percent off or item free</td></tr>
+<tr><td><label>Product/Item*</label></td><td><%= c.text_field :item_name %></td></tr>	
+<tr><td><%= c.radio_button :fixed_price, true,:class=>"fixed-price" %>Actual deal price<a href="#" id="actual">?<span></td><td><%= c.radio_button :fixed_price,false, :class=>"percent-off" %>Buy n items get percent off or item free<a href="#" id="free-or">?<span></td></tr>
 <tr class="ui-helper-hidden fixed"><td><label>Price</label></td><td><%= c.text_field :price %></td></tr>
-<tr class="ui-helper-hidden percent" ><td><label>percent off</label></td><td><%= c.text_field :percent_off %></td></tr>
+<tr class="ui-helper-hidden percent" ><td><label>percent off</label></td><td><%= c.text_field :percent_off %>%<a href="#" id="off">?<span></td></tr>
 <tr class="ui-helper-hidden percent" ><td>or</td></tr>
-<tr class="ui-helper-hidden percent"><td><label>n items free</label></td><td><%= c.text_field :n_item_free %></td></tr>
+<tr class="ui-helper-hidden percent"><td><label>n items free</label></td><td><%= c.text_field :n_item_free %><a href="#" id="free">?<span></td></tr>
 <tr><td><label>Image</label></td><td><%= c.file_field :image %></td></tr>
  <%= c.hidden_field :image_cache %>
 <%= c.hidden_field :submitter_id,:value => current_user.id%>
 <%=c.fields_for :stores do |s| %>
-<tr><td><label>Store</label></td><td><%=s.text_field :store_name %></td></tr>
+<tr><td><label>Store*</label></td><td><%=s.text_field :store_name %></td></tr>
 <%= s.hidden_field :city_id,:value => @city.id%>
-<tr><td><label>Cross street</label></td><td><%=s.text_field :address %></td> </tr>
+<tr><td><label>Cross street*</label></td><td><%=s.text_field :address %><a href="#" id="street">?<span></td> </tr>
 <%end%>  
 <%= c.hidden_field :user_id,:value => current_user.id%>
 
-<tr><td><%= c.submit "post"%></td></tr>
-</table>      
+</table>
+<label>Deal details</label><br/><%=c.text_area :details,:rows=>"6",:cols=>"60"%>  <br/>
+<%= c.submit "post"%>    
 <%end%>
-
+<!--hidden instructions-->
+<div class="size-instruction ui-helper-hidden">size should be either Lb,oz(ounces),XL,GB,ft etc</div>
+<div class="quantity-instruction ui-helper-hidden">quantity should be number of items in that particular price you are going to mention e.g Two T-shirts for 20$,2 is the quantity of items.</div>
+<div class="street-instruction ui-helper-hidden">Mention the main road the store is by</div>
+<div class="actual-instruction ui-helper-hidden">Actual price is when the deal has a fixed price and does not require to purchase any extra item e.g Plasma Tv for "150$".Also could be  2 ipod touch for "250$",but in this case it is important to explain in the details field below that whether buying 2 is required or not to get the deal price</div>
+<div class="not-fixed-instruction ui-helper-hidden">Buy n items get percent off or item free is when the deal you spotted depends on purchase of another item.</div>
+<div class="percent-off ui-helper-hidden">In Percent off field you enter discount percentage ,If the deal offer percentage discount make sure you specify the quantity </div>
+<div class="free-item ui-helper-hidden">n-items free refers to number of the similar items you get for free after purchasing of the first n items.n is any number(1-9).In this case make sure you specify the quantity </div>
 </div>

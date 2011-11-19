@@ -22,7 +22,7 @@
 <%= form_for  @search,:url=>{:controller=>"deal",:action=>"search"} do |f| %>
   
     <%= f.text_field :item_name_contains,:class=>"search-box" %>
-    <%= f.submit "search",:class=>"search-button" %>
+    <%= f.submit "Search item",:class=>"search-button" %>
   <% end %></span> 
 
   <span class="user-status">
@@ -35,7 +35,7 @@
     <a class="username" href="/deal/profile" ><%= current_user.username %>&nbsp;</a> <a href="#"><%=pluralize(current_user.karma,"point")%>&nbsp; </a>
     <%= link_to "Sign out", destroy_user_session_path, :method => :get %>
   <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+   <span class="sign-up"> <%= link_to "Sign up", new_user_registration_path %> <a href="#">&nbsp;or&nbsp;</a> <%= link_to "sign in", new_user_session_path %></span>
   <% end %>
 </span>  
 </div>
@@ -43,7 +43,6 @@
 <div class="clear"></div>
 
 <div class="category">
-
 
 <ul class="categories">
 <h3>Category</h3>
