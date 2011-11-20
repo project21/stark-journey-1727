@@ -1,4 +1,6 @@
 <div class="container">
+
+
 <%= form_for @deal ,:url=>{:action =>"retailer_create"},:html=>{:multipart=>true} do |f|%>
    <%= f.error_messages %>
         
@@ -8,13 +10,13 @@
 <tr><td><label>size/quantity/hours</label></td><td><%= f.text_field :size%></td></tr>
 <tr><td><label>quantity</label></td><td><%= f.text_field :quantity%></td></tr>
 <tr><td><label>Product/service name*</label></td><td><%= f.text_field :item_name %></td></tr>
-<tr><td><%= f.radio_button :fixed_price, true,:class=>"fixed-price" %>Actual deal price</td><td><%= f.radio_button :fixed_price,false, :class=>"percent-off" %>Buy n items get percent off or item free</td></tr>
+<tr><td><%= f.radio_button :fixed_price, true,:class=>"fixed-price" %>Actual deal price<a href="#" id="actual">?</a></td><td><%= f.radio_button :fixed_price,false, :class=>"percent-off" %>Buy n items get percent off or item free<a href="#" id="free-or">?</a></td></tr>
 <tr class="ui-helper-hidden fixed"><td><label>Price</label></td><td><%= f.text_field :price %></td></tr>
-<tr class="ui-helper-hidden percent" ><td><label>percent off on another extra item</label></td><td><%= f.text_field :percent_off %></td></tr>
+<tr class="ui-helper-hidden percent"><td><label>percent off on another extra item</label></td><td><%= f.text_field :percent_off %><a href="#" id="off">?</a></td></tr>
 <tr class="ui-helper-hidden percent" ><td>or</td></tr>
-<tr class="ui-helper-hidden percent"><td><label>n other items free</label></td><td><%= f.text_field :n_item_free %></td></tr>
-<tr><td><label>Regular Price*</label></td><td><%= f.text_field :reg_price %></td></tr>
-<tr><td><label>Deal end date</label></td><td><%=f.date_select  :end_date,:start_year=>2011,:order => [:month,:day,:year],:prompt => {:month => 'Select month',:day => 'Select day', :year => 'Select year'}%> if not specified will be marked as untill sold</td></tr>
+<tr class="ui-helper-hidden percent"><td><label>n same extra items free</label></td><td><%= f.text_field :n_item_free %><a href="#" id="free">?</a></td></tr>
+<tr class="ui-helper-hidden fixed"><td><label>Regular Price*</label></td><td><%= f.text_field :reg_price %></td></tr>
+<tr><td><label>Deal end date</label></td><td><%=f.date_select  :end_date,:start_year=>2011,:order => [:month,:day,:year],:prompt => {:month => 'Select month',:day => 'Select day', :year => 'Select year'}%> </td></tr>
 <tr><td><label>No. of items available</label></td><td><%= f.text_field :available_items %></td></tr>
 <%= f.hidden_field :user_id,:value => current_user.id%>
 <tr><td><label>Image of the item(s)/business</label></td><td><%= f.file_field :image %></td></tr>
@@ -34,4 +36,12 @@
 </table>
 <label>Tell us about your business and how else would you want us to advertise and improve your business</label><br/><%=f.text_area :details,:rows=>"6",:cols=>"60"%> <br/>   <%= f.submit "post"%>                   
 <%end%>
+
+<div class="size-instruction ui-helper-hidden">size should be either Lb,oz(ounces),XL,GB,ft etc</div>
+<div class="quantity-instruction ui-helper-hidden">quantity should be number of items in that particular price you are going to mention e.g Two T-shirts for 20$,2 is the quantity of items.</div>
+<div class="street-instruction ui-helper-hidden">Mention the main road the store is by</div>
+<div class="actual-instruction ui-helper-hidden">Actual price is when the deal has a fixed price and does not require to purchase any extra item e.g Plasma Tv for "150$".Also could be  2 ipod touch for "250$",but in this case it is important to explain in the details field below that whether buying 2 is required or not to get the deal price</div>
+<div class="not-fixed-instruction ui-helper-hidden">Buy n items get percent off or item free is when the deal you spotted depends on purchase of another item.</div>
+<div class="percent-off ui-helper-hidden">In Percent off field you enter discount percentage ,If the deal offer percentage discount make sure you specify the quantity </div>
+<div class="free-item ui-helper-hidden">n-items free refers to number of the similar items you get for free after purchasing of the first n items.n is any number(1-9).In this case make sure you specify the quantity </div>
 </div>

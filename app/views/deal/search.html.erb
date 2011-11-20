@@ -7,21 +7,36 @@
 
 <%@deals.each do |deal|%>
 
-<div >
+
  
-<span class="image"><%=image_tag deal.image_url.to_s%></span>
-<a href="/comment/index?deal_id=<%=deal.id%>"><%=deal.size%>&nbsp;<%=deal.brand%>
-&nbsp;<%=deal.item_name%> </a>for <%=deal.price%>$
-<%=link_to "vote down",vote_down_deal_path(deal),:method=>:post,:remote=>true %>
- <%=link_to "vote up",vote_up_deal_path(deal),:method=>:post,:remote=>true %>
-<%=pluralize(deal.plusminus,"vote")%><br/>
-<a class="view-button" href="/comment/index?deal_id=<%=deal.id%>">view</a><br/>
+<div class="image-search"><%=image_tag deal.image_url.to_s%></div>
+
+<div class="item-name-search">
+<a class="item-search-link" href="/comment/index?deal_id=<%=deal.id%>"><%=deal.size%>&nbsp;<%=deal.brand%>
+&nbsp;<%=deal.item_name%> </a>
+<br/>
     <% deal.stores.each do |club| %>
     <%= club.store_name %>&nbsp;by
     <%=club.address%> <br/>
-    <%=pluralize(deal.comments.count,"comment")%>
+   
 </div>
-<br/>
+<div style="float:right;margin-left:30px;">
+<%if deal.fixed_price %>
+<div class="item-price"><%=deal.price%>$</div>
+<%else%>
+Buy <%=deal.quantity%>&nbsp;get&nbsp; 
+       <% unless deal.n_item_free.nil? %>
+       <span class="item-price"><%=deal.n_item_free.to_s + "free"%></span>
+       <%else%> 
+       <span class="item-price"><%=deal.percent_off.to_s + "%off"%></span>
+      <%end%>   
+ <br/>
+     <%end%>
+
+<%=pluralize(deal.plusminus,"vote")%>
+<a class="view-button" href="/comment/index?deal_id=<%=deal.id%>">view</a>
+</div>
+<div class="clear"></div>
 <span class="time"><%=time_ago_in_words(deal.created_at)%>&nbsp;ago</span>
 
   <%end%> 

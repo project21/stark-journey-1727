@@ -18,6 +18,10 @@ $(document).ready(function() {
 $(".man").click(function(){alert('great')});
 
 $('#city_city_id').selectmenu({style:'dropdown', menuWidth:'250'});
+$('.search-button').click(function(e){
+if ($('#search_item_name_contains').val()=='')
+    e.preventDefault();
+  }); 
 
 $("input.fixed-price").click(function(){
   $("tr.fixed").toggleClass("ui-helper-hidden");
@@ -30,16 +34,19 @@ $("input.percent-off").click(function(){
 });
 
 $('#deal_percent_off').removeAttr("disabled");
-$('#deal_n_item_free').removeAttr("disabled");		
+$('#deal_n_item_free').removeAttr("disabled");	
+ $('input#deal_reg_price').removeAttr("disabled");	
 
 $("#deal_percent_off").click(function(){
 	$('#deal_percent_off').removeAttr("disabled");
  	$('input#deal_n_item_free').attr("disabled","disabled");
+  $('input#deal_reg_price').attr("disabled","disabled");
  });
    
 $("#deal_n_item_free").click(function(){
 $('#deal_n_item_free').removeAttr("disabled");
 $('input#deal_percent_off').attr("disabled","disabled");
+$('input#deal_reg_price').attr("disabled","disabled");
  });
 
 $('#size').click(function(e){e.preventDefault();

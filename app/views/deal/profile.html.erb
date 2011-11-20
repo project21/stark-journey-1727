@@ -7,35 +7,13 @@ credits:0<br/>
 <%else%>
 <div style="display:none;"><%=@total_comments%></div>
 <%end%>
-<div style="float:left;padding-right:10px;">
+
 <%@mydeals.each do |mydeal|  %>
-<% if mydeal.flagged %>
-<div class="flagged">
 
-<span class="image"><%=image_tag mydeal.image_url.to_s%></span>
+<div class="image-search"><%=image_tag mydeal.image_url.to_s%></div>
+<div class="item-name-search">
 <a class="profile-item" href="/comment/index?deal_id=<%=mydeal.id%>"><%=mydeal.size%>&nbsp;<%=mydeal.brand%>
-&nbsp;<%=mydeal.item_name%> </a>for <%=mydeal.price%>$ <br/>
- <%=pluralize(mydeal.plusminus,"vote")%><br/>
- <% mydeal.stores.each do |store| %>
-  <%=store.store_name%><br/>
-  <%end%>
-  <%=pluralize(mydeal.comments.count,"comment")%><br/>
-   <% if mydeal.official%>
-   <%=link_to "edit" ,edit_retailer_deal_path(mydeal)%>
-   <%else%>
-   <%=link_to "edit" ,edit_deal_path(mydeal)%>
-   <%end%>
-<%=link_to "delete" ,delete_deal_path(mydeal),:confirm=>"Are you sure want to delete this deal",:method=>:delete%>
-
-  <% if mydeal.flagged %>
-  <div>This deal has been flagged ,Please delete the deal or make necessary corrections</div>
-  <%end%> 
-  
-   </div>
-<%else%>
-<span class="image"><%=image_tag mydeal.image_url.to_s%></span>
-<a class="profile-item" href="/comment/index?deal_id=<%=mydeal.id%>"><%=mydeal.size%>&nbsp;<%=mydeal.brand%>
-&nbsp;<%=mydeal.item_name%> </a> <%=mydeal.price%>$ <br/>
+&nbsp;<%=mydeal.item_name%> </a><br/>
 <%=pluralize(mydeal.plusminus,"vote")%><br/>
 <% mydeal.stores.each do |store| %>
 <%=store.store_name%><br/>
@@ -51,10 +29,7 @@ credits:0<br/>
 <% if mydeal.flagged %>
 <div>This deal has been flagged ,Please delete the deal or make necessary corrections</div>
 <%end%>
-
-<%end%>
-<%end%>
 </div>
-
+<%end%>
 
 </div>
