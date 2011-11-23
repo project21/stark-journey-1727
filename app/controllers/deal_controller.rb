@@ -50,7 +50,7 @@
   def show
     unless session[:city_id].nil? || session[:city_id].blank?
      @city = City.find_by_id(session[:city_id])
-     @deals=Deal.where("city_id = ?", session[:city_id]).includes( :stores).rank_tally(:limit=>30)
+     @deals=Deal.where("city_id = ?", session[:city_id]).includes( :stores).rank_tally(:limit=>24)
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
      @total_comments=0
      if user_signed_in?
@@ -195,7 +195,7 @@ end
       @city = City.find(session[:city_id])
     end  
   @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-  @deals = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).order("created_at DESC")
+  @deals = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).order("created_at DESC").limit(18)
   @deals.each do |deal|
   unless deal.fixed_price
        unless deal.n_item_free.nil?
@@ -279,6 +279,22 @@ end
    
   def profile
       @city = City.find(session[:city_id])
+      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+      @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
+     @last_signed=current_user.last_sign_in_at
+     @old_comments=@comments.where("created_at < ?",@last_signed).count
+     @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
+     end   
+end
+
+def how_it_works
+  @city = City.find(session[:city_id])
       @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
       @total_comments=0
      if user_signed_in?

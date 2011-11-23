@@ -7,9 +7,12 @@ post "deal/new"
    get "category/clothing"
   get "category/electro"
   get "category/health"
-  get "category/entertain"
+  get "category/houseware"
   get "category/restaurant"
   get "category/activity"
+  get "category/kids"
+  get "category/home_improve"
+  get "category/jewelry"
   
   get "deal/index"
   post "deal/create"
@@ -17,7 +20,7 @@ post "deal/new"
 
   post "deal/vote_up"
   get "deal/show"
-
+  get "deal/how_it_works"
   get "deal/all_cities"
 
   get "deal/new_deals"
@@ -57,7 +60,10 @@ match "category/health" => 'category#health'
 match "category/activity" => 'category#activity'
 match "category/restaurant" => 'category#restaurant'
 match "category/clothing" => 'category#clothing'
-match "category/entertain" => 'category#entertain'
+match "category/houseware" => 'category#houseware'
+match "category/kids" => 'category#kids'
+match "category/home_improve" => 'category#home_improve'
+match "category/jewelry" => 'category#jewelry'
 match "deal/retailers" => 'deal#retailer_create'
 resources :deals,:controller=>"deal" do
 

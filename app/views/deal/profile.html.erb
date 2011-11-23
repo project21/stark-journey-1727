@@ -1,20 +1,24 @@
 <div class="container">
 <div class="clear"></div>
-Your points: <%=pluralize(current_user.karma,"point")%><br/>
-credits:0<br/>
 <% unless @total_comments==0 %>
-<div class="comment-bar-alert" ><%=pluralize(@total_comments,"You have New comment")%></div>
+<div class="comment-bar-alert" >You have &nbsp;<%=pluralize(@total_comments,"New comment")%></div>
 <%else%>
 <div style="display:none;"><%=@total_comments%></div>
 <%end%>
-
+Your points: <%=pluralize(current_user.karma,"point")%><br/>
+credits:0<br/>
+<div style="width:600px;">
 <%@mydeals.each do |mydeal|  %>
-
 <div class="image-search"><%=image_tag mydeal.image_url.to_s%></div>
 <div class="item-name-search">
 <a class="profile-item" href="/comment/index?deal_id=<%=mydeal.id%>"><%=mydeal.size%>&nbsp;<%=mydeal.brand%>
 &nbsp;<%=mydeal.item_name%> </a><br/>
-<%=pluralize(mydeal.plusminus,"vote")%><br/>
+    <% if mydeal.official%>
+    <%=pluralize(mydeal.votes_for,"+vote")%>
+    <%=pluralize(mydeal.votes_against,"-vote")%><br/>
+    <%else%>
+    <%=pluralize(mydeal.plusminus,"vote")%><br/>
+     <%end%>
 <% mydeal.stores.each do |store| %>
 <%=store.store_name%><br/>
 <%end%>
@@ -30,6 +34,8 @@ credits:0<br/>
 <div>This deal has been flagged ,Please delete the deal or make necessary corrections</div>
 <%end%>
 </div>
+<div class="clear"></div>
 <%end%>
+</div>
 
 </div>

@@ -1,7 +1,8 @@
 <div class="container">
 Only deals from your local store please dont share deals that requires coupon or online deals<br/>
 Asterik (*) means that field is required<br/>
-n is any number (1-9)
+n is any number (1-9)<br/>
+
 <%= form_for @deal ,:url=>{:action =>"create"},:html=>{:multipart=>true} do |c|%>
      <%= c.error_messages %>       
 <%= c.collection_select( :category_id, Category.all ,:id,:category_name,:prompt=>"category") %><br/>
@@ -29,6 +30,11 @@ n is any number (1-9)
 <label>Deal details</label><br/><%=c.text_area :details,:rows=>"6",:cols=>"60"%>  <br/>
 <%= c.submit "post"%>    
 <%end%>
+<b>Note:</b><br/>
+Clothing category includes purses and luggages<br/>
+Houseware category includes bedding,kitchenware and other home appliances<br/>
+Home improvement includes lawn and gardening<br/>
+Electronis includes Games and computers<br/>
 <!--hidden instructions-->
 <div class="size-instruction ui-helper-hidden">size should be either Lb,oz(ounces),XL,GB,ft etc</div>
 <div class="quantity-instruction ui-helper-hidden">quantity should be number of items in that particular price you are going to mention e.g Two T-shirts for 20$,2 is the quantity of items.</div>

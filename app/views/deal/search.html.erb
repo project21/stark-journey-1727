@@ -6,9 +6,6 @@
   </div>
 
 <%@deals.each do |deal|%>
-
-
- 
 <div class="image-search"><%=image_tag deal.image_url.to_s%></div>
 
 <div class="item-name-search">
@@ -16,8 +13,11 @@
 &nbsp;<%=deal.item_name%> </a>
 <br/>
     <% deal.stores.each do |club| %>
-    <%= club.store_name %>&nbsp;by
-    <%=club.address%> <br/>
+    <span style="color:808080;"><%= club.store_name %>&nbsp;by
+    <%=club.address%> </span><br/>
+    <%if deal.official %>
+     <span class="official">Official</span>
+     <%end%>
    
 </div>
 <div style="float:right;margin-left:30px;">
@@ -33,8 +33,8 @@ Buy <%=deal.quantity%>&nbsp;get&nbsp;
  <br/>
      <%end%>
 
-<%=pluralize(deal.plusminus,"vote")%>
-<a class="view-button" href="/comment/index?deal_id=<%=deal.id%>">view</a>
+<b><%=pluralize(deal.plusminus,"vote")%></b>
+<a class="search-view" href="/comment/index?deal_id=<%=deal.id%>">view</a>
 </div>
 <div class="clear"></div>
 <span class="time"><%=time_ago_in_words(deal.created_at)%>&nbsp;ago</span>

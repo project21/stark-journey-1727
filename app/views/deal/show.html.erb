@@ -27,7 +27,7 @@
  <% unless store_deal.n_item_free.nil? %>
      <span class="item-price"><%=store_deal.n_item_free.to_s + "free"%></span>
     <%else%> 
-     <span class="item-price"><%=store_deal.percent_off.to_s + "%off"%></span>
+     <span class="item-price"><%=store_deal.percent_off.to_s + "%off"%></span>&nbsp;<span >on next item</span>
     <%end%>   
  <br/>
 <%end%>
@@ -40,11 +40,22 @@
  <div>
 <a class="view-button" href="/comment/index?deal_id=<%=store_deal.id%>">view deal</a>
 </div>
- <% store_deal.stores.each do |store|%>
- <div class="store-name">
-  <%=truncate(store.store_name,:length=>15) %>&nbsp; <span class="static-text">by</span>&nbsp;
-  <%=truncate( store.address,:length=>15 )%></div>
-<%end%>
+     <%unless store_deal.official%>
+        <% store_deal.stores.each do |store|%>
+        <div class="store-name">
+        <%=truncate(store.store_name,:length=>15) %>&nbsp; <span class="static-text">by</span>&nbsp;
+        <%=truncate( store.address,:length=>15 )%>
+        </div>
+        <%end%>
+     <%else%> 
+         <% store_deal.stores.each do |store|%>
+        <div class="store-name">
+        <%=truncate(store.store_name,:length=>15) %>&nbsp; <span class="static-text">in</span>&nbsp;
+        <%end%>
+        <%=truncate( store_deal.town,:length=>15 )%>
+        </div>
+        
+     <%end%>  
   <span class="comment-front-page"><%=pluralize(store_deal.comments.count,"comment")%></span><br/>
   <% unless store_deal.flagged %>
  <%=link_to "flagg this",flagg_deal_path(store_deal),:method=>:post,:remote=>true,:confirm=>"Are you sure, want to flag this?" ,:class=>"flag"%>

@@ -4,7 +4,7 @@
 <%end%>
 
 <%unless @deal.official%>
-<h3><%=@deal.size%>&nbsp;<%=@deal.brand%>&nbsp;<%=@deal.item_name%>&nbsp;at&nbsp;<%@store.each do |store|%>
+<h3 style="text-decoration:underline;"><%=@deal.size%>&nbsp;<%=@deal.brand%>&nbsp;<%=@deal.item_name%>&nbsp;at&nbsp;<%@store.each do |store|%>
 <%=store.store.store_name%><%end%></h3>
 
 <div class="view-image"> <%=image_tag (@deal.image_url.to_s )%></div>
@@ -12,9 +12,9 @@
 <div class="details-border">
     <% if @deal.fixed_price%>
          <% if @deal.quantity>1 %>
-        Buy&nbsp; <%=@deal.quantity%>&nbsp;for
+        <div class="buy">Buy&nbsp; <%=@deal.quantity%>&nbsp;<span style="margin:7px;font-weight:bold;font-size:13px;color:black;">for</span></div>
          <%end%>
-    <div class="price"> <%=@deal.price%>$</div>
+    <div class="item-price-view"> <%=@deal.price%>$</div>
      <div class="line-separator"></div> 
     <div style="font-size:24px;font-weight:bold;margin:6px;"><%=pluralize(@deal.plusminus,"vote")%></div>
     <div class="line-separator"></div>
@@ -24,14 +24,14 @@
      <div class="line-separator"></div>
     <div style="margin:6px;">
     <%=link_to image_tag("down.png"),vote_down_deal_path(@deal),:method=>:post,:remote=>true ,:class=>"vote-down-view" %>
-    <%=link_to image_tag("up.png"),vote_up_deal_path(@deal),:method=>:post,:remote=>true,:class=>"vote-up-view" %>
+<%=link_to image_tag("up.png"),vote_up_deal_path(@deal),:method=>:post,:remote=>true,:class=>"vote-up-view" %>
      </div>
     <%else%>
      <div class="buy">Buy <%=@deal.quantity%> <span style="margin:7px;font-weight:bold;font-size:13px;color:black;">and get</span></div>
              <% unless @deal.n_item_free.nil? %>
              <div class="item-price-view"><%=@deal.n_item_free.to_s + "free"%></div>
              <%else%> 
-             <div class="item-price-view"><%=@deal.percent_off.to_s + "%off"%></div>
+             <div class="item-price-view"><%=@deal.percent_off.to_s + "%off"%>&nbsp;<span class="static-text">on next item</span></div>
              <%end%>
       <div class="line-separator"></div>    
       <div style="font-size:24px;font-weight:bold;margin:7px;"><%=pluralize(@deal.plusminus,"vote")%></div> 
@@ -47,9 +47,9 @@
      <%end%>
 
 <%else%>
-<div><b>OFFICIAL</b></div>
+<div class="official-bar">OFFICIAL</div>
 
-<h3><%=@deal.size%>&nbsp;<%=@deal.brand%>&nbsp;<%=@deal.item_name%>&nbsp;at&nbsp;<%@store.each do |store|%>
+<h3 style="text-decoration:underline;"><%=@deal.size%>&nbsp;<%=@deal.brand%>&nbsp;<%=@deal.item_name%>&nbsp;at&nbsp;<%@store.each do |store|%>
 <%=store.store.store_name%><%end%></h3>
 <div class="view-image"> <%=image_tag (@deal.image_url.to_s )%></div>
 <div class="details-border">
@@ -70,7 +70,7 @@
              <div class="item-price-view"><%=@deal.n_item_free.to_s + "free"%></div>
              <div class="line-separator"></div>
              <%else%> 
-             <div class="item-price-view"><%=@deal.percent_off.to_s + "%off"%></div>
+             <div class="item-price-view"><%=@deal.percent_off.to_s + "%off"%><span style="color:black;font-size:13px;">on next item</span></div>
              <div class="line-separator"></div>
              <%end%>
  <%end%> 
@@ -99,7 +99,7 @@
 <div>
 <%if @deal.official%>
 <%@store.each do |store|%>
-<%=store.store.address%><%end%>
+<%=store.store.address%><%end%><br/>
 <%=@deal.town%>
 <%=@deal.state%>
 <%=@deal.zipcode%>

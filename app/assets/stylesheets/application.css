@@ -10,14 +10,33 @@ html body{
 margin:0;
 font-family: verdana, arial, helvetica, sans-serif;
 font-size:14px;
-background:#388DDC;
+background:#388DDC; 
 background:-moz-linear-gradient(top, #388DDC, #AAC3DA 70%);
 background: -webkit-gradient(linear, 0 0, 0 80%,from(#388DDC),to(#C3CAE5));
-min-width:1020px;
-background-repeat:repeat-y;
-min-height:1000px;
+/*min-width:1024px;*/
+/*background-repeat:repeat-y;*/
+min-height:900px;
 }
-
+.home-background{
+  background-image:url('shooting.jpg');
+  background-repeat:repeat-y;
+  height:900px;
+}
+#main{
+  width:1026px !important;
+  height:768px !important;
+  margin:auto;
+  
+}
+.message{
+  padding:15px;
+  background:#CB471A;
+  font-weight:bold;
+  margin:5px;
+  -moz-border-radius:4px;
+ -webkit-border-radius:4px;
+ border-radius:4px;
+}
 .root-login
 {margin-left: auto;
 margin-right: auto;
@@ -61,6 +80,23 @@ font-size:15px;
 width:90%;
 margin-left:3%;	
 }
+div a.search-view{
+  margin-top:6px;
+text-align:center;
+display:block;
+text-decoration:none;
+width:100px;  
+ padding:4px 4px 4px 4px;
+ color:white;
+ background:#2EB30F;
+ border:solid #2BA60C 1px;
+ font-weight:bold;
+-moz-border-radius:2px;
+-webkit-border-radius:2px;
+  border-radius:2px;
+background: -webkit-gradient(linear, 0 0, 0 50%, from(#2FB40E) to(10%,#7FED64)); 
+ background:-moz-linear-gradient(top, #2FB40E, #7FED64 100%); 
+}
 .search-form-background{
   background:#B5B8BF;
   padding:2px;
@@ -101,7 +137,7 @@ margin-top:10px;}
 .search-box{padding:5px;}
 ul.categories{
 list-style-type:none;
- width:260px;
+ width:230px;
  margin-top:20px;  
 -moz-border-radius:3px;
  -webkit-border-radius:3px;
@@ -113,7 +149,7 @@ list-style-type:none;
 
 ul.categories li{
 border-bottom:solid #dedede 1px;
-width:240px;
+width:210px;
 padding:10px;
 background:#E8EAEE;
  background: -webkit-gradient(linear, 0 0, 0 50%, from(#E8EAEE) to(10%,#fff)); 
@@ -122,7 +158,7 @@ background:#E8EAEE;
 
 ul.categories li a
 {text-decoration:none;font-weight:bold;
- width:240px;
+ width:210px;
 }
 ul.categories li:hover{
 background:#E8EAEE;padding:10px;color:black;
@@ -138,10 +174,10 @@ background:-moz-linear-gradient(top, black, #D1D4DC, black 30%);
 background: -webkit-gradient(linear, 0 0, 0 50%, from(#8A9CB7 ), 
 color-stop(90%,#3473F4 ),color-stop(50%,#D1D4DC));  
 }
-.category{	
+div.category{	
 float:left;
-width:20%;
-margin-left:3%;
+/*width:20%;
+margin-left:3%;*/
 }
 ul.menu {
 margin-top:0px;
@@ -173,19 +209,18 @@ border-radius:3px 3px 3px 3px;
 -moz-border-radius:3px 3px 3px 3px;
 background : -webkit-gradient(linear, left top, left bottombottom, from(rgb(168,168,168)), to(rgb(69,69,69)));  
 }
-/*ul.menu li a:hover{background:black; */
 .clear {clear:both;}
-.container{
+div.container{
 margin-top:20px;	
 float:left;	
-width:900px;
-margin-right:3%;
+width:780px;
 background:#fff;
 -moz-border-radius:3px;
  -webkit-border-radius:3px;
  border-radius:3px;
  border:solid #388DDC 2px;
  min-height:768px;
+ padding:5px;
 }
 .user-status a{float:left;color:white;text-decoration:none;}
 span a.username{color:white;font-weight:bold;text-decoration:none;}
@@ -224,8 +259,8 @@ color:#2F336F;
 font-size:16px;
 text-decoration:underline;
 }
-.comment-bar-alert{padding:5px;
-width:100%;
+.comment-bar-alert{padding:8px;
+width:90%;
 background:#D67D43; 
 border:solid #C76423 1px;}
 a.profile-item{font-weight:bold; }
@@ -391,16 +426,18 @@ padding:4px 18px 4px 18px;
  border-radius:2px;
 }
 .note{
-padding:4px;
-width:100%;
+padding:6px;
+width:95%;
 background:#C6EFA4;	
 border:solid #7CDD2C 1px;	
+font-weight:bold; 
 }
 .error{
-padding:4px;
-width:100%;
+padding:6px;
+width:95%;
 background:#F09994;	
-border:solid #ED3126 1px;		
+border:solid #ED3126 1px;	
+font-weight:bold;	
 }
 
 .vote-down img
@@ -478,7 +515,7 @@ span.inline_table img{
 }
 .underline{
 border-top:solid #dedede 1px;
-width:600px;
+width:95%;
 margin-left:25px;
 }
 a.flag{
@@ -519,6 +556,16 @@ font-size:12px;
 font-weight:bolder;
 padding:2px;
 float:right ;
+}
+.official-bar{
+  color:white;
+ padding:5px;
+ background:#1EA008;
+ font-weight:bold;
+ margin:5px;
+ -moz-border-radius:4px;
+ -webkit-border-radius:4px;
+ border-radius:4px; 
 }
 div span.static-text{font-size:12px;}
 div a.item{

@@ -18,7 +18,7 @@
  <% unless deal.n_item_free.nil? %>
     <span class="item-price"><%=deal.n_item_free.to_s + "free"%> </span> 
     <%else%> 
-    <span class="item-price"><%=deal.percent_off.to_s + "%off"%> </span> &nbsp;<span >on next item</span>
+    <span class="item-price"><%=deal.percent_off.to_s + "%off"%></span>&nbsp;<span >on next item</span> 
     <%end%>   
  <br/>
 <%end%>

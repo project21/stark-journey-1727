@@ -2,58 +2,58 @@ class CategoryController < ApplicationController
   layout "header"
   def index  
 @city= City.find(session[:city_id])
-@dealss=Deal.where("category_id =? AND city_id=?",Category.find(2),session[:city_id]).includes(:stores,:comments)
+@dealss=Deal.where("category_id =? AND city_id=?",Category.find(5),session[:city_id]).includes(:stores,:comments).rank_tally(:limit=>24)
 @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-@category=Category.find(2)
+@category=Category.find(5)
  #comment alert
-   if user_signed_in?
-     @mydeals=current_user.deals.includes(:stores,:comments)
-     @comments = @mydeals.first.comments.includes(:user)
+   @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
      @old_comments=@comments.where("created_at < ?",@last_signed).count
      @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
      end
-
-#@comments=@dealss.comments
-#@store_id=@deal.store_deals
-   # @deal=@deals.find_with_ids(1)
-  #@categories=@city.categories
-  # @category=@categories.find_with_ids(2)
-   #	@deal=@category.deals
-  #	@deal=@category.deals
- # @category=Category.all
-  #@deal=@category.deals
-  #@store_deals=StoreDeal.where("stores.city_id = ? AND category_id?", session[:city_id],Category.find(2))
   end
 
 def electro
 @city= City.find(session[:city_id])
-@dealss=Deal.where("category_id =? AND city_id=?",Category.find(1),session[:city_id]).includes(:stores)
+@dealss=Deal.where("category_id =? AND city_id=?",Category.find(6),session[:city_id]).includes(:stores).rank_tally(:limit=>24)
 @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-@category=Category.find(1)
+@category=Category.find(6)
  #comment alert
-   if user_signed_in?
-     @mydeals=current_user.deals.includes(:stores,:comments)
-     @comments = @mydeals.first.comments.includes(:user)
+   @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
      @old_comments=@comments.where("created_at < ?",@last_signed).count
      @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
      end
-
  end 
   
   def clothing
     @city= City.find(session[:city_id])
-    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(4),session[:city_id]).includes(:stores)
+    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(7),session[:city_id]).includes(:stores).rank_tally(:limit=>24)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-    @category=Category.find(4)
+    @category=Category.find(7)
      #comment alert
-   if user_signed_in?
-     @mydeals=current_user.deals.includes(:stores,:comments)
-     @comments = @mydeals.first.comments.includes(:user)
+   @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
      @old_comments=@comments.where("created_at < ?",@last_signed).count
      @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
      end
 
  end
@@ -62,70 +62,143 @@ def electro
    @category=Category.new 
   end
 
-  def health
+def jewelry
     @city= City.find(session[:city_id])
-    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(3),session[:city_id]).includes(:stores)
+    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(9),session[:city_id]).includes(:stores).rank_tally(:limit=>24)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-    @category=Category.find(3)
+    @category=Category.find(9)
      #comment alert
-   if user_signed_in?
-     @mydeals=current_user.deals.includes(:stores,:comments)
-     @comments = @mydeals.first.comments.includes(:user)
+   @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
      @old_comments=@comments.where("created_at < ?",@last_signed).count
      @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
+     end
+
+ end
+
+ def kids
+    @city= City.find(session[:city_id])
+    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(10),session[:city_id]).includes(:stores).rank_tally(:limit=>24)
+    @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+    @category=Category.find(10)
+     #comment alert
+   @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
+     @last_signed=current_user.last_sign_in_at
+     @old_comments=@comments.where("created_at < ?",@last_signed).count
+     @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
+     end
+
+ end
+
+ def home_improve
+    @city= City.find(session[:city_id])
+    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(12),session[:city_id]).includes(:stores).rank_tally(:limit=>24)
+    @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+    @category=Category.find(12)
+     #comment alert
+   @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
+     @last_signed=current_user.last_sign_in_at
+     @old_comments=@comments.where("created_at < ?",@last_signed).count
+     @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
+     end
+
+ end
+
+  def health
+    @city= City.find(session[:city_id])
+    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(13),session[:city_id]).includes(:stores).rank_tally(:limit=>24)
+    @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+    @category=Category.find(13)
+     #comment alert
+   @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
+     @last_signed=current_user.last_sign_in_at
+     @old_comments=@comments.where("created_at < ?",@last_signed).count
+     @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
      end
 
 end
 
-  def entertain
+  def houseware
     @city= City.find(session[:city_id])
-    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(6),session[:city_id]).includes(:stores)
+    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(8),session[:city_id]).includes(:stores).rank_tally(:limit=>24)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-    @category=Category.find(6)
+    @category=Category.find(8)
      #comment alert
-   if user_signed_in?
-     @mydeals=current_user.deals.includes(:stores,:comments)
-     @comments = @mydeals.first.comments.includes(:user)
+   @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
      @old_comments=@comments.where("created_at < ?",@last_signed).count
      @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
      end
 
 end 
 
    def restaurant
     @city= City.find(session[:city_id])
-    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(5),session[:city_id]).includes(:stores)
+    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(11),session[:city_id]).includes(:stores).rank_tally(:limit=>24)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-    @category=Category.find(5)
+    @category=Category.find(11)
      #comment alert
-   if user_signed_in?
-     @mydeals=current_user.deals.includes(:stores,:comments)
-     @comments = @mydeals.first.comments.includes(:user)
+   @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
      @old_comments=@comments.where("created_at < ?",@last_signed).count
      @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
      end
 
  end
 
    def activity
     @city= City.find(session[:city_id])
-    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(7),session[:city_id]).includes(:stores)
+    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(14),session[:city_id]).includes(:stores).rank_tally(:limit=>24)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-    @category=Category.find(7)
+    @category=Category.find(14)
      #comment alert
-   if user_signed_in?
-     @mydeals=current_user.deals.includes(:stores,:comments)
-     @comments = @mydeals.first.comments.includes(:user)
+   @total_comments=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
      @old_comments=@comments.where("created_at < ?",@last_signed).count
      @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+         end
      end
-
 end
-
-  
 
 end

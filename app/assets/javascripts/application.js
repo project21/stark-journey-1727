@@ -109,5 +109,7 @@ $('#street').click(function(e){e.preventDefault();
   $('.street-instruction').dialog('open');
 });
 
+$('.note').live('click',function(){$(this).hide();});
+$('.error').live('click',function(){$(this).hide();});
 
 });

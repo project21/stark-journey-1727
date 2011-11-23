@@ -13,7 +13,7 @@
 <ul class="menu">
 <li><%=link_to 'All deals',{:controller=>"deal",:action =>"show" }%></li>
 <li><%=link_to 'New deals',{:controller=>"deal",:action =>"new_deals" }%></li>
-<li><%=link_to 'How it works',{:controller=>"deal",:action =>"new_deals" }%></li>
+<li><%=link_to 'How it works',{:controller=>"deal",:action =>"how_it_works" }%></li>
 <li><%=link_to 'Retailers',{:controller=>"deal",:action =>"retailers" }%></li>
 <li><%=link_to 'All cities',{:controller=>"deal",:action =>"all_cities" }%></li>
 </ul>
@@ -28,7 +28,7 @@
   <span class="user-status">
 <% if user_signed_in? %>
 <% unless @total_comments==0 %>
-<a class="comment-alert" href="/deal/profile" ><%=pluralize(@total_comments,"New")%></a>
+<a class="comment-alert" href="/deal/profile" ><%=@total_comments%>&nbsp;New</a>
 <%else%>
 <div style="display:none;"><%=@total_comments%></div>
 <%end%>
@@ -42,16 +42,18 @@
 </div>
 <div class="clear"></div>
 
+<div id="main">
 <div class="category">
-
 <ul class="categories">
 <h3>Category</h3>
-<li><%= link_to 'Electronics',{:controller=>"category",:action =>"electro" }%></li>
-
 <li><%= link_to 'Grocery',{:controller=>"category",:action =>"index" }%></li>
-<li><%= link_to 'Clothing',{:controller=>"category",:action =>"clothing" }%></li>
-<li><%= link_to 'Restaurant',{:controller=>"category",:action =>"restaurant" }%></li>
-<li><%= link_to 'Entertainment',{:controller=>"category",:action =>"entertain" }%></li>
+<li><%= link_to 'Electronics',{:controller=>"category",:action =>"electro" }%></li>
+<li><%= link_to 'Clothing & shoes ',{:controller=>"category",:action =>"clothing" }%></li>
+<li><%= link_to 'Houseware & Furniture',{:controller=>"category",:action =>"houseware" }%></li>
+<li><%= link_to 'Restaurant & Fastfood',{:controller=>"category",:action =>"restaurant" }%></li>
+<li><%= link_to 'Kids',{:controller=>"category",:action =>"kids" }%></li>
+<li><%= link_to 'Jewelry',{:controller=>"category",:action =>"jewelry" }%></li>
+<li><%= link_to 'Home improvement',{:controller=>"category",:action =>"home_improve" }%></li>
 <li><%= link_to 'Activities &Events',{:controller=>"category",:action =>"activity" }%></li>
 <li><%= link_to 'Health &Beauty',{:controller=>"category",:action =>"health" }%></li>
 </ul>
@@ -59,6 +61,6 @@
 
 </div>
 <%= yield %>
-
+</div>
 </body>
 </html>

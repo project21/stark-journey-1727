@@ -1,5 +1,5 @@
 <div class="container">
-
+<div>List items you have on sale clearance for free</div>
 
 <%= form_for @deal ,:url=>{:action =>"retailer_create"},:html=>{:multipart=>true} do |f|%>
    <%= f.error_messages %>
@@ -36,7 +36,11 @@
 </table>
 <label>Tell us about your business and how else would you want us to advertise and improve your business</label><br/><%=f.text_area :details,:rows=>"6",:cols=>"60"%> <br/>   <%= f.submit "post"%>                   
 <%end%>
-
+<b>Note:</b><br/>
+Clothing category includes purses and luggages<br/>
+Houseware category includes bedding,kitchenware and other home appliances<br/>
+Home improvement includes lawn and gardening<br/>
+Electronis includes Games and computers<br/>
 <div class="size-instruction ui-helper-hidden">size should be either Lb,oz(ounces),XL,GB,ft etc</div>
 <div class="quantity-instruction ui-helper-hidden">quantity should be number of items in that particular price you are going to mention e.g Two T-shirts for 20$,2 is the quantity of items.</div>
 <div class="street-instruction ui-helper-hidden">Mention the main road the store is by</div>
