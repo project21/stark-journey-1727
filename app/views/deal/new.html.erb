@@ -1,8 +1,8 @@
 <div class="container">
-Only deals from your local store please dont share deals that requires coupon or online deals<br/>
+<div class="list">Only deals from your local store please dont share deals that requires coupon or online deals</div><br/>
 Asterik (*) means that field is required<br/>
 n is any number (1-9)<br/>
-
+<div class="line"></div>
 <%= form_for @deal ,:url=>{:action =>"create"},:html=>{:multipart=>true} do |c|%>
      <%= c.error_messages %>       
 <%= c.collection_select( :category_id, Category.all ,:id,:category_name,:prompt=>"category") %><br/>
@@ -27,16 +27,20 @@ n is any number (1-9)<br/>
 <%= c.hidden_field :user_id,:value => current_user.id%>
 
 </table>
-<label>Deal details</label><br/><%=c.text_area :details,:rows=>"6",:cols=>"60"%>  <br/>
+<label>Deal details</label><br/><%=c.text_area :details,:rows=>"6",:cols=>"70"%>  <br/>
 <%= c.submit "post"%>    
 <%end%>
+<div class="info">
 <b>Note:</b><br/>
-Clothing category includes purses and luggages<br/>
-Houseware category includes bedding,kitchenware and other home appliances<br/>
-Home improvement includes lawn and gardening<br/>
-Electronis includes Games and computers<br/>
+<ul>
+<li>Clothing category includes purses and luggages</li>
+<li>Houseware category includes bedding,kitchenware and other home appliances</li>
+<li>Home improvement includes lawn and gardening</li>
+<li>Electronis includes Games and computers</li>
+</ul>
+</div>
 <!--hidden instructions-->
-<div class="size-instruction ui-helper-hidden">size should be either Lb,oz(ounces),XL,GB,ft etc</div>
+<div class="size-instruction ui-helper-hidden">size should be either Lb,oz(ounces),XL,GB,ft etc.Some items may contain more than one size e.g computer could have hard drive size,memory size and screen resoultion,put a comma "," between each</div>
 <div class="quantity-instruction ui-helper-hidden">quantity should be number of items in that particular price you are going to mention e.g Two T-shirts for 20$,2 is the quantity of items.</div>
 <div class="street-instruction ui-helper-hidden">Mention the main road the store is by</div>
 <div class="actual-instruction ui-helper-hidden">Actual price is when the deal has a fixed price and does not require to purchase any extra item e.g Plasma Tv for "150$".Also could be  2 ipod touch for "250$",but in this case it is important to explain in the details field below that whether buying 2 is required or not to get the deal price</div>

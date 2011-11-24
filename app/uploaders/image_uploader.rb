@@ -22,7 +22,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
 def default_url
-    "/assets/" + [version_name, "DSCN3796.JPG"].compact.join('_')
+    "/assets/" + [version_name, "no-image.jpg"].compact.join('_')
   end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url

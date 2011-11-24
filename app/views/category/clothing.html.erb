@@ -5,7 +5,11 @@
   <div class="errors"><%=flash[:error]%></div>
   </div>
 <div class="clear"></div>
-
+<div class="underline"></div>
+<div class="clear"></div>
+<%if @dealss.empty?%>
+<div class="empty">Spotsaving is a new network Be the first one to list a deal</div>
+<%end%>
 <%@dealss.each do |deal|%>
 <div style="float:left">
 <div class="deal">

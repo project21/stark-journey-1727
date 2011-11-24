@@ -1,4 +1,8 @@
 <div class="container">
+<div class="list">List items you have on sale/clearance for free</div>
+Asterik (*) means that field is required<br/>
+n is any number (1-9)<br/>
+<div class="line"></div>
 <%= form_for @deal ,:html=>{:multipart=>true} do |f|%>
    <%= f.error_messages %>
         
@@ -32,6 +36,16 @@
 <tr><td><label>phone number*</label></td><td><%= f.text_field :phone %></td></tr>
 
 </table>
-<label>Tell us about your business and how else would you want us to advertise and improve your business</label><br/><%=f.text_area :details,:rows=>"6",:cols=>"60"%> <br/>   <%= f.submit "post"%>                   
+<label>Tell us about your business and how else would you want us to advertise and improve your business</label><br/><%=f.text_area :details,:rows=>"6",:cols=>"90"%> <br/>   <%= f.submit "post"%>                   
 <%end%>
+
+<div class="info">
+<b>Note:</b><br/>
+<ul>
+<li>Clothing category includes purses and luggages</li>
+<li>Houseware category includes bedding,kitchenware and other home appliances</li>
+<li>Home improvement includes lawn and gardening</li>
+<li>Electronis includes Games and computers</li>
+</ul>
+</div>
 </div>

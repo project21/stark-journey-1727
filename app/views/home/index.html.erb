@@ -1,32 +1,20 @@
 <div class="home-background">
-<span class="top-border">s</span>
-Did you know that you could save thousands annually on your daily purchases through information sharing?
-pass on
+<!--
+<div class="logo"><%=image_tag("FFL-SPOT500.png")%></div>-->
+<div class="selling-line">SAVE THOUSANDS ANNUALLY ON YOUR DAILY PURCHASES THROUGH INFORMATION SHARING</div>
+
 <div class="root-login">
-<h3>Please select your city before proceeding</h3>
-<table>
-<tr>
-<td>
-<ul>
-<li><b>Discover great prices $ variety of items on clearence in your city spotted by your local community</b></li>
-<li><b>Share with us the deal you spotted in your local area</b></li>
-</ul>
-</td>
-<td>
-<div class="v-line"></div>
-</td>
-<td>
+<h3><b>DISCOVER GREAT PRICES $ VARIETY OF ITEMS ON CLEARANCE IN YOUR CITY SPOTTED BY YOUR LOCAL COMMUNITY</b></h3>
+<div class="prompt">Select your city before proceeding and  share with us what great deal you spotted</div>
 <div class="root-form">
-<%= form_for :city,:size=>"40", :url=>{:action =>"next"} do |f| %>
-<%= f.collection_select(:city_id, City.all, :id, :name ,:prompt=>"select your city") %>
+<%= form_for :city, :url=>{:action =>"next"} do |f| %>
+<%= f.collection_select(:city_id, City.all, :id, :name ,:prompt=>"Select your City") %>
 <br/>
 <br/>
-<%=f.submit "continue" %>
+<%=f.submit "continue",:class=>"continue-button" %>
 <%end%>
 </div>
-</td>
-</tr>
-</table>
+
 </div>
 
 </div>

@@ -1,4 +1,7 @@
-Please dont share deals that requires coupon or online deals
+<div class="list">Only deals from your local store, please dont share deals that requires coupon or online deals</div>
+Asterik (*) means that field is required<br/>
+n is any number (1-9)<br/>
+<div class="line"></div>
 <%= form_for @deal ,:html=>{:multipart=>true} do |c|%>
        <%= c.error_messages %>
         
@@ -20,9 +23,19 @@ Please dont share deals that requires coupon or online deals
 <tr><td><label>Store</label></td><td><%=s.text_field :store_name %></td></tr>
 <%= s.hidden_field :city_id,:value => @city.id%>
 <tr><td><label>Cross street</label></td><td><%=s.text_field :address %></td> </tr>
-<%end%>  
+<%end%> 
+</table>  
 <%= c.hidden_field :user_id,:value => current_user.id%>
-
-<tr><td><%= c.submit "post"%></td></tr>
-</table>      
+<label>Deal details</label><br/><%=c.text_area :details,:rows=>"6",:cols=>"90"%>  <br/>
+<%= c.submit "post"%>
+     
 <%end%>
+<div class="info">
+<b>Note:</b><br/>
+<ul>
+<li>Clothing category includes purses and luggages</li>
+<li>Houseware category includes bedding,kitchenware and other home appliances</li>
+<li>Home improvement includes lawn and gardening</li>
+<li>Electronis includes Games and computers</li>
+</ul>
+</div>

@@ -17,7 +17,7 @@ jQuery.ajaxSetup({
 $(document).ready(function() {
 $(".man").click(function(){alert('great')});
 
-$('#city_city_id').selectmenu({style:'dropdown', menuWidth:'250'});
+$('#city_city_id').selectmenu({style:'dropdown', menuWidth:'300'});
 $('.search-button').click(function(e){
 if ($('#search_item_name_contains').val()=='')
     e.preventDefault();

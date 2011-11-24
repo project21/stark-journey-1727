@@ -4,8 +4,15 @@
   <%=flash[:notice]%>
   <div class="errors"><%=flash[:error]%></div>
   </div>
-
+<div class="clear"></div>
+<%if @deals.empty?%>
+<div class="list">0 matches found</div>
+<div class="underline"></div>
+<div class="empty-search">Sorry No match were found, Spotsaving is still New </div>
+<%end%>
 <%@deals.each do |deal|%>
+<div class="list"><%=pluralize(@deals.count,"match")%>  found</div>
+<div class="underline"></div>
 <div class="image-search"><%=image_tag deal.image_url.to_s%></div>
 
 <div class="item-name-search">
