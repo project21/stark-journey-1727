@@ -29,7 +29,7 @@
     <%else%>
      <div class="buy">Buy <%=@deal.quantity%> <span style="margin:7px;font-weight:bold;font-size:13px;color:black;">and get</span></div>
              <% unless @deal.n_item_free.nil? %>
-             <div class="item-price-view"><%=@deal.n_item_free.to_s + "free"%></div>
+             <div class="item-price-view"><%=@deal.n_item_free.to_s << " " << "free"%></div>
              <%else%> 
              <div class="item-price-view"><%=@deal.percent_off.to_s + "%off"%>&nbsp;<span class="static-text">on next item</span></div>
              <%end%>
@@ -40,6 +40,9 @@
       <%@store.each do |store|%>
       <span class="address"><%=store.store.address%><%end%></span></div>
       <div class="line-separator"></div>
+                 <%unless @deal.town.nil?%>
+                 <div class="address"><%=truncate(@deal.town,:length=>21)%></div><div class="line-separator"></div>
+                 <%end%>
       <div style="margin:6px;">
       <%=link_to image_tag("down.png"),vote_down_deal_path(@deal),:method=>:post,:remote=>true ,:class=>"vote-down-view" %>
       <%=link_to image_tag("up.png"),vote_up_deal_path(@deal),:method=>:post,:remote=>true,:class=>"vote-up-view" %>

@@ -437,6 +437,10 @@ box-shadow: 4px 4px 1px #F0F2F5;
 color:#808080;
 font-size:11px;
 }
+.city{
+  float:right;
+ font-size:11px; 
+}
 div a.view-button{
 margin-top:6px;
 text-align:center;
@@ -700,7 +704,7 @@ float:right ;
  -webkit-border-radius:4px;
  border-radius:4px; 
 }
-div span.static-text{font-size:12px;}
+div span.static-text{font-size:12px;color:black;}
 div a.item{
  font-weight:bold; 
 text-decoration:underline;

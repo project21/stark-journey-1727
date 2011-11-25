@@ -25,7 +25,7 @@
  <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>">Buy&nbsp;<%=store_deal.quantity%>&nbsp;<%=store_deal.size%>&nbsp;<%=truncate(store_deal.brand,:length=>30)%><br/>
 <%=truncate(store_deal.item_name,:length=>30)%> </a>&nbsp; <span class="static-text">and get</span><br/>
  <% unless store_deal.n_item_free.nil? %>
-     <span class="item-price"><%=store_deal.n_item_free.to_s + "free"%></span>
+     <span class="item-price"><%=store_deal.n_item_free.to_s << " " << "free"%></span>
     <%else%> 
      <span class="item-price"><%=store_deal.percent_off.to_s + "%off"%></span>&nbsp;<span >on next item</span>
     <%end%>   
@@ -67,7 +67,7 @@
  <%end%>
  </div>	
  <br/>
- <span class="time">&nbsp; posted <%=time_ago_in_words(store_deal.created_at)%>&nbsp;ago</span>
+ <span class="time">&nbsp; posted <%=time_ago_in_words(store_deal.created_at)%>&nbsp;ago</span>&nbsp;<span class="city"><%=truncate(store_deal.town,:length=>21)%></span>
  </div>
   <%end%>
  </div>
