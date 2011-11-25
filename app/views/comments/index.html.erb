@@ -11,8 +11,10 @@
 
 <div class="details-border">
     <% if @deal.fixed_price%>
-         <% if @deal.quantity>1 %>
+         <%unless @deal.quantity.nil? %>
+         <% if @deal.quantity>1  %>
         <div class="buy">Buy&nbsp; <%=@deal.quantity%>&nbsp;<span style="margin:7px;font-weight:bold;font-size:13px;color:black;">for</span></div>
+         <%end%>
          <%end%>
     <div class="item-price-view"> <%=@deal.price%>$</div>
      <div class="line-separator"></div> 
@@ -26,8 +28,11 @@
     <%=link_to image_tag("down.png"),vote_down_deal_path(@deal),:method=>:post,:remote=>true ,:class=>"vote-down-view" %>
 <%=link_to image_tag("up.png"),vote_up_deal_path(@deal),:method=>:post,:remote=>true,:class=>"vote-up-view" %>
      </div>
-    <%else%>
+<%else%>
+            
      <div class="buy">Buy <%=@deal.quantity%> <span style="margin:7px;font-weight:bold;font-size:13px;color:black;">and get</span></div>
+             
+
              <% unless @deal.n_item_free.nil? %>
              <div class="item-price-view"><%=@deal.n_item_free.to_s << " " << "free"%></div>
              <%else%> 
