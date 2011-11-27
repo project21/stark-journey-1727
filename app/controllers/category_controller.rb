@@ -2,7 +2,7 @@ class CategoryController < ApplicationController
   layout "header"
   def index  
 @city= City.find(session[:city_id])
-@dealss=Deal.where("category_id =? AND city_id=?",Category.find(5),session[:city_id]).includes(:stores,:comments).rank_tally(:limit=>24)
+@dealss=Deal.where("category_id =? AND city_id=?",Category.find(5),session[:city_id]).includes(:stores,:comments)
 @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
 @category=Category.find(5)
  #comment alert
@@ -21,7 +21,7 @@ class CategoryController < ApplicationController
 
 def electro
 @city= City.find(session[:city_id])
-@dealss=Deal.where("category_id =? AND city_id=?",Category.find(6),session[:city_id]).includes(:stores).rank_tally(:limit=>24)
+@dealss=Deal.where("category_id =? AND city_id=?",Category.find(6),session[:city_id]).includes(:stores)
 @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
 @category=Category.find(6)
  #comment alert
@@ -40,7 +40,7 @@ def electro
   
   def clothing
     @city= City.find(session[:city_id])
-    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(7),session[:city_id]).includes(:stores).rank_tally(:limit=>24)
+    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(7),session[:city_id]).includes(:stores)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     @category=Category.find(7)
      #comment alert
@@ -64,7 +64,7 @@ def electro
 
 def jewelry
     @city= City.find(session[:city_id])
-    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(9),session[:city_id]).includes(:stores).rank_tally(:limit=>24)
+    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(9),session[:city_id]).includes(:stores)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     @category=Category.find(9)
      #comment alert
@@ -84,7 +84,7 @@ def jewelry
 
  def kids
     @city= City.find(session[:city_id])
-    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(10),session[:city_id]).includes(:stores).rank_tally(:limit=>24)
+    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(10),session[:city_id]).includes(:stores)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     @category=Category.find(10)
      #comment alert
@@ -104,7 +104,7 @@ def jewelry
 
  def home_improve
     @city= City.find(session[:city_id])
-    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(12),session[:city_id]).includes(:stores).rank_tally(:limit=>24)
+    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(12),session[:city_id]).includes(:stores)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     @category=Category.find(12)
      #comment alert
@@ -124,7 +124,7 @@ def jewelry
 
   def health
     @city= City.find(session[:city_id])
-    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(13),session[:city_id]).includes(:stores).rank_tally(:limit=>24)
+    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(13),session[:city_id]).includes(:stores)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     @category=Category.find(13)
      #comment alert
@@ -144,7 +144,7 @@ end
 
   def houseware
     @city= City.find(session[:city_id])
-    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(8),session[:city_id]).includes(:stores).rank_tally(:limit=>24)
+    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(8),session[:city_id]).includes(:stores)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     @category=Category.find(8)
      #comment alert
@@ -164,7 +164,7 @@ end
 
    def restaurant
     @city= City.find(session[:city_id])
-    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(11),session[:city_id]).includes(:stores).rank_tally(:limit=>24)
+    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(11),session[:city_id]).includes(:stores)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     @category=Category.find(11)
      #comment alert
@@ -184,7 +184,7 @@ end
 
    def activity
     @city= City.find(session[:city_id])
-    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(14),session[:city_id]).includes(:stores).rank_tally(:limit=>24)
+    @dealss=Deal.where("category_id =? AND city_id=?",Category.find(14),session[:city_id]).includes(:stores)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     @category=Category.find(14)
      #comment alert

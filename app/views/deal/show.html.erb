@@ -12,24 +12,21 @@
      <%end%>
 <div class="clear"></div>
 <div style="margin-top:5px;">
-<span class="share" >Share with your community the great saving you spot today <%=link_to "list a deal",{:controller=>"deal",:action =>"new"} ,{:class=>"list-button" }%></span>
+<div class="share" >Share with your community the great saving you spot today <%=link_to "list a deal",{:controller=>"deal",:action =>"new"} ,{:class=>"list-button" }%></div>
 </div>
  <br/>
 <% @deals.each do |store_deal| %>
 <div style="float:left">
 <div class="deal">
-<% if store_deal.fixed_price%>
- <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>"><%= store_deal.size%> &nbsp;<%= truncate(store_deal.brand,:length=>15)%><br/><%=truncate( store_deal.item_name,:length=>30)%></a><br/>
- <span class="static-text">for</span>&nbsp;<span class="item-price"><%= store_deal.price %>$</span><br/>
-<%else%>
- <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>">Buy&nbsp;<%=store_deal.quantity%>&nbsp;<%=store_deal.size%>&nbsp;<%=truncate(store_deal.brand,:length=>30)%><br/>
-<%=truncate(store_deal.item_name,:length=>30)%> </a>&nbsp; <span class="static-text">and get</span><br/>
- <% unless store_deal.n_item_free.nil? %>
-     <span class="item-price"><%=store_deal.n_item_free.to_s << " " << "free"%></span>
-    <%else%> 
-     <span class="item-price"><%=store_deal.percent_off.to_s + "%off"%></span>&nbsp;<span >on next item</span>
-    <%end%>   
- <br/>
+<%unless store_deal.official%>
+    <% if store_deal.fixed_price%>
+    <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>"><%=truncate( store_deal.item_name,:length=>30)%></a><br/>
+    <span class="static-text">for</span>&nbsp;<span class="item-price">$<%= store_deal.price %></span><br/>
+    <%else%>
+    <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>">
+   <%=truncate(store_deal.item_name,:length=>30)%> </a>&nbsp; <span class="static-text">for</span><br/>
+   <a  href="/comment/index?deal_id=<%=store_deal.id%>">See details</a>
+   <br/>
 <%end%>
 <span class="image"> <%=image_tag (store_deal.image_url.to_s )%></span><br/>
 <div >
@@ -40,14 +37,36 @@
  <div>
 <a class="view-button" href="/comment/index?deal_id=<%=store_deal.id%>">view deal</a>
 </div>
-     <%unless store_deal.official%>
+   
         <% store_deal.stores.each do |store|%>
         <div class="store-name">
-        <%=truncate(store.store_name,:length=>15) %>&nbsp; <span class="static-text">by</span>&nbsp;
-        <%=truncate( store.address,:length=>15 )%>
-        </div>
+        <%=truncate(store.store_name,:length=>15) %>&nbsp; <span class="static-text">in</span>&nbsp;
         <%end%>
-     <%else%> 
+        <%=truncate(store_deal.town,:length=>21)%>
+        </div>
+<%else%>
+   <% if store_deal.fixed_price%>
+   <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>"><%= store_deal.size%> &nbsp;<%= truncate(store_deal.brand,:length=>15)%><br/><%=truncate( store_deal.item_name,:length=>30)%></a><br/>
+   <span class="static-text">for</span>&nbsp;<span class="item-price">$<%= store_deal.price %></span><br/>
+   <%else%>
+   <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>">Buy&nbsp;<%=store_deal.quantity%>&nbsp;<%=store_deal.size%>&nbsp;<%=truncate(store_deal.brand,:length=>30)%><br/>
+    <%=truncate(store_deal.item_name,:length=>30)%> </a>&nbsp; <span class="static-text">and get</span><br/>
+       <% unless store_deal.n_item_free.nil? %>
+       <span class="item-price"><%=store_deal.n_item_free.to_s << " " << "free"%></span>
+       <%else%> 
+       <span class="item-price"><%=store_deal.percent_off.to_s + "%off"%></span>&nbsp;<span >on next item</span>
+       <%end%>   
+        <br/>
+   <%end%>
+<span class="image"> <%=image_tag (store_deal.image_url.to_s )%></span><br/>
+<div >
+  <%=link_to image_tag("down.png"),vote_down_deal_path(store_deal),:method=>:post,:remote=>true,:class=>"vote-down" %>
+ <%=link_to image_tag("up.png"),vote_up_deal_path(store_deal),:method=>:post,:remote=>true,:class=>"vote-up" %>
+  <span class="votes"><%=pluralize(store_deal.plusminus,"vote")%></span>
+ </div>
+ <div>
+<a class="view-button" href="/comment/index?deal_id=<%=store_deal.id%>">view deal</a>
+</div> 
          <% store_deal.stores.each do |store|%>
         <div class="store-name">
         <%=truncate(store.store_name,:length=>15) %>&nbsp; <span class="static-text">in</span>&nbsp;
@@ -55,7 +74,7 @@
         <%=truncate( store_deal.town,:length=>15 )%>
         </div>
         
-     <%end%>  
+<%end%>  
   <span class="comment-front-page"><%=pluralize(store_deal.comments.count,"comment")%></span><br/>
   <% unless store_deal.flagged %>
  <%=link_to "flagg this",flagg_deal_path(store_deal),:method=>:post,:remote=>true,:confirm=>"Are you sure, want to flag this?" ,:class=>"flag"%>
@@ -67,7 +86,7 @@
  <%end%>
  </div>	
  <br/>
- <span class="time">&nbsp; posted <%=time_ago_in_words(store_deal.created_at)%>&nbsp;ago</span>&nbsp;<span class="city"><%=truncate(store_deal.town,:length=>21)%></span>
+ <span class="time">&nbsp; posted <%=time_ago_in_words(store_deal.created_at)%>&nbsp;ago</span>
  </div>
   <%end%>
  </div>

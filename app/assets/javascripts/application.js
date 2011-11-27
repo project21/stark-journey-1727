@@ -22,7 +22,7 @@ $('.search-button').click(function(e){
 if ($('#search_item_name_contains').val()=='')
     e.preventDefault();
   }); 
-
+$('input.other').click(function(){alert(hey);});
 $("input.fixed-price").click(function(){
   $("tr.fixed").toggleClass("ui-helper-hidden");
   $("tr.percent").addClass("ui-helper-hidden");	

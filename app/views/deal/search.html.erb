@@ -14,7 +14,6 @@
 <div class="list"><%=pluralize(@deals.count,"match")%>  found</div>
 <div class="underline"></div>
 <div class="image-search"><%=image_tag deal.image_url.to_s%></div>
-
 <div class="item-name-search">
 <a class="item-search-link" href="/comment/index?deal_id=<%=deal.id%>"><%=deal.size%>&nbsp;<%=deal.brand%>
 &nbsp;<%=deal.item_name%> </a>
@@ -24,29 +23,24 @@
     <%=club.address%> </span><br/>
     <%if deal.official %>
      <span class="official">Official</span>
-     <%end%>
-   
-</div>
-<div style="float:right;margin-left:30px;">
-<%if deal.fixed_price %>
-<div class="item-price"><%=deal.price%>$</div>
-<%else%>
-Buy <%=deal.quantity%>&nbsp;get&nbsp; 
-       <% unless deal.n_item_free.nil? %>
-       <span class="item-price"><%=deal.n_item_free.to_s + "free"%></span>
-       <%else%> 
-       <span class="item-price"><%=deal.percent_off.to_s + "%off"%></span>
-      <%end%>   
+     <%end%>   
+   </div>
+   <div style="float:right;margin-left:30px;">
+
+   <%if deal.fixed_price %>
+   <div class="item-price"><%=deal.price%>$</div>
+   <%else%>
+    <a  href="/comment/index?deal_id=<%=deal.id%>">See details</a>
  <br/>
-     <%end%>
+    <%end%>
 
 <b><%=pluralize(deal.plusminus,"vote")%></b>
 <a class="search-view" href="/comment/index?deal_id=<%=deal.id%>">view</a>
 </div>
 <div class="clear"></div>
 <span class="time"><%=time_ago_in_words(deal.created_at)%>&nbsp;ago</span>
-
-  <%end%> 
+<%end%>
+   
   <div class="underline"></div> 
 <%end%>
 
