@@ -35,12 +35,8 @@
      <%end%> 
       <%=truncate(deal.town,:length=>21)%>
      </div>
-     <span class="comment-front-page"><%=pluralize(deal.comments.count,"comment")%></span><br/>
-         <% unless deal.flagged %>
-      <%=link_to "flagg this",flagg_deal_path(deal),:method=>:post,:remote=>true,:confirm=>"Are you sure, want to flag this?" ,:class=>"flag" %>
-      <%else%>
-      <span class="flagged">flagged</span>
-      <%end%>
+     
+      
 <%else%> 
   <% if deal.fixed_price%>
   <a class="item" href="/comment/index?deal_id=<%=deal.id%>"><%=deal.size%>&nbsp;<%=truncate(deal.brand,:length=>30)%><br/>
@@ -64,9 +60,11 @@
     <% deal.stores.each do |club| %>
     <div class="store-name">
     <%= truncate(club.store_name,:length=>15) %>&nbsp; <span class="static-text">by</span>&nbsp;
-    <%=truncate(club.address,:length=>15)%>
+     <%end%>   
+    <%=truncate(deal.town,:length=>15)%>
     </div>
-     <%end%>     
+
+<%end%>      
          <span class="comment-front-page"><%=pluralize(deal.comments.count,"comment")%></span><br/>
          <% unless deal.flagged %>
       <%=link_to "flagg this",flagg_deal_path(deal),:method=>:post,:remote=>true,:confirm=>"Are you sure, want to flag this?" ,:class=>"flag" %>
@@ -78,9 +76,7 @@
 <%end%>
      </div><br/>
   
-   <span class="time"> posted&nbsp;<%=time_ago_in_words(deal.created_at)%>&nbsp;ago</span>&nbsp;<span class="city"></span>
+   <span class="time"> posted&nbsp;<%=time_ago_in_words(deal.created_at)%>&nbsp;ago</span>&nbsp;
   </div>
-  
-<%end%>
 <%end%>
 
