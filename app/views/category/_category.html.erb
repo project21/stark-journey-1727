@@ -5,7 +5,7 @@
   <div class="errors"><%=flash[:error]%></div>
   </div>
 <div class="clear"></div>
-<div class="underline"></div>
+<div class="header-line"></div>
 <div class="clear"></div>
 <%if @dealss.empty?%>
 <div class="empty">Spotsaving is a new network, Be the first one to list a deal</div>
@@ -14,15 +14,15 @@
 <div style="float:left">
 <div class="deal">
 <%unless deal.official%>
-  <% if deal.fixed_price%>
+  
 <a class="item" href="/comment/index?deal_id=<%=deal.id%>">
 <%=truncate(deal.item_name,:length=>30)%> </a><br/> <span class="static-text">for</span> <span class="item-price">$<%=deal.price%></span><br/>
-<%else%>
+<!--
    <a class="item" href="/comment/index?deal_id=<%=deal.id%>">
 <%=truncate(deal.item_name,:length=>30)%> </a>&nbsp; <span class="static-text">for</span><br/>
    <a  href="/comment/index?deal_id=<%=deal.id%>">See details</a>  
  <br/>
-<%end%>
+-->
 <span class="image"> <%=image_tag (deal.image_url.to_s )%></span><br/>
 <%=link_to image_tag("down.png"),vote_down_deal_path(deal),:method=>:post,:remote=>true ,:class=>"vote-down"  %>
  <%=link_to image_tag("up.png"),vote_up_deal_path(deal),:method=>:post,:remote=>true ,:class=>"vote-up"  %>
@@ -67,7 +67,7 @@
 <%end%>      
          <span class="comment-front-page"><%=pluralize(deal.comments.count,"comment")%></span><br/>
          <% unless deal.flagged %>
-      <%=link_to "flagg this",flagg_deal_path(deal),:method=>:post,:remote=>true,:confirm=>"Are you sure, want to flag this?" ,:class=>"flag" %>
+      <%=link_to "flag this",flagg_deal_path(deal),:method=>:post,:remote=>true,:confirm=>"Are you sure, want to flag this?" ,:class=>"flag" %>
         <%if deal.official%>
        <span class="official">Official</span>
        <%end%>

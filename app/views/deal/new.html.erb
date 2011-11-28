@@ -1,7 +1,6 @@
 <div class="container">
-<div class="list">Only deals from your local store please dont share deals that requires coupon or online deals</div><br/>
+<div class="list">List only deals from your local stores. Please don't share deals that require coupons.</div><br/>
 Asterik (*) means that field is required<br/>
-n is any number (1-9)<br/>
 <div class="line"></div>
 <%= form_for @deal ,:url=>{:action =>"create"},:html=>{:multipart=>true} do |c|%>
      <%= c.error_messages %>       

@@ -7,12 +7,13 @@
 <div class="clear"></div>
 <%if @deals.empty?%>
 <div class="list">0 matches found</div>
-<div class="underline"></div>
-<div class="empty-search">Sorry No match were found, Spotsaving is still New </div>
-<%end%>
-<%@deals.each do |deal|%>
+<div class="header-line"></div>
+<div class="empty-search">Sorry No match were found, Spotsaving is still New and under development</div>
+<%else%>
+
 <div class="list"><%=pluralize(@deals.count,"match")%>  found</div>
-<div class="underline"></div>
+<div class="header-line"></div>
+<%@deals.each do |deal|%>
 <div class="image-search"><%=image_tag deal.image_url.to_s%></div>
 <div class="item-name-search">
 <a class="item-search-link" href="/comment/index?deal_id=<%=deal.id%>"><%=deal.size%>&nbsp;<%=deal.brand%>
@@ -27,12 +28,12 @@
    </div>
    <div style="float:right;margin-left:30px;">
 
-   <%if deal.fixed_price %>
+   
    <div class="item-price"><%=deal.price%>$</div>
-   <%else%>
+   <!--
     <a  href="/comment/index?deal_id=<%=deal.id%>">See details</a>
  <br/>
-    <%end%>
+    -->
 
 <b><%=pluralize(deal.plusminus,"vote")%></b>
 <a class="search-view" href="/comment/index?deal_id=<%=deal.id%>">view</a>
@@ -43,5 +44,5 @@
    
   <div class="underline"></div> 
 <%end%>
-
+<%end%>
 </div>

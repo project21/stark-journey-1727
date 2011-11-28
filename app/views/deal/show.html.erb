@@ -19,15 +19,14 @@
 <div style="float:left">
 <div class="deal">
 <%unless store_deal.official%>
-    <% if store_deal.fixed_price%>
     <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>"><%=truncate( store_deal.item_name,:length=>30)%></a><br/>
     <span class="static-text">for</span>&nbsp;<span class="item-price">$<%= store_deal.price %></span><br/>
-    <%else%>
+    <!--
     <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>">
    <%=truncate(store_deal.item_name,:length=>30)%> </a>&nbsp; <span class="static-text">for</span><br/>
    <a  href="/comment/index?deal_id=<%=store_deal.id%>">See details</a>
-   <br/>
-<%end%>
+   <br/>-->
+
 <span class="image"> <%=image_tag (store_deal.image_url.to_s )%></span><br/>
 <div >
   <%=link_to image_tag("down.png"),vote_down_deal_path(store_deal),:method=>:post,:remote=>true,:class=>"vote-down" %>
@@ -77,7 +76,7 @@
 <%end%>  
   <span class="comment-front-page"><%=pluralize(store_deal.comments.count,"comment")%></span><br/>
   <% unless store_deal.flagged %>
- <%=link_to "flagg this",flagg_deal_path(store_deal),:method=>:post,:remote=>true,:confirm=>"Are you sure, want to flag this?" ,:class=>"flag"%>
+ <%=link_to "flag this",flagg_deal_path(store_deal),:method=>:post,:remote=>true,:confirm=>"Are you sure, want to flag this?" ,:class=>"flag"%>
  <%if store_deal.official%>
  <div class="official">Official</div>
  <%end%>
