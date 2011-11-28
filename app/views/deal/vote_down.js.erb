@@ -1,6 +1,6 @@
 <% if flash[:notice] %>
-$('.notice').html('<div class="note"><%=flash[:notice]%><span style="float:right"><%=image_tag("cancel.png")%></div>');
+$('.notice').html('<div class="note"><%=flash[:notice]%><span style="float:right"><%=image_tag("cancel.png")%></span></div>');
 <%end%>
 <% if flash[:error] %>
-$('.errors').html('<div class="error"><%=flash[:error]%><span style="float:right"><%=image_tag("cancel.png")%></div>');
+$('.errors').html('<div class="error"><%=flash[:error]%><span style="float:right"><%=image_tag("cancel.png")%></span></div>');
 <%end%>

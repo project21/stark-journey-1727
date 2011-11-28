@@ -111,5 +111,6 @@ $('#street').click(function(e){e.preventDefault();
 
 $('.note').live('click',function(){$(this).hide();});
 $('.error').live('click',function(){$(this).hide();});
+$('.announce').live('click',function(){$(this).addClass('ui-helper-hidden');});
 
 });

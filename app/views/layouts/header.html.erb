@@ -43,6 +43,7 @@
 <div class="clear"></div>
 
 <div id="main">
+<div class="announce">Spotsaving is new and currently still undergoing through develepment and testing.For any suggestions/advice and technical issues, please report to <%=link_to "Feedback",{:controller=>'feedbacks',:action=>"new"}%><span style="float:right"><%=image_tag("cancel.png")%></span></div>
 <div class="category">
 <ul class="categories">
 <h3>Category</h3>
@@ -57,12 +58,10 @@
 <li><%= link_to 'Activities & Events',{:controller=>"category",:action =>"activity" }%></li>
 <li><%= link_to 'Health & Beauty',{:controller=>"category",:action =>"health" }%></li>
 </ul>
-
-
 </div>
 <%= yield %>
 </div>
 <div class="clear"></div>
-<div class="footer">&copy;2011 spotsaving.com</div>
+<div class="footer">&copy;2011 spotsaving.com&nbsp;<span><%=link_to "Feedback",{:controller=>'feedbacks',:action=>"new"}%></span></div>
 </body>
 </html>

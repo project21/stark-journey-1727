@@ -20,8 +20,8 @@
 &nbsp;<%=deal.item_name%> </a>
 <br/>
     <% deal.stores.each do |club| %>
-    <span style="color:808080;"><%= club.store_name %>&nbsp;by
-    <%=club.address%> </span><br/>
+    <span style="color:808080;"><%= club.store_name %>&nbsp;in
+    <%=deal.town%> </span><br/>
     <%if deal.official %>
      <span class="official">Official</span>
      <%end%>   

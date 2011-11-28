@@ -1,4 +1,8 @@
 Deals::Application.routes.draw do
+  get "feedbacks/new"
+
+  post "feedbacks/create"
+
   resources :comments  
     
 post "deal/new"
