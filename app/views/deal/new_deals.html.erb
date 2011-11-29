@@ -7,12 +7,12 @@
 <div class="clear"></div>
 
 <%@deals.each do |deal|%>
-<span style="float:left">
-<div class="deal">
+<div style="float:left">
+<span class="deal">
 <%unless deal.official%>
   
   <a class="item" href="/comment/index?deal_id=<%=deal.id%>">
- <%=truncate(deal.item_name,:length=>30)%> </a><br/> <span class="static-text">for</span> <span class="item-price"><%=deal.price%>$</span><br/>
+ <%=truncate(deal.item_name,:length=>30)%> </a><br/> <span class="static-text">for</span> <span class="item-price">$<%=deal.price%></span><br/>
 <!--
    <a class="item" href="/comment/index?deal_id=<%=deal.id%>">
    <%=truncate(deal.item_name,:length=>30)%> </a>&nbsp; <span class="static-text">for</span><br/>
@@ -73,10 +73,10 @@
    <span class="flagged">flagged</span>
 <%end%>
 <%end%> 
-     </div><br/>
+     </span><br/>
   
    <span class="time"> posted&nbsp;<%=time_ago_in_words(deal.created_at)%>&nbsp;ago</span>
-  </span>
+  </div>
   
 <%end%>
 </div>

@@ -11,8 +11,8 @@
 <div class="empty">Spotsaving is a new network, Be the first one to list a deal</div>
 <%end%>
 <%@dealss.each do |deal|%>
-<span style="float:left">
-<div class="deal">
+<div style="float:left">
+<span class="deal">
 <%unless deal.official%>
   
 <a class="item" href="/comment/index?deal_id=<%=deal.id%>">
@@ -74,9 +74,9 @@
        <%else%>
    <span class="flagged">flagged</span>
 <%end%>
-     </div><br/>
+     </span><br/>
   
    <span class="time"> posted&nbsp;<%=time_ago_in_words(deal.created_at)%>&nbsp;ago</span>&nbsp;
-  </span>
+  </div>
 <%end%>
 

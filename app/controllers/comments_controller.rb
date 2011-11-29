@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
- #before_filter :authenticate_user!, :only=>:create
+ before_filter :authenticate_user!, :only=>:create
   layout "header"
   respond_to :js
   # GET /comments
