@@ -310,6 +310,8 @@ padding:10px;
 background:#E8EAEE;
  background: -webkit-gradient(linear, 0 0, 0 70%, from(#E8EAEE),to(#fff)); 
  background:-moz-linear-gradient(top, #E8EAEE, #fff 60%);
+ filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#E8EAEE', endColorstr='#fff'); /* IE6 & i7*/
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#E8EAEE', endColorstr='#fff')"; 
 }
 
 ul.categories li a
