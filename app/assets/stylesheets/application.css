@@ -57,7 +57,7 @@ width:100%;
  -webkit-border-radius:4px;
  border-radius:4px;
  border:solid #F1EE13 1px;
- width:90%;
+ width:97%;
 }
 .sign-up-form{
 margin-left: auto;
@@ -152,7 +152,7 @@ margin-top:200px;
   font-family:Copperplate Gothic Light;
   margin:0px;
 }
-.logo img{width:250px;height:200px;}
+.logo img{width:100px;height:50px;}
 .prompt{
   padding:5px;
   background:#3B6AED;
@@ -204,7 +204,7 @@ moz-border-radius:3px;
 
 .header-background{	
 background:#000514;
-height:50px;
+height:60px;
 margin:0px;
 width:100%;
 border-bottom:solid #59E633 3px;
@@ -212,8 +212,8 @@ border-bottom:solid #59E633 3px;
 .head{	
 color:white;	
 font-size:15px;	
-width:90%;
-margin-left:3%;	
+width:1026px !important;
+margin:auto; 	
 }
 .share{
  padding:15px;
@@ -298,7 +298,7 @@ border-bottom:solid #dedede 1px;
 width:210px;
 padding:10px;
 background:#E8EAEE;
- background: -webkit-gradient(linear, 0 0, 0 50%, from(90%,#E8EAEE) to(10%,#fff)); 
+ background: -webkit-gradient(linear, 0 0, 0 70%, from(#E8EAEE),to(#fff)); 
  background:-moz-linear-gradient(top, #E8EAEE, #fff 60%);
 }
 
@@ -308,7 +308,7 @@ ul.categories li a
 }
 ul.categories li:hover{
 background:#E8EAEE;padding:10px;color:black;
-background: -webkit-gradient(linear, 0 0, 0 50%, from(#fff) to(10%,#E8EAEE)); 
+background: -webkit-gradient(linear, 0 0, 0 70%, from(#fff) ,to(#E8EAEE)); 
  background:-moz-linear-gradient(top, #fff, #E8EAEE 60%);
 }
 .categories h3 {
@@ -317,8 +317,9 @@ margin:0px;
 padding:7px;
 background:black;
 background:-moz-linear-gradient(top, black, #D1D4DC, black 30%);
-background: -webkit-gradient(linear, 0 0, 0 50%, from(black ), 
-color-stop(90%,#D1D4DC ),color-stop(50%,#black));  
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#4D4D5C),to(black)); 
+  filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#D1D4DC', endColorstr='black'); /* IE6 & i7*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#D1D4DC', endColorstr='black')"; 
 }
 div.category{	
 float:left;
@@ -368,9 +369,10 @@ background:#fff;
  min-height:768px;
  padding:5px;
 }
-.user-status a{float:left;color:white;text-decoration:none;}
-span a.username{color:white;font-weight:bold;text-decoration:none;}
-.user-status span.sign-up a{color:white;}
+.user-status a{float:right;color:white;text-decoration:none;}
+span a.username{color:white;font-weight:bold;text-decoration:none;font-size:11px;}
+.user-status span.sign-up a{color:white;font-size:11px;}
+a.sign-up {color:white;font-size:11px;}
 .city-title{
 float:left;
 font-size:18px;
@@ -469,7 +471,7 @@ width:130px;
 -moz-border-radius:2px;
 -webkit-border-radius:2px;
  border-radius:2px;
-background: -webkit-gradient(linear, 0 0, 0 50%, from(90%,#2FB40E) to(10%,#7FED64)); 
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#2FB40E), to(#7FED64)); 
 background:-moz-linear-gradient(top, #2FB40E, #7FED64 100%);	
 }
 .footer{
@@ -477,6 +479,7 @@ width:100%;
 background:black;
 padding-top:5px;
 margin:0px;
+margin-top:15px;
 text-align:center;
 } 
 div a.list-button{
@@ -489,7 +492,7 @@ text-decoration:none;
 -moz-border-radius:2px;
 -webkit-border-radius:2px;
  border-radius:2px;
- background: -webkit-gradient(linear, 0 0, 0 50%, from(90%,#B3630F) to(10%,#E6A560)); 
+ background: -webkit-gradient(linear, 0 0, 0 100%, from(#B3630F),to(#E6A560)); 
  background:-moz-linear-gradient(top, #B3630F, #E6A560 100%);
  margin-bottom:10px; 
 }
@@ -751,7 +754,7 @@ div.store-name{
   font-size:12px;
   font-weight:bold;
 }
-span a.comment-alert {color:red;}
+span a.comment-alert {color:red;font-size:11px;}
 .address{color:black;margin:5px;}
 .item-name-search{
   float:left;

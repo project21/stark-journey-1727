@@ -1,6 +1,6 @@
 <div class="container">
 <h1>Feedback</h1>
-<b></b>
+<b>Talk to us , let us know how we can improve this site.</b>
 <p><%= form_for :feedback ,:url=>{:action =>"create"} do |f|%>
 <%= f.text_area :body,:rows=>"4",:cols=>"60" %><br/>
 <%=f.submit "Submit"%>

@@ -7,7 +7,7 @@
 <div class="clear"></div>
 
 <%@deals.each do |deal|%>
-<div style="float:left">
+<span style="float:left">
 <div class="deal">
 <%unless deal.official%>
   
@@ -76,7 +76,7 @@
      </div><br/>
   
    <span class="time"> posted&nbsp;<%=time_ago_in_words(deal.created_at)%>&nbsp;ago</span>
-  </div>
+  </span>
   
 <%end%>
 </div>

@@ -16,7 +16,7 @@
 </div>
  <br/>
 <% @deals.each do |store_deal| %>
-<div style="float:left">
+<span style="float:left">
 <div class="deal">
 <%unless store_deal.official%>
     <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>"><%=truncate( store_deal.item_name,:length=>30)%></a><br/>
@@ -86,7 +86,7 @@
  </div>	
  <br/>
  <span class="time">&nbsp; posted <%=time_ago_in_words(store_deal.created_at)%>&nbsp;ago</span>
- </div>
+ </span>
   <%end%>
  </div>
 
