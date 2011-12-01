@@ -12,7 +12,7 @@ Asterik (*) means that field is required<br/>
 <tr><td><%= c.radio_button :fixed_price, true,:class=>"fixed-price" %>Actual sale price<a href="#" id="actual">?</a>
 </td><td><%= c.radio_button :fixed_price, false,:class=>"buy-two" %>Buy 2 get one free</td></tr>-->
 <tr><td><b>for price </b></td></tr>
-<tr class="fixed"><td><label>Sale Price</label></td><td><%= c.text_field :price %></td></tr>
+<tr class="fixed"><td><label>Sale Price*</label></td><td><%= c.text_field :price %></td></tr>
 <%= c.hidden_field :submitter_id,:value => current_user.id%>
 <tr><td><b>at location</b></td></tr>
 <tr><td><label>City*</label></td><td><%= c.text_field :town %></td></tr> 
