@@ -9,6 +9,7 @@ class Deal < ActiveRecord::Base
 	acts_as_voteable 
 	mount_uploader :image, ImageUploader 
 	validates_presence_of :category_id
+	validates_presence_of :town
 	validates_presence_of :quantity, :unless => Proc.new { |m| m.percent_off.blank?  },:message=>"is required when you choose pricing other than actual deal price"
 	validates_presence_of :quantity, :unless => Proc.new { |m| m.n_item_free.blank?  },:message=>"is required when you choose pricing other than actual deal price"
 	validates_presence_of :item_name,:message=>"is required"

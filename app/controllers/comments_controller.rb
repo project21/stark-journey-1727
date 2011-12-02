@@ -26,8 +26,6 @@ class CommentsController < ApplicationController
     @store=StoreDeal.where("deal_id=?",@deal).includes(:store)
   end
 
- 
-
   # GET /comments/1
   # GET /comments/1.json
   def show
@@ -36,8 +34,6 @@ class CommentsController < ApplicationController
    @comment=Comment.all
  #  @deal=Deal.find(params[:deal_id])
   # @comment=@deal.comments
-
-   
   end
 
   # GET /comments/new
@@ -60,15 +56,14 @@ class CommentsController < ApplicationController
     @deal=Deal.find(params[:comment][:deal_id])
     @comment = @deal.comments.build(params[:comment])
    # @comment = Comment.create(params[:comment])
-    if  @comment.save 
+     if  @comment.save 
        #respond_with( @comment, :layout => !request.xhr? )
        #flash.now[:error] = "Please sign up before posti"
      else
       flash.now[:error] = "Please write the comment before submitting" 
      #respond_with( @comment, :layout => !request.xhr? )
      render "index"
-     end 
-        
+     end    
   end
 
   # PUT /comments/1

@@ -1,6 +1,6 @@
   class DealController < ApplicationController
   respond_to :js
-  before_filter :authenticate_user!, :only=>[:new,:retailers]
+  before_filter :authenticate_user!, :only=>[:create,:retailers]
   layout "header"
   def index
      unless session[:city_id].nil? || session[:city_id].blank?
@@ -142,7 +142,9 @@ end
    @city = City.find(session[:city_id])
    @deal = @city.deals.build
    @deal.stores.build
+   if user_signed_in? 
    current_user.deals.build
+ end
    @deal.build_category
    #mention time (how long the deal is going to be till)
    @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])

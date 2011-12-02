@@ -10,7 +10,7 @@ Asterik (*) means that field is required<br/>
 <tr><td><b>I spot </b></td></tr>
 <tr><td><label>Product/Item*</label></td><td><%= c.text_field :item_name %></td></tr>
 <tr><td><b>for price </b></td></tr>
-<tr><td><label>Price</label></td><td><%= c.text_field :price %></td></tr>
+<tr><td><label>Sale Price*&nbsp;$</label></td><td><%= c.text_field :price %></td></tr>
 <tr><td><b>at location</b></td></tr>
 <tr><td><label>City*</label></td><td><%= c.text_field :town %></td></tr> 
 <%=c.fields_for :stores do |s| %>

@@ -20,6 +20,7 @@ width:100%;
 min-height:100%;
 height:auto;
 }
+html a:hover{background:none;}
 .home-background{
   background-image:url('shooting.jpg');
   background-repeat:repeat-y;
@@ -663,15 +664,11 @@ a.vote-up-view img
  border-radius:3px;
  border:solid #dedede 1px;  
 }
-.vote-down-view img{
-text-decoration:none;
- padding:0px 8px 0px 8px;
- background:#ABB3BF;  
--moz-border-radius:3px;
--webkit-border-radius:3px;
- border-radius:3px; 
- font-size:12px;
-  border:solid #dedede 1px;   
+.vote-down-view img:hover{
+ background:#FC7A69;     
+}
+.vote-up-view img:hover{
+ background:#9BEE6D;     
 }
 .vote-up img:hover{
 background:#9BEE6D;	
