@@ -20,7 +20,7 @@
      flash[:notice]="Thank you for sharing the deal with us,you can view it on your profile"
     else
     render 'new' 
-    flash[:error]="Error occured,the deal was not saved"
+    flash[:error]="Error occured, your deal was not saved"
   end 
   end
 
