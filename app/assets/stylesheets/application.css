@@ -27,8 +27,8 @@ html a:hover{background:none;}
   height:auto;
   min-height:100%;
   margin-top:0px;
-position:fixed;
-width:100%;
+  position:fixed;
+  width:100%;
 }
 .sign-in-background{
   background-image:url('shooting.jpg');
@@ -693,11 +693,12 @@ background:#FC7A69;
   display: inline-table;
   position: relative;float:left;
  width:700px;
-
+margin:3px;
 }
 .inline_table{
   display: inline-table;
   position: relative;float:left;
+  margin:3px;
 }
 span.inline_table img{
 	height:40px;
