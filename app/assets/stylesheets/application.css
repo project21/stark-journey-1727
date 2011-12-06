@@ -620,14 +620,14 @@ padding:4px 18px 4px 18px;
 }
 .note{
 padding:6px;
-width:95%;
+width:99%;
 background:#C6EFA4;	
 border:solid #7CDD2C 1px;	
 font-weight:bold; 
 }
 .error{
 padding:6px;
-width:95%;
+width:99%;
 background:#F09994;	
 border:solid #ED3126 1px;	
 font-weight:bold;	

@@ -9,8 +9,13 @@ Asterik (*) means that field is required<br/>
 <table class="spot">
 <tr><td><b>I spot </b></td></tr>
 <tr><td><label>Product/Item*</label></td><td><%= c.text_field :item_name %></td></tr>
-<tr><td><b>for price </b></td></tr>
-<tr><td><label>Sale Price*&nbsp;$</label></td><td><%= c.text_field :price %></td></tr>
+<tr><td><%= c.radio_button :fixed_price, true,:checked=>false %>Fixed price
+<%= c.radio_button :unfixed, 'buy_two',:checked=>false %>Buy 2 get one free</td>
+<td><%= c.radio_button :fixed_price, false,:checked=>false %>Percent off
+<%= c.radio_button :other_details, true,:checked=>false %>Other</td>
+</tr>
+<tr class="fixed ui-helper-hidden"><td><label>Sale Price*&nbsp;$</label></td><td><%= c.text_field :price %></td></tr>
+<tr class="percent ui-helper-hidden"><td><label>Discount percentage</label></td><td><%= c.text_field :percent_off %>%Off</td></tr>
 <tr><td><b>at location</b></td></tr>
 <tr><td><label>City*</label></td><td><%= c.text_field :town %></td></tr> 
 <%=c.fields_for :stores do |s| %>

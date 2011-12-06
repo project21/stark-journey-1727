@@ -12,8 +12,20 @@
 <div class="view-image"><%=image_tag (@deal.image_url.to_s )%></div>
 
 <div class="details-border">
-        
+     <%unless @deal.fixed_price.nil?%>
+         <%if @deal.fixed_price%>   
     <div class="item-price-view">$<%=@deal.price%></div>
+    <%else%>
+             <div class="item-price-view"><%=@deal.percent_off%>%Off</div>
+         <%end%>
+     <%else%>
+            <%if @deal.unfixed%>
+            <div class="buy">Buy 2</div> <div class="item-price-view">get 1 free</div>
+             <%else%>
+             <div class="item-price-view">See Details </div>     
+             <%end%> 
+     <%end%>
+
     <div class="line-separator"></div> 
     <div style="font-size:24px;font-weight:bold;margin:6px;"><%=pluralize(@deal.plusminus,"vote")%></div>
     
