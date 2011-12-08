@@ -1,12 +1,17 @@
 <div class="container">
 <div class="clear"></div>
+<h3>My Profile</h3>
 <% unless @total_comments==0 %>
 <div class="comment-bar-alert" >You have &nbsp;<%=pluralize(@total_comments,"New comment")%></div>
 <%else%>
 <div style="display:none;"><%=@total_comments%></div>
 <%end%>
-Your points: <%=pluralize(current_user.karma,"point")%><br/>
-credits:0<br/>
+<span style="font-weight:bold;">
+Your points: <%=pluralize(@points + @bonus,"point")%><br/>
+credits:$<%=@credits%><br/>
+</span>
+<button>Redeem</button>
+<div class="underline"></div>
 <div style="width:600px;">
 <%@mydeals.each do |mydeal|  %>
 <div class="image-search"><%=image_tag mydeal.image_url.to_s%></div>
@@ -24,11 +29,11 @@ credits:0<br/>
 <%end%>
 <%=pluralize(mydeal.comments.count,"comment")%><br/>	
 <% if mydeal.official%>
-<%=link_to "edit" ,edit_retailer_deal_path(mydeal)%>
+<%=link_to "edit" ,edit_retailer_deal_path(mydeal),:class=>"link-underline"%>
 <%else%>
-<%=link_to "edit" ,edit_deal_path(mydeal)%>
+<%=link_to "edit" ,edit_deal_path(mydeal),:class=>"link-underline"%>
 <%end%>
-<%=link_to "delete" ,delete_deal_path(mydeal),:confirm=>"Are you sure want to delete this deal",:method=>:delete%>
+<%=link_to "delete" ,delete_deal_path(mydeal),:confirm=>"Are you sure want to delete this deal",:method=>:delete,:class=>"link-underline"%>
 
 <% if mydeal.flagged %>
 <div>This deal has been flagged ,Please delete the deal or make necessary corrections</div>

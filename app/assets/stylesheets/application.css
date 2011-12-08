@@ -437,6 +437,14 @@ width:90%;
 background:#D67D43; 
 border:solid #C76423 1px;}
 a.profile-item{font-weight:bold; }
+a.profile-item:hover{font-weight:bold;text-decoration:underline; color:black;}
+a.link-underline{
+text-decoration:none;
+}
+a.link-underline:hover{
+text-decoration:underline;
+color:blue;
+}
 .view-image img{
 width:400;
 height:200px;
@@ -619,18 +627,24 @@ padding:4px 18px 4px 18px;
  border-radius:2px;
 }
 .note{
-padding:6px;
-width:99%;
+padding:9px;
+width:98%;
 background:#C6EFA4;	
 border:solid #7CDD2C 1px;	
 font-weight:bold; 
+moz-border-radius:5px;
+-webkit-border-radius:5px;
+ border-radius:5px;
 }
 .error{
-padding:6px;
-width:99%;
+padding:9px;
+width:98%;
 background:#F09994;	
 border:solid #ED3126 1px;	
 font-weight:bold;	
+moz-border-radius:5px;
+-webkit-border-radius:5px;
+ border-radius:5px;
 }
 
 .vote-down img
@@ -706,8 +720,8 @@ span.inline_table img{
 }
 .underline{
 border-top:solid #dedede 1px;
-width:97%;
-margin-left:15px;
+width:98%;
+margin-left:5px;
 }
 .header-line{
 border-top:solid #dedede 3px;

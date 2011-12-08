@@ -7,8 +7,13 @@ class CategoryController < ApplicationController
 @category=Category.find(5)
  #comment alert
    @total_comments=0
+   @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+       @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -26,8 +31,13 @@ def electro
 @category=Category.find(6)
  #comment alert
    @total_comments=0
+   @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+       @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -45,8 +55,13 @@ def electro
     @category=Category.find(7)
      #comment alert
    @total_comments=0
+   @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+       @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -69,8 +84,13 @@ def jewelry
     @category=Category.find(9)
      #comment alert
    @total_comments=0
+   @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+       @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -89,8 +109,13 @@ def jewelry
     @category=Category.find(10)
      #comment alert
    @total_comments=0
+   @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+        @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -109,8 +134,13 @@ def jewelry
     @category=Category.find(12)
      #comment alert
    @total_comments=0
+   @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+         @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -129,8 +159,13 @@ def jewelry
     @category=Category.find(13)
      #comment alert
    @total_comments=0
+   @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+      @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -149,8 +184,13 @@ end
     @category=Category.find(8)
      #comment alert
    @total_comments=0
+   @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+       @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -169,8 +209,13 @@ end
     @category=Category.find(11)
      #comment alert
    @total_comments=0
+   @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+       @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -189,8 +234,13 @@ end
     @category=Category.find(14)
      #comment alert
    @total_comments=0
+   @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+        @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at

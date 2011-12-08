@@ -16,7 +16,7 @@ Asterik (*) means that field is required<br/>
 </tr>
 <tr class="fixed ui-helper-hidden"><td><label>Sale Price*&nbsp;$</label></td><td><%= c.text_field :price %></td></tr>
 <tr class="percent ui-helper-hidden"><td><label>Discount percentage</label></td><td><%= c.text_field :percent_off %>%Off</td></tr>
-<tr class="specify ui-helper-hidden"><td>Please specify in the details field below</td></tr>
+<tr class="specify ui-helper-hidden"><td style="font-style:italic;font-weight:bold;">Please specify in the details field below</td></tr>
 <%if user_signed_in? %>
 <%= c.hidden_field :submitter_id,:value => current_user.id%><%end%>
 <tr><td><b>at location</b></td></tr>

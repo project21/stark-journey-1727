@@ -5,8 +5,13 @@ class FeedbacksController < ApplicationController
     @city = City.find(session[:city_id])
      #comment alert
     @total_comments=0
+     @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+      @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at

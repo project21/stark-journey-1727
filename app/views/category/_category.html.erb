@@ -1,9 +1,8 @@
-
-<h2><%=@category.category_name%></h2>
- <div class="notice">
+<div class="notice">
   <%=flash[:notice]%>
   <div class="errors"><%=flash[:error]%></div>
   </div>
+<h2><%=@category.category_name%></h2>
 <div class="clear"></div>
 <div class="header-line"></div>
 <div class="clear"></div>
@@ -27,8 +26,8 @@
             Buy 2 <a class="item" href="/comment/index?deal_id=<%=deal.id%>"><%=truncate( deal.item_name,:length=>30)%></a><br/><span class="item-price">get 1 free</span>
              <%else%>
              <a class="item" href="/comment/index?deal_id=<%=deal.id%>">
-             <%=truncate(deal.item_name,:length=>30)%> </a>&nbsp; <span class="static-text">for</span><br/>
-             <a  href="/comment/index?deal_id=<%=deal.id%>">See details</a> <br/>      
+             <%=truncate(deal.item_name,:length=>30)%> </a><br/>
+             <a class="link-underline" href="/comment/index?deal_id=<%=deal.id%>">See details</a> <br/>      
              <%end%> 
      <%end%>
 <span class="image"> <%=image_tag (deal.image_url.to_s )%></span><br/>

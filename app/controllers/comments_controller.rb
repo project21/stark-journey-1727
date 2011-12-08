@@ -15,7 +15,13 @@ class CommentsController < ApplicationController
   
    #comment alert
    @total_comments=0
+   @bonus=0
    if user_signed_in?
+      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+       @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      current_user.update_attribute(:last_sign_in_at,Time.now)
      @comments = @deal.comments
      @last_signed=current_user.last_sign_in_at

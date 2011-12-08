@@ -14,14 +14,20 @@
   def create
    @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])  
   @city = City.find(session[:city_id])
+   @points=current_user.karma 
+   @bonus=0
+   @mydeals=current_user.deals.includes(:stores,:comments,:user)
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
   @deal=@city.deals.build(params[:deal])
    if @deal.save
     redirect_to @deal
-     flash[:notice]="Thank you for sharing the deal with us,you can view it on your profile"
+     flash[:notice]="CONGRATULATION! You have earned +5 points. Thank you for sharing the deal with us"
     else
     render 'new' 
     flash[:error]="Error occured, your deal was not saved"
-  end 
+    end 
   end
 
    def retailer_create
@@ -35,7 +41,12 @@
     render 'retailers' 
     flash[:error]="Error occured,data was not saved"
       @total_comments=0
+      @bonus=0
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+        @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -53,8 +64,13 @@
      @deals=Deal.where("city_id = ?", session[:city_id]).includes( :stores).rank_tally(:limit=>24)
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
      @total_comments=0
+     @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+        @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -116,8 +132,13 @@ end
      @city = City.find(session[:city_id])
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
      @total_comments=0
+     @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+       @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -150,8 +171,13 @@ end
    @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     #comment alert
     @total_comments=0
+    @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+       @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -173,8 +199,13 @@ end
  @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
  #comment alert
      @total_comments=0
+     @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+        @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -209,8 +240,13 @@ end
     end  
   #comment alert
    @total_comments=0
+   @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+       @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -232,8 +268,13 @@ end
     @deal.stores.build
      #comment alert
      @total_comments=0
+     @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+        @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -250,8 +291,13 @@ end
     @deals = @search.all
    #comment alert
      @total_comments=0
+     @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -283,24 +329,58 @@ end
       @city = City.find(session[:city_id])
       @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
       @total_comments=0
-     if user_signed_in?
+      @bonus=0
+
+  if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+       unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
      @old_comments=@comments.where("created_at < ?",@last_signed).count
-     @new_comments=@comments.count-@old_comments
+     @new_comments=@comments.count- @old_comments
+     @points=current_user.karma
      @total_comments+=@new_comments
-         end
-     end   
+      @credits=0 
+     unless mydeal.votes.empty?
+        
+      if @points + @bonus < 5
+         @credits=0
+         @last_vote=mydeal.votes.find(:last).created_at
+      elsif @points  + @bonus == 5
+          @credits=0.01 
+          @last_vote=mydeal.votes.find(:last).created_at
+          flash[:notice]="CONGRATULATION! You have earned +5 points."  
+      else
+        @new_votes=mydeal.plusminus - mydeal.votes.where("created_at < ?", @last_vote).count
+        @credits=0.01 
+        if @new_votes  == 5
+        @credits+=@points + @bonus * 0.002
+        @last_vote=mydeal.votes.find(:last).created_at
+        flash[:notice]="CONGRATULATION! You have been credited a penny."  
+        end  
+                   
+       end 
+    else
+    @credits+= @bonus * 0.002          
+    end  
+           end           
+end   
 end
 
 def how_it_works
   @city = City.find(session[:city_id])
       @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
       @total_comments=0
+      @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+       @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -321,8 +401,13 @@ def edit
     @city = City.find(session[:city_id])
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
       @total_comments=0
+      @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+        @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at
@@ -339,8 +424,13 @@ def edit_retailer
     @city = City.find(session[:city_id])
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
       @total_comments=0
+      @bonus=0
      if user_signed_in?
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
+        @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
      @mydeals.each do |mydeal|
       @comments=mydeal.comments
      @last_signed=current_user.last_sign_in_at

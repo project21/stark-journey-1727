@@ -16,7 +16,7 @@
 <%else%>
 <div style="display:none;"><%=@total_comments%></div>
 <%end%>
-    <span class="Sign-Up"><a class="username"  href="#">&nbsp;<%=pluralize(current_user.karma,"point")%>&nbsp; </a><a class="username" href="/deal/profile" >&nbsp;<%= current_user.username %>&nbsp;</a> 
+    <span class="Sign-Up"><a class="username"  href="#">&nbsp;<%=pluralize(@points + @bonus,"point")%>&nbsp; </a><a class="username" href="/deal/profile" >&nbsp;<%= current_user.username %>&nbsp;</a> 
   <%= link_to "Sign Out", destroy_user_session_path, :method => :get ,:class=>"sign-up"%></span>
   <% else %>
    <span class="sign-up"> <%= link_to "Sign Up", new_user_registration_path %> <a href="#">&nbsp;or&nbsp;</a> <%= link_to "Sign In", new_user_session_path %></span>
