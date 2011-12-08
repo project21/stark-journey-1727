@@ -777,7 +777,7 @@ float:right ;
  -webkit-border-radius:4px;
  border-radius:4px; 
 }
-div span.static-text{font-size:12px;color:black;}
+/*div span.static-text{font-size:12px;color:black;}*/
 div a.item{
  font-weight:bold; 
 text-decoration:underline;
