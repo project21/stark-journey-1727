@@ -485,6 +485,7 @@ box-shadow: 4px 4px 1px #F0F2F5;
 .time{
 color:#808080;
 font-size:11px;
+clear:both;
 }
 .city{
   float:right;
