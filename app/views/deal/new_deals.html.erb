@@ -15,7 +15,7 @@
   <a class="item" href="/comment/index?deal_id=<%=deal.id%>">
  <%=truncate(deal.item_name,:length=>30)%> </a><br/> <span >for</span> <span class="item-price">$<%=deal.price%></span><br/>
       <%else%>
-              <a class="item" href="/comment/index?deal_id=<%=deal.id%>"><%=truncate( deal.item_name,:length=>30)%></a><br/>
+              <a class="item" href="/comment/index?deal_id=<%=deal.id%>"><%=truncate( deal.item_name,:length=>22)%></a><br/>
              <span class="item-price"><%= deal.percent_off%>%Off</span><br/>
          <%end%>
      <%else%>

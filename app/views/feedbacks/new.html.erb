@@ -1,7 +1,17 @@
+
 <div class="container">
 <h1>Feedback</h1>
-<b>Talk to us , let us know how we can improve this site.</b>
+<h3>Leave us feedback in response to the following questions</h3>
+<ul>
+<li>What do you think about the Idea/concept of spotsaving (Hepful or Not), and why?</li>
+<li>What feature would you like to see on the site?(anything that you think will be helpful to you)</li>
+<li>What about user-bility?(user-friendly or not?,Describe any kind of fustration or hassle you experienced)</li>
+<li>Any technical issues?</li>
+</ul>
 <p><%= form_for :feedback ,:url=>{:action =>"create"} do |f|%>
+<label><b>Email:</b></label><br>
+<%= f.text_area :email,:rows=>"1" %>(<b>optional</b>)<br/>
+<label><b>Feedback:</b></label><br>
 <%= f.text_area :body,:rows=>"4",:cols=>"60" %><br/>
 <%=f.submit "Submit"%>
 <%end%>
