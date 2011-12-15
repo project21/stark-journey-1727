@@ -1,4 +1,7 @@
 <div class="container">
+<h2>Why partner with spotsaving?</h2>
+<p>Spotsaving will help you sell your products quicker and grow your audience by advertising your discounted and  clearance <br> merchandise for free. </p>
+<div class="line"></div>
 <%= form_for @deal ,:url=>{:action =>"retailer_create"},:html=>{:multipart=>true} do |f|%>
    <%= f.error_messages %>
         
@@ -14,7 +17,8 @@
 <tr class="ui-helper-hidden percent" ><td>or</td></tr>
 <tr class="ui-helper-hidden percent"><td><label>n other items free</label></td><td><%= f.text_field :n_item_free %></td></tr>
 <tr><td><label>Regular Price*</label></td><td><%= f.text_field :reg_price %></td></tr>
-<tr><td><label>Deal end date</label></td><td><%=f.date_select  :end_date,:start_year=>2011,:order => [:month,:day,:year],:prompt => {:month => 'Select month',:day => 'Select day', :year => 'Select year'}%> if not specified will be marked as untill sold</td></tr>
+<tr><td><label>Deal end date</label></td><td><%=f.date_select  :end_date,:start_year=>2011,:order => [:month,:day,:year],:prompt => {:month => 'Select month',:day => 'Select day', :year => 'Select year'}%> </td></tr>
+<tr><td>Mark it as until sold<input type="checkbox"></td></tr>
 <tr><td><label>No. of items available</label></td><td><%= f.text_field :available_items %></td></tr>
 <%= f.hidden_field :user_id,:value => current_user.id%>
 <tr><td><label>Image of the item(s)/business</label></td><td><%= f.file_field :image %></td></tr>

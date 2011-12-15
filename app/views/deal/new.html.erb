@@ -7,27 +7,27 @@ Asterik (*) means that field is required<br/>
 <%= c.collection_select(:category_id, Category.all ,:id,:category_name,:prompt=>"category") %><br/>
 <table class="spot">
 	<tr><td><b>I spot </b></td></tr>
-<tr><td><label>Product/Item*</label></td><td><%= c.text_field :item_name %></td></tr>
+<tr><td><label>Product/Item*</label></td><td><%= c.text_field :item_name %><br><span style="color:#808080;">e.g Samsung 42" LCD HDTV</span></td></tr>
 <tr><td><b>for price </b></td></tr>
 <tr><td><%= c.radio_button :fixed_price, true,:checked=>false %>Fixed price
 <%= c.radio_button :unfixed, 'buy_two',:checked=>false %>Buy 2 get one free</td>
 <td><%= c.radio_button :fixed_price, false,:checked=>false %>Percent off
 <%= c.radio_button :other_details, true,:checked=>false %>Other</td>
 </tr>
-<tr class="fixed ui-helper-hidden"><td><label>Sale Price*&nbsp;$</label></td><td><%= c.text_field :price %></td></tr>
-<tr class="percent ui-helper-hidden"><td><label>Discount percentage</label></td><td><%= c.text_field :percent_off %>%Off</td></tr>
+<tr class="fixed ui-helper-hidden"><td><label>Sale Price*&nbsp;$</label></td><td><%= c.text_field :price %><br/><span style="color:#808080;">e.g 450.99</span></td></tr>
+<tr class="percent ui-helper-hidden"><td><label>Discount percentage</label></td><td><%= c.text_field :percent_off %>%Off<br/><span style="color:#808080;">e.g 50</span></td></tr>
 <tr class="specify ui-helper-hidden"><td style="font-style:italic;font-weight:bold;">Please specify in the details field below</td></tr>
 <%if user_signed_in? %>
 <%= c.hidden_field :submitter_id,:value => current_user.id%><%end%>
 <tr><td><b>at location</b></td></tr>
-<tr><td><label>City*</label></td><td><%= c.text_field :town %></td></tr> 
+<tr><td><label>City*</label></td><td><%= c.text_field :town %><br/><span style="color:#808080;">e.g Roseville</span></td></tr> 
 <%=c.fields_for :stores do |s| %>
-<tr><td><label>Store*</label></td><td><%=s.text_field :store_name %></td></tr>
+<tr><td><label>Store name*</label></td><td><%=s.text_field :store_name %><br/><span style="color:#808080;">e.g Walmart</span> </td></tr>
 <%= s.hidden_field :city_id,:value => @city.id%>
 </table>
 <div class="line"></div>
 <b>Optional</b><br/>
-<label>Cross street</label></td><td><%=s.text_field :address %><a href="#" id="street">?</a><br/>
+<label>Cross street</label></td><td><%=s.text_field :address %><a href="#" id="street">?</a><br/><span style="color:#808080;">e.g Sunrise blvd</span><br/>
 <%end%> 
 <%if user_signed_in? %>
 <%= c.hidden_field :user_id,:value => current_user.id%><%end%>
