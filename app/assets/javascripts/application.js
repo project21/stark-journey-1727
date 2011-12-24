@@ -23,6 +23,14 @@ if ($('#search_item_name_contains').val()=='')
     e.preventDefault();
   }); 
 //$('input.other').click(function(){alert(hey);});
+$(".cat-link").click(function(){
+  $(".categories").toggleClass("ui-helper-hidden");
+});
+
+$("ul li").click(function(){
+ $(".categories").addClass("ui-helper-hidden");
+});
+
 $("input.fixed-price").click(function(){
   $("tr.fixed").toggleClass("ui-helper-hidden");
   $("tr.percent").addClass("ui-helper-hidden");	
@@ -30,12 +38,12 @@ $("input.fixed-price").click(function(){
 
 $("input.percent-off").click(function(){
   $("tr.percent").toggleClass("ui-helper-hidden");
-   $("tr.fixed").addClass("ui-helper-hidden");	
+  $("tr.fixed").addClass("ui-helper-hidden");	
 });
 
 $('#deal_percent_off').removeAttr("disabled");
 $('#deal_n_item_free').removeAttr("disabled");	
- $('input#deal_reg_price').removeAttr("disabled");	
+$('input#deal_reg_price').removeAttr("disabled");	
 
 $("#deal_percent_off").click(function(){
 	$('#deal_percent_off').removeAttr("disabled");

@@ -44,9 +44,24 @@
 <div class="clear"></div>
 
 <div id="main">
+
+<a href="#" class="cat-link" >Category</a>
+<ul class="categories ui-helper-hidden">
+<li><%= link_to 'Grocery',{:controller=>"category",:action =>"index" }%></li>
+<li><%= link_to 'Electronics',{:controller=>"category",:action =>"electro" }%></li>
+<li><%= link_to 'Clothing & shoes ',{:controller=>"category",:action =>"clothing" }%></li>
+<li><%= link_to 'Houseware & Furniture',{:controller=>"category",:action =>"houseware" }%></li>
+<li><%= link_to 'Restaurant & Fastfood',{:controller=>"category",:action =>"restaurant" }%></li>
+<li><%= link_to 'Kids',{:controller=>"category",:action =>"kids" }%></li>
+<li><%= link_to 'Jewelry',{:controller=>"category",:action =>"jewelry" }%></li>
+<li><%= link_to 'Home improvement',{:controller=>"category",:action =>"home_improve" }%></li>
+<li><%= link_to 'Activities & Events',{:controller=>"category",:action =>"activity" }%></li>
+<li><%= link_to 'Health & Beauty',{:controller=>"category",:action =>"health" }%></li>
+</ul>
+
 <div class="announce">Spotsaving is new and currently is still undergoing through development and testing.For any suggestions/advice and technical issues, please report to <%=link_to "Feedback",{:controller=>'feedbacks',:action=>"new"}%><span style="float:right"><%=image_tag("cancel.png")%></span></div>
 <div class="category">
-<ul class="categories">
+<ul class="categories1 ui-helper-hidden">
 <h3>Category</h3>
 <li><%= link_to 'Grocery',{:controller=>"category",:action =>"index" }%></li>
 <li><%= link_to 'Electronics',{:controller=>"category",:action =>"electro" }%></li>
