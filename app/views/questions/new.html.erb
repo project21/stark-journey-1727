@@ -1,0 +1,22 @@
+
+<div style="font-size:19px;font-weight:bold;margin-left:8px;">Ask your community what are you looking for, how much and where you can find a great Deal</div>
+<div class="ask-bold-line"></div>
+<div style="margin:8px;">
+<%= form_for @question ,:url=>{:action =>"create"} do |f|%>
+ <%= f.error_messages %>  
+<%= f.collection_select(:category_id, Category.all ,:id,:category_name,:prompt=>"category") %><br/>
+  <b>Item/product/service</b><br><%= f.text_field :item,:size=>"43" %><br>
+   <span style="color:#808080;">e.g Sony HD Tv</span><br>
+ <%= f.check_box :how_much %><b> How Much is it?</b><br>
+ <%= f.check_box :where %><b> Where can i find it for low price?</b><br>
+ <b>Additional Details</b> (optional)<br>
+ <%= f.text_area :additional_details,:rows=>"3",:cols=>"60" %><br>
+ <%= f.hidden_field :city_id,:value => @city.id%>
+ <%if user_signed_in? %>
+  <%= f.hidden_field :user_id,:value => current_user.id%>
+  <%end%>
+ <%=f.submit "Ask" %>
+<%end%>
+<div class="ask-bold-line"></div>
+   </div>
+

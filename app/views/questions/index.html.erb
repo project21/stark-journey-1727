@@ -1,0 +1,34 @@
+<div class="container">
+
+<% @questions.each do |question| %>
+<%=question.answers.count%>
+   <% if question.where && question.how_much %>
+    <a href="/questions/<%=question.id%>">Where can i find <%=question.item%> for a low price? How much is it?</a><br>
+         <% unless question.additional_details.empty?%> 
+         <%=question.additional_details%>
+         <%else%>
+          no additional details<br>
+         <%end%> <br>
+         <%=question.user.username%>
+           <a href="/questions/<%=question.id%>">Reply</a><br>
+            
+   <% elsif question.where %>
+    <a href="/questions/<%=question.id%>">Where can i find <%=question.item%> for a low price?</a><br>
+           <% unless question.additional_details.empty?%> 
+           <%=question.additional_details%><br>
+                      
+           <%else%>
+           no additional details<br>
+           <%end%> <br>
+   <% else%>
+    <a href="/questions/<%=question.id%>">How much  is <%=question.item%> ?</a><br>
+            <% unless question.additional_details.empty?%> 
+           <%=question.additional_details%><br>
+                      
+           <%else%>
+           no additional details<br>
+           <%end%> <br>
+   <%end%>
+
+<%end%>
+</div>

@@ -1,4 +1,10 @@
 Deals::Application.routes.draw do
+  get "questions/index"
+
+  get "questions/new"
+
+  post "questions/create"
+
   get "feedbacks/new"
 
   post "feedbacks/create"
@@ -21,7 +27,7 @@ post "deal/new"
   get "deal/index"
   post "deal/create"
   get "deal/new"
-
+  get "deal/ask"
   post "deal/vote_up"
   get "deal/show"
   get "deal/how_it_works"
@@ -52,13 +58,16 @@ post "deal/new"
   post "home/next"
   get 'deal/id'  
   devise_for :users
+#match "/answers" => "questions#show"
+#match "/questions/:id" => "answers#create"
+  match "deal/ask" => "deal#ask_create"
   match "deal/create" => "deal#create" ,:via=>:put
 match "deals/:id/delete" =>'deal#delete'
 match '/comment/index' => 'comments#index' ,:via=>:get
 match 'deal/city/'  => "deal#city", :via=>:get
 match 'deals/:id'  => "deal#show", :via=>:get
 match 'home/next'  => "deal#show" 
-resources :city,:store,:vote ,:category
+resources :city,:store,:vote ,:category,:questions
 match "category/electro" => 'category#electro'
 match "category/health" => 'category#health'
 match "category/activity" => 'category#activity'
@@ -69,6 +78,7 @@ match "category/kids" => 'category#kids'
 match "category/home_improve" => 'category#home_improve'
 match "category/jewelry" => 'category#jewelry'
 match "deal/retailers" => 'deal#retailer_create'
+
 resources :deals,:controller=>"deal" do
 
    collection do
@@ -84,15 +94,19 @@ resources :deals,:controller=>"deal" do
     get :edit_retailer
   end
 end
-
- 
+ resource :answers  do
+    member do
+      post :vote_up1
+      post :vote_down1 
+   end  
+   end 
 resources :cities do
  resources :deals  
  end 
-
-# resources :deals do
-# resources :comments  
-# end 
+ 
+ resources :questions do
+ resources :answers     
+ end 
 
  resource :category do
   collection do

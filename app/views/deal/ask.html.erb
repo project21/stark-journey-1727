@@ -1,0 +1,12 @@
+<div class="container">
+<h3>Ask your community what are you looking for</h3>
+<%= form_for @deal ,:url=>{:action =>"ask_create"} do |f|%>
+ Item/Product/service <%= f.text_field :item_name %><br>
+ <%= f.check_box :how_much %> How Much is it?<br>
+ <%= f.check_box :where %> Where can i get it for cheaper?<br>
+ Additional Details (optional)<br>
+ <%= f.text_area :q_details,:rows=>"3",:cols=>"60" %><br>
+ <%=f.submit "Ask" %>
+<%end%>
+
+</div>

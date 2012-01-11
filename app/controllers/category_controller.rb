@@ -1,8 +1,10 @@
 class CategoryController < ApplicationController
   layout "header"
-  def index  
+  def index 
+@cities=City.find(:all)   
 @city= City.find(session[:city_id])
 @dealss=Deal.where("category_id =? AND city_id=?",Category.find(5),session[:city_id]).includes(:stores,:comments)
+@questions=Question.where("category_id =? AND city_id = ?",Category.find(5), session[:city_id]).includes(:user,:answers)
 @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
 @category=Category.find(5)
  #comment alert
@@ -25,7 +27,9 @@ class CategoryController < ApplicationController
   end
 
 def electro
+  @cities=City.find(:all)
 @city= City.find(session[:city_id])
+@questions=Question.where("category_id =? AND city_id = ?",Category.find(6), session[:city_id]).includes(:user,:answers)
 @dealss=Deal.where("category_id =? AND city_id=?",Category.find(6),session[:city_id]).includes(:stores)
 @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
 @category=Category.find(6)
@@ -49,7 +53,9 @@ def electro
  end 
   
   def clothing
+    @cities=City.find(:all)
     @city= City.find(session[:city_id])
+    @questions=Question.where("category_id =? AND city_id = ?",Category.find(7), session[:city_id]).includes(:user,:answers)
     @dealss=Deal.where("category_id =? AND city_id=?",Category.find(7),session[:city_id]).includes(:stores)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     @category=Category.find(7)
@@ -78,7 +84,9 @@ def electro
   end
 
 def jewelry
+    @cities=City.find(:all)
     @city= City.find(session[:city_id])
+    @questions=Question.where("category_id =? AND city_id = ?",Category.find(9), session[:city_id]).includes(:user,:answers)
     @dealss=Deal.where("category_id =? AND city_id=?",Category.find(9),session[:city_id]).includes(:stores)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     @category=Category.find(9)
@@ -103,7 +111,9 @@ def jewelry
  end
 
  def kids
+   @cities=City.find(:all)
     @city= City.find(session[:city_id])
+    @questions=Question.where("category_id =? AND city_id = ?",Category.find(10), session[:city_id]).includes(:user,:answers)
     @dealss=Deal.where("category_id =? AND city_id=?",Category.find(10),session[:city_id]).includes(:stores)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     @category=Category.find(10)
@@ -128,7 +138,9 @@ def jewelry
  end
 
  def home_improve
+    @cities=City.find(:all)
     @city= City.find(session[:city_id])
+    @questions=Question.where("category_id =? AND city_id = ?",Category.find(12), session[:city_id]).includes(:user,:answers)
     @dealss=Deal.where("category_id =? AND city_id=?",Category.find(12),session[:city_id]).includes(:stores)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     @category=Category.find(12)
@@ -153,7 +165,9 @@ def jewelry
  end
 
   def health
+    @cities=City.find(:all)
     @city= City.find(session[:city_id])
+    @questions=Question.where("category_id =? AND city_id = ?",Category.find(13), session[:city_id]).includes(:user,:answers)
     @dealss=Deal.where("category_id =? AND city_id=?",Category.find(13),session[:city_id]).includes(:stores)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     @category=Category.find(13)
@@ -178,7 +192,9 @@ def jewelry
 end
 
   def houseware
+    @cities=City.find(:all)
     @city= City.find(session[:city_id])
+    @questions=Question.where("category_id =? AND city_id = ?",Category.find(8), session[:city_id]).includes(:user,:answers)
     @dealss=Deal.where("category_id =? AND city_id=?",Category.find(8),session[:city_id]).includes(:stores)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     @category=Category.find(8)
@@ -203,7 +219,9 @@ end
 end 
 
    def restaurant
+    @cities=City.find(:all)
     @city= City.find(session[:city_id])
+    @questions=Question.where("category_id =? AND city_id = ?",Category.find(11), session[:city_id]).includes(:user,:answers)
     @dealss=Deal.where("category_id =? AND city_id=?",Category.find(11),session[:city_id]).includes(:stores)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     @category=Category.find(11)
@@ -228,7 +246,9 @@ end
  end
 
    def activity
+    @cities=City.find(:all)
     @city= City.find(session[:city_id])
+    @questions=Question.where("category_id =? AND city_id = ?",Category.find(14), session[:city_id]).includes(:user,:answers)
     @dealss=Deal.where("category_id =? AND city_id=?",Category.find(14),session[:city_id]).includes(:stores)
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     @category=Category.find(14)

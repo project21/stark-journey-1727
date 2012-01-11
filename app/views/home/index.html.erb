@@ -1,20 +1,32 @@
 <div class="home-background">
 <!--
 <div class="logo"><%=image_tag("FFL-SPOT500.png")%></div>-->
-<div class="selling-line">SAVE THOUSANDS ANNUALLY ON YOUR DAILY PURCHASES THROUGH INFORMATION SHARING</div>
+<div class="selling-line">
+<div class="main">
+
+<%=image_tag("spot-logo.png")%>
+<span style="display:inline-block;margin-top:0px;text-align:center;text-shadow:1px 1px black;">SAVE THOUSANDS ANNUALLY ON YOUR DAILY PURCHASES THROUGH INFORMATION SHARING</span>
+</div>
+
+</div>
 
 <div class="root-login">
-<h3><b>DISCOVER GREAT PRICES & VARIETY OF ITEMS ON CLEARANCE IN YOUR CITY SPOTTED BY YOUR LOCAL COMMUNITY</b></h3>
-<div class="prompt">Select your city before proceeding and  share with us what great deal you spotted</div>
-<div class="root-form">
+<h3 style="font-family:Copperplate Gothic Light;"><b>DISCOVER GREAT PRICES IN YOUR CITY THROUGH YOUR LOCAL COMMUNITY</b></h3>
+<div class="prompt">Select your city before proceeding and have fun</div>
+<div style="margin-left:175px;margin-right:auto;">
 <%= form_for :city, :url=>{:action =>"next"} do |f| %>
 <%= f.collection_select(:city_id, City.all, :id, :name ,:prompt=>"Select your City",:size=>"60") %>
 <br/>
 <br/>
+</div>
+<div class="root-form">
 <%=f.submit "Continue",:class=>"continue-button" %>
 <%end%>
 </div>
 <div style="font-size:12px;color:#dedede;text-align:center;">&copy;2011 spotsaving.com</div>
+<h2 style="color:white;">A fun way of discovering deals in your city</h2>
 </div>
 
+<div class="clear"></div>
+<!--<div class="footer">&copy;2011 spotsaving.com&nbsp;<span><%=link_to "Feedback",{:controller=>'feedbacks',:action=>"new"}%></span></div>-->
 </div>

@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111211225838) do
+ActiveRecord::Schema.define(:version => 20111229213832) do
+
+  create_table "answers", :force => true do |t|
+    t.string   "location"
+    t.string   "pricing"
+    t.text     "answer_details"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "question_id"
+    t.boolean  "sure",           :default => false
+    t.integer  "user_id"
+    t.integer  "submitter_id"
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "category_name"
@@ -44,7 +56,6 @@ ActiveRecord::Schema.define(:version => 20111211225838) do
     t.string   "size"
     t.string   "item_name"
     t.string   "brand"
-    t.integer  "stars"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "city_id"
@@ -84,6 +95,18 @@ ActiveRecord::Schema.define(:version => 20111211225838) do
     t.integer  "ip_count",   :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "questions", :force => true do |t|
+    t.boolean  "how_much"
+    t.boolean  "where"
+    t.text     "additional_details"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "item"
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.integer  "city_id"
   end
 
   create_table "store_deals", :force => true do |t|

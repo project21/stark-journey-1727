@@ -1,6 +1,6 @@
 
 
-<div class="container">
+
 
  <div class="notice"> </div>
  <div class="errors"> </div>
@@ -11,13 +11,73 @@
   <div class="note"> <%=flash[:notice]%></div>
      <%end%>
 <div class="clear"></div>
-<div style="margin-top:5px;">
-<div class="share" >Share with your community the great saving you spot today <%=link_to "list a deal",{:controller=>"deal",:action =>"new"} ,{:class=>"list-button" }%></div>
+
+<span  class="share">Ask your local community how much and where to find what <%=link_to "Ask",{:controller=>"questions",:action =>"new"} ,{:class=>"list-button" }%></span>
+<div style="float:left;margin-left:120px;text-align:center;">
+<span class="spotted-deals">Tell us what you saw at the store!</span>
+<span class="lis" > <%=link_to "Share",{:controller=>"deal",:action =>"new"} ,{:class=>"list-button" }%></span><br>
+
 </div>
- <br/>
+ <div class="bold-line"></div><div class="short-bold-line"></div>
+ <div style="float:left">
+<% @questions.each do |question| %>
+   <% if question.where && question.how_much %>
+ <span class="inline_table"> <%=image_tag('q.png')%></span><span class="inline_tables-a"> <a  href="/questions/<%=question.id%>"> Where can i find <%=question.item%> for a low price? How much is it?</a><br>
+         <% unless question.additional_details.empty?%> 
+         <%=question.additional_details%>
+         <%else%>
+          <span class="no-details">no additional details</span><br>
+         <%end%> 
+         <span class="asked-by">asked by</span>
+         <span class="username"><%=question.user.username%></span>
+         <span class="time-stamp"><%=time_ago_in_words(question.created_at)%> ago</span>
+          <span class="answer-count"><%=question.answers.count%>&nbsp;Answers</span>
+           <a class="reply-button" href="/questions/<%=question.id%>">Reply</a><br></span>
+            <div class="clear"></div>
+            <div class="light-line"></div>
+   <% elsif question.where %>
+   <span class="inline_table"> <%=image_tag('q.png')%></span><span class="inline_tables-a">
+   <a href="/questions/<%=question.id%>"> Where can i find <%=question.item%> for a low price?</a><br>
+           <% unless question.additional_details.empty?%> 
+           <span class="details"><%=question.additional_details%></span><br>
+                      
+           <%else%>
+           <span class="no-details">no additional details</span><br>
+           <%end%> 
+           <span class="asked-by">asked by</span>
+         <span class="username"><%=question.user.username%></span>
+         <span class="time-stamp"><%=time_ago_in_words(question.created_at)%> ago</span>
+          <span class="answer-count"><%=question.answers.count%>&nbsp;Answers</span>
+           <a class="reply-button" href="/questions/<%=question.id%>">Reply</a><br></span>
+            <div class="clear"></div>
+           </span>
+               <div class="light-line"></div>
+   <% else%>
+   <span class="inline_table"> <%=image_tag('q.png')%></span><span class="inline_tables-a">
+   <a href="/questions/<%=question.id%>"> How much  is <%=question.item%> ?</a><br>
+            <% unless question.additional_details.empty?%> 
+            <span class="details"> <%=question.additional_details%></span><br>
+                      
+           <%else%>
+            <span class="no-details">no additional details</span><br>
+            <%end%>
+              <span class="asked-by">asked by</span>
+         <span class="username"><%=question.user.username%></span>
+         <span class="time-stamp"><%=time_ago_in_words(question.created_at)%> ago</span>
+          <span class="answer-count"><%=question.answers.count%>&nbsp;Answers</span>
+           <a class="reply-button" href="/questions/<%=question.id%>">Reply</a><br></span>
+            <div class="clear"></div>
+           </span>
+           <div class="light-line"></div>
+   <%end%>
+<%end%>
+</div>
+
+<div style="float:left;margin-left:80px;">
+<div class="empty-box">
+<h3>Local Spotted Deals</h3>
 <% @deals.each do |store_deal| %>
-<div style="float:left">
-<span class="deal">
+<div class="deal">
 <%unless store_deal.official%>
      <%unless store_deal.fixed_price.nil?%>
          <%if store_deal.fixed_price%>
@@ -92,12 +152,19 @@
  <%else%>
  <span class="flagged">flagged</span>
  <%end%>
- </span>	
- <br />
+ </div>	
+ 
  <span class="time"> spotted <%=time_ago_in_words(store_deal.created_at)%>&nbsp;ago&nbsp;by &nbsp;<%=store_deal.user.username%></span>
- </div>
-  <%end%>
- </div>
+ <div class="deal-dotted-line"></div>
+  <%end%> 
+</div>
+
+</div>
+
+
+
+
+ 
 
 
 

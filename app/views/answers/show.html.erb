@@ -1,0 +1,7 @@
+
+           
+            
+             <%=pluralize(@answer.plusminus,"vote")%>
+             <%=link_to "vote up",vote_up_answers_path(@answer),:method=>:post,:remote=>true,:class=>"vote-up" %>
+             <%=link_to "vote down",vote_down_answers_path(@answer),:method=>:post,:remote=>true,:class=>"vote-down" %>
+             

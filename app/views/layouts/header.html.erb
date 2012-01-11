@@ -24,10 +24,9 @@
 </span>  <br/>
 <span class="city-title"><%=@city.name %></span>
 <ul class="menu">
-<li><%=link_to 'All deals',{:controller=>"deal",:action =>"show" }%></li>
-<li><%=link_to 'New deals',{:controller=>"deal",:action =>"new_deals" }%></li>
+<li><%=link_to 'All post',{:controller=>"deal",:action =>"show" }%></li>
+<li><%=link_to 'New post',{:controller=>"deal",:action =>"new_deals" }%></li>
 <li><%=link_to 'How it works',{:controller=>"deal",:action =>"how_it_works" }%></li>
-<li><%=link_to 'Retailers',{:controller=>"deal",:action =>"retailers" }%></li>
 
 </ul>
 
@@ -41,15 +40,16 @@
 
 </div>
 </div>
+
+
+<div class="main">
+<div class="container">
 <div class="clear"></div>
-
-<div id="main">
-
-<a href="#" class="cat-link" >Category</a>
-<ul class="categories ui-helper-hidden">
+<span class="cat-link" >Category</span> 
+<ul class="categories ">
 <li><%= link_to 'Grocery',{:controller=>"category",:action =>"index" }%></li>
 <li><%= link_to 'Electronics',{:controller=>"category",:action =>"electro" }%></li>
-<li><%= link_to 'Clothing & shoes ',{:controller=>"category",:action =>"clothing" }%></li>
+<li><%= link_to 'Clothing ',{:controller=>"category",:action =>"clothing" }%></li>
 <li><%= link_to 'Houseware & Furniture',{:controller=>"category",:action =>"houseware" }%></li>
 <li><%= link_to 'Restaurant & Fastfood',{:controller=>"category",:action =>"restaurant" }%></li>
 <li><%= link_to 'Kids',{:controller=>"category",:action =>"kids" }%></li>
@@ -57,27 +57,23 @@
 <li><%= link_to 'Home improvement',{:controller=>"category",:action =>"home_improve" }%></li>
 <li><%= link_to 'Activities & Events',{:controller=>"category",:action =>"activity" }%></li>
 <li><%= link_to 'Health & Beauty',{:controller=>"category",:action =>"health" }%></li>
+</ul>
+<div class="clear"></div>
+<div class="header-line2"></div>
+
+<ul class="cities ui-helper-hidden">
+<%@cities.each do |city| %>
+<li><a href="/deal/city?city_id=<%=city.id%>"><%=city.name%></a></li>
+<%end%>
 </ul>
 
 <div class="announce">Spotsaving is new and currently is still undergoing through development and testing.For any suggestions/advice and technical issues, please report to <%=link_to "Feedback",{:controller=>'feedbacks',:action=>"new"}%><span style="float:right"><%=image_tag("cancel.png")%></span></div>
-<div class="category">
-<ul class="categories1 ui-helper-hidden">
-<h3>Category</h3>
-<li><%= link_to 'Grocery',{:controller=>"category",:action =>"index" }%></li>
-<li><%= link_to 'Electronics',{:controller=>"category",:action =>"electro" }%></li>
-<li><%= link_to 'Clothing & shoes ',{:controller=>"category",:action =>"clothing" }%></li>
-<li><%= link_to 'Houseware & Furniture',{:controller=>"category",:action =>"houseware" }%></li>
-<li><%= link_to 'Restaurant & Fastfood',{:controller=>"category",:action =>"restaurant" }%></li>
-<li><%= link_to 'Kids',{:controller=>"category",:action =>"kids" }%></li>
-<li><%= link_to 'Jewelry',{:controller=>"category",:action =>"jewelry" }%></li>
-<li><%= link_to 'Home improvement',{:controller=>"category",:action =>"home_improve" }%></li>
-<li><%= link_to 'Activities & Events',{:controller=>"category",:action =>"activity" }%></li>
-<li><%= link_to 'Health & Beauty',{:controller=>"category",:action =>"health" }%></li>
-</ul>
-</div>
+
 <%= yield %>
+</div>
 </div>
 <div class="clear"></div>
 <div class="footer">&copy;2011 spotsaving.com&nbsp;<span><%=link_to "Feedback",{:controller=>'feedbacks',:action=>"new"}%></span></div>
+
 </body>
 </html>

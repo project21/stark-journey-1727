@@ -12,10 +12,12 @@
   end
 
   def create
+    @cities=City.find(:all)
    @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])  
   @city = City.find(session[:city_id])
    @points=current_user.karma 
    @bonus=0
+    @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
    @mydeals=current_user.deals.includes(:stores,:comments,:user)
       unless @mydeals.empty?
        @bonus=@mydeals.count * 5
@@ -30,17 +32,9 @@
     end 
   end
 
-   def retailer_create
-  @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])  
-  @city = City.find(session[:city_id])
-  @deal=@city.deals.build(params[:deal])
-   if @deal.save
-    redirect_to @deal
-     flash[:notice]="Thank you for choosing spotsaving,you can view your deals on your profile"
-    else
-    render 'retailers' 
-    flash[:error]="Error occured,data was not saved"
-      @total_comments=0
+  def retailer_create
+    @cities=City.find(:all)
+    @total_comments=0
       @bonus=0
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
         @points=current_user.karma 
@@ -55,13 +49,47 @@
      @total_comments+=@new_comments
         
      end
+  @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])  
+  @city = City.find(session[:city_id])
+  @deal=@city.deals.build(params[:deal])
+   if @deal.save
+    redirect_to @deal
+     flash[:notice]="Thank you for choosing spotsaving,you can view your deals on your profile"
+    else
+    render 'retailers' 
+    flash[:error]="Error occured,data was not saved"
+      
   end 
   end
   
+  def ask_create
+  @cities=City.find(:all)
+  @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])  
+   @total_comments=0
+     @bonus=0
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+     @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
+    @city = City.find(session[:city_id])
+    @deal=@city.deals.build(params[:deal])
+    #@deal=Deal.new(params[:deal])
+   if @deal.save
+    redirect_to @deal
+     flash[:notice]="Your question has been submitted"
+    else
+    render 'ask' 
+    flash[:error]="Error occured,data was not saved"
+   end   
+  end
+
   def show
+    @cities=City.find(:all)
+    @questions=Question.where("city_id = ?", session[:city_id]).includes(:user,:answers)
     unless session[:city_id].nil? || session[:city_id].blank?
      @city = City.find_by_id(session[:city_id])
-     @deals=Deal.where("city_id = ?", session[:city_id]).includes( :stores).rank_tally(:limit=>24)
+     @deals=Deal.where("city_id = ?", session[:city_id]).includes( :stores)
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
      @total_comments=0
      @bonus=0
@@ -159,6 +187,7 @@ end
   end 
 
   def new
+    @cities=City.find(:all)
    @deal=Deal.new 
    @city = City.find(session[:city_id])
    @deal = @city.deals.build
@@ -227,6 +256,7 @@ end
     unless session[:city_id].nil? || session[:city_id].blank?
       @city = City.find(session[:city_id])
     end  
+  @questions=Question.where("city_id = ?", session[:city_id]).includes(:user,:answers).order("created_at DESC") 
   @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
   @deals = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).order("created_at DESC").limit(18)
   @deals.each do |deal|
@@ -239,6 +269,7 @@ end
     end 
     end  
   #comment alert
+   @cities=City.find(:all)
    @total_comments=0
    @bonus=0
      if user_signed_in?
@@ -259,6 +290,7 @@ end
   end
 
   def retailers
+    @cities=City.find(:all)
     @deal=Deal.new 
      unless session[:city_id].nil? || session[:city_id].blank?
       @city = City.find(session[:city_id])
@@ -286,6 +318,7 @@ end
   end
 
   def search
+    @cities=City.find(:all)
     @city = City.find(session[:city_id])
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
     @deals = @search.all
@@ -326,12 +359,15 @@ end
  
    
   def profile
+    @cities=City.find(:all)
       @city = City.find(session[:city_id])
       @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
       @total_comments=0
       @bonus=0
-
+       @points=0
   if user_signed_in?
+    @questions=current_user.questions.includes(:answers)
+    @answers=current_user.answers.includes(:question)
      @mydeals=current_user.deals.includes(:stores,:comments,:user)
        unless @mydeals.empty?
        @bonus=@mydeals.count * 5
@@ -341,7 +377,9 @@ end
      @last_signed=current_user.last_sign_in_at
      @old_comments=@comments.where("created_at < ?",@last_signed).count
      @new_comments=@comments.count- @old_comments
+     unless current_user.karma.nil?
      @points=current_user.karma
+   end
      @total_comments+=@new_comments
       @credits=0 
      unless mydeal.votes.empty?
@@ -371,6 +409,7 @@ end
 end
 
 def how_it_works
+  @cities=City.find(:all)
   @city = City.find(session[:city_id])
       @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
       @total_comments=0
@@ -398,6 +437,7 @@ def delete
 end
 
 def edit
+  @cities=City.find(:all)
     @city = City.find(session[:city_id])
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
       @total_comments=0
@@ -421,6 +461,7 @@ def edit
 end
 
 def edit_retailer
+  @cities=City.find(:all)
     @city = City.find(session[:city_id])
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
       @total_comments=0
@@ -441,6 +482,30 @@ def edit_retailer
      end   
     @deal=Deal.find(params[:id])
   
+end
+
+def ask
+ @deal=Deal.new 
+ @city = City.find(session[:city_id])
+ @deal = @city.deals.build
+ @cities=City.find(:all)
+ @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
+  @total_comments=0
+     @bonus=0
+     if user_signed_in?
+     @mydeals=current_user.deals.includes(:stores,:comments,:user)
+        @points=current_user.karma 
+      unless @mydeals.empty?
+       @bonus=@mydeals.count * 5
+       end
+     @mydeals.each do |mydeal|
+      @comments=mydeal.comments
+     @last_signed=current_user.last_sign_in_at
+     @old_comments=@comments.where("created_at < ?",@last_signed).count
+     @new_comments=@comments.count-@old_comments
+     @total_comments+=@new_comments
+     end
+     end  
 end
 
 end

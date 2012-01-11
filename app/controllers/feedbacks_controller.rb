@@ -1,6 +1,7 @@
 class FeedbacksController < ApplicationController
 	layout "header"
   def new
+    @cities=City.find(:all)
   	@search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])  
     @city = City.find(session[:city_id])
      #comment alert

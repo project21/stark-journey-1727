@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
+     @cities=City.find(:all)
    @city = City.find(session[:city_id])
    @deal=Deal.find_by_id(params[:deal_id])
    if @deal.reg_price

@@ -11,11 +11,22 @@
 <tr><td><label>size/quantity/hours</label></td><td><%= f.text_field :size%></td></tr>
 <tr><td><label>quantity</label></td><td><%= f.text_field :quantity%></td></tr>
 <tr><td><label>Product/service name*</label></td><td><%= f.text_field :item_name %></td></tr>
-<tr><td><%= f.radio_button :fixed_price, true,:class=>"fixed-price" %>Actual deal price</td><td><%= f.radio_button :fixed_price,false, :class=>"percent-off" %>Buy n items get percent off or item free</td></tr>
+<tr class="ui-helper-hidden fixed"><td><%= f.radio_button :fixed_price, true,:class=>"fixed-price" %>Actual deal price</td><td><%= f.radio_button :fixed_price,false, :class=>"percent-off" %>Buy n items get percent off or item free</td></tr>
 <tr class="ui-helper-hidden fixed"><td><label>Price</label></td><td><%= f.text_field :price %></td></tr>
 <tr class="ui-helper-hidden percent" ><td><label>percent off on another extra item</label></td><td><%= f.text_field :percent_off %></td></tr>
 <tr class="ui-helper-hidden percent" ><td>or</td></tr>
 <tr class="ui-helper-hidden percent"><td><label>n other items free</label></td><td><%= f.text_field :n_item_free %></td></tr>
+
+
+<tr><td><%= f.radio_button :fixed_price, true,:checked=>false %>Fixed price
+<%= f.radio_button :unfixed, 'buy_two',:checked=>false %>Buy 2 get one free</td>
+<td><%= f.radio_button :fixed_price, false,:checked=>false %>Percent off
+<%= f.radio_button :other_details, true,:checked=>false %>Other</td>
+</tr>
+<tr class="fixed ui-helper-hidden"><td><label>Sale Price*&nbsp;$</label></td><td><%= f.text_field :price %><br/><span style="color:#808080;">e.g 450.99</span></td></tr>
+<tr class="percent ui-helper-hidden"><td><label>Discount percentage</label></td><td><%= f.text_field :percent_off %>%Off<br/><span style="color:#808080;">e.g 50</span></td></tr>
+<tr class="specify ui-helper-hidden"><td style="font-style:italic;font-weight:bold;">Please specify in the details field below</td></tr>
+
 <tr><td><label>Regular Price*</label></td><td><%= f.text_field :reg_price %></td></tr>
 <tr><td><label>Deal end date</label></td><td><%=f.date_select  :end_date,:start_year=>2011,:order => [:month,:day,:year],:prompt => {:month => 'Select month',:day => 'Select day', :year => 'Select year'}%> </td></tr>
 <tr><td>Mark it as until sold<input type="checkbox"></td></tr>
@@ -36,6 +47,7 @@
 <tr><td><label>phone number*</label></td><td><%= f.text_field :phone %></td></tr>
 
 </table>
+
 <label>Deal details</label><br/><%=f.text_area :details,:rows=>"6",:cols=>"60"%> <br/>   <%= f.submit "post"%>                   
 <%end%>
 </div>

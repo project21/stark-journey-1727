@@ -1,0 +1,174 @@
+// Place all the styles related to the answers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+a.question-link{
+  font-size:18px;
+  display:inline-block;
+  
+}
+
+.inline_tables-a{
+  display:inline-table;
+  position:relative;float:left;
+ width:500px;
+margin-top:7px;
+font-size:19px;
+font-weight:bold;
+}
+.inline_tables-a a{text-decoration:none;}
+.inline_tables-a a:hover{text-decoration:underline;color:black;}
+.inline_table{
+  display: inline-table;
+  position:relative;float:left;
+  margin:1px;
+}
+.no-details{
+ font-size:13px;
+ font-weight:normal;	
+}
+.asked-by{
+font-size:11px;
+font-weight:normal;	
+}
+.username{
+font-size:11px;
+font-weight:normal;	
+}
+.username:hover{
+font-size:11px;
+font-weight:normal;	
+text-decoration:underline;
+}
+.time-stamp{
+ font-size:11px;
+font-weight:normal;	
+}
+
+.view-no-details{
+ font-size:14px;
+ font-weight:normal;	
+}
+.view-asked-by{
+font-size:12px;
+font-weight:normal;	
+}
+.view-username{
+font-size:12px;
+font-weight:normal;	
+}
+.view-time-stamp{
+ font-size:12px;
+font-weight:normal;	
+}
+.reply-button{float:right;
+font-size:11px;
+font-weight:normal;	
+text-decoration:none;  
+ padding:2px 5px 2px 5px;
+ color:white;
+ background:#DB780F;
+ border:none;
+ font-weight:bold;
+-moz-border-radius:2px;
+-webkit-border-radius:2px;
+ border-radius:2px;
+ background: -webkit-gradient(linear, 0 0, 0 100%, from(#B3630F),to(#E6A560)); 
+ background:-moz-linear-gradient(top, #B3630F, #E6A560 100%);
+ filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#B3630F', endColorstr='#E6A560'); /* IE6 & i7*/
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#B3630F', endColorstr='#E6A560')";
+ margin-bottom:10px; 
+}
+.clear{
+clear:both;
+}
+.answer-count{
+font-size:11px;
+font-weight:normal;		
+}
+
+.details{
+ font-size:13px;
+font-weight:normal;		
+}
+.bold-line{float:left;
+border-top:solid #404245 2px;
+width:550px;
+}
+.ask-bold-line{
+border-top:solid #404245 2px;
+width:850px;
+margin:8px;
+}
+.short-bold-line{float:left;
+border-top:solid #404245 2px;
+width:280px;
+margin-left:60px;
+}
+.light-line{
+border-top:solid #dedede 1px;
+width:550px;
+}
+.answer-title{
+	font-size:22px;
+	font-eight:bolder;
+	margin:3px;
+}
+.answer-line{
+	border-top:solid #808080 1px;
+width:600px;
+}
+.answer-line-bottom{
+	border-top:solid #808080 1px;
+width:600px;
+margin-top:30px;
+}
+.answer-inline_tables {
+  display:inline-table;
+  position:relative;float:left;
+ width:500px;
+margin-top:7px;
+font-size:14px;
+}
+.answer-inline_table {
+  display:inline-table;
+  position:relative;
+  float:left;
+ 
+}
+.answer-inline_table a {
+  display:inline-table;
+  position:relative;
+  float:left;
+
+}
+.dotted-line{
+border-top:dotted #dedede 1px;
+width:600px;
+}
+.aro {margin:0;padding:0px;
+    -moz-transform: scaleY(-1);
+    -webkit-transform: scaleY(-1);
+    -o-transform: scaleY(-1);
+    transform: scaleY(-1);
+    filter: flipv; /*IE*/
+}
+a.votes{text-decoration:none;font-weight:bold;}
+.view-inline_tables{
+  display:inline-table;
+  position:relative;float:left;
+ width:600px;
+margin-top:11px;
+font-size:22px;
+font-weight:bold;
+}
+.view-inline_table{
+  display: inline-table;
+  position:relative;float:left;
+  margin:1px;
+}
+.answer-user-name{
+   margin-left:500px;
+	
+
+}

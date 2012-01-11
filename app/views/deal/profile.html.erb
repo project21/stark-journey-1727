@@ -1,6 +1,6 @@
-<div class="container">
+
 <div class="clear"></div>
-<h3>My Profile</h3>
+<h2>My Profile</h2>
 <% unless @total_comments==0 %>
 <div class="comment-bar-alert" >You have &nbsp;<%=pluralize(@total_comments,"New comment")%></div>
 <%else%>
@@ -8,11 +8,51 @@
 <%end%>
 <span style="font-weight:bold;">
 Your points: <%=pluralize(@points + @bonus,"point")%><br/>
-credits:$<%=@credits%><br/>
+<!--credits:$<%=@credits%>-->
 </span>
-<button>Redeem</button>
+
 <div class="underline"></div>
-<div style="width:600px;">
+<div style="float:left;width:350px;">
+<h3>My Questions</h3>
+<%if @questions.empty? %>
+<h3 class="empty-profile">You have not asked a question yet</h3>
+ <%end%>
+<%@questions.each do |ques| %>
+     <% if ques.where && ques.how_much %>
+      <a  href="/questions/<%=ques.id%>">Where can i find <%=ques.item%> for a low price?How much is it?</a><br>
+      <%=pluralize(ques.answers.count,"Answer")%>
+      <div class="pro-question-line"></div>
+     <%elsif ques.where %>
+     <a  href="/questions/<%=ques.id%>"> Where can i find  <%=ques.item%> for a low price?</a><br>
+       <%=pluralize(ques.answers.count,"Answer")%>
+      <div class="pro-question-line"></div>
+     <%else%>
+      <a  href="/questions/<%=ques.id%>"> How much is <%=ques.item%>?</a><br>
+       <%=pluralize(ques.answers.count,"Answer")%>
+      <div class="pro-question-line"></div>
+       <%end%>
+<%end%>
+</div>
+
+<div style="float:left;width:300px;margin-left:10px;">
+<h3>My Answers</h3>
+<%if @answers.empty? %>
+<h3 class="empty-profile">You have not answered any question</h3>
+ <%end%>
+<%@answers.each do |ans| %>
+You can find  <a  href="/questions/<%=ans.question.id%>"><%=ans.question.item%></a> for <%=ans.pricing %> at
+<%=ans.location%><br>
+     <% unless ans.answer_details.empty?%>
+     <%=ans.answer_details%>
+     <%end%><br>
+<%end%>
+</div>
+
+<div style="float:left;width:280px;">
+<h3>My Spotted Deals</h3>
+<%if @mydeals.empty? %>
+<h3 class="empty-profile">You have not listed any deal</h3>
+ <%end%>
 <%@mydeals.each do |mydeal|  %>
 <div class="image-search"><%=image_tag mydeal.image_url.to_s%></div>
 <div class="item-name-search">
@@ -41,6 +81,4 @@ credits:$<%=@credits%><br/>
 </div>
 <div class="clear"></div>
 <%end%>
-</div>
-
 </div>

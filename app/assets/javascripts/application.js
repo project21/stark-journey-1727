@@ -27,9 +27,10 @@ $(".cat-link").click(function(){
   $(".categories").toggleClass("ui-helper-hidden");
 });
 
-$("ul li").click(function(){
- $(".categories").addClass("ui-helper-hidden");
+$(".all-city").click(function(){
+  $(".cities").toggleClass("ui-helper-hidden");
 });
+
 
 $("input.fixed-price").click(function(){
   $("tr.fixed").toggleClass("ui-helper-hidden");
