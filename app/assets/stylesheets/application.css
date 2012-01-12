@@ -144,8 +144,8 @@ box-shadow: 0 0 6px 0 #000;
  border-radius:3px;
  background: -webkit-gradient(linear, 0 0, 0 100%, from(#1FE500), to(#B3BBC2)); 
  background:-moz-linear-gradient(top, #1FE500, #68F551 100%);
- filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#F6F6F9', endColorstr='#B3BBC2'); /* IE6 & i7*/
--ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#F6F6F9', endColorstr='#B3BBC2')"; 
+ filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#1FE500', endColorstr='#B3BBC2'); /* IE6 & i7*/
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#1FE500', endColorstr='#B3BBC2')"; 
 
 }
 .prompt-mesaage{
