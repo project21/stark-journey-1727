@@ -6,13 +6,14 @@
   </div>
 <div class="clear"></div>
 <%if @deals.empty?%>
-<div class="list">No results found</div>
+<div class="prompt-mesaage">No results found</div>
 <div class="header-line"></div>
 <div class="empty-search">Sorry No match were found, Spotsaving is still New and under development</div>
 <%else%>
 
-<div class="list"><%=pluralize(@deals.count,"result")%>  found</div>
+<div class="prompt-mesaage"><%=pluralize(@deals.count,"result")%>  found</div>
 <div class="header-line"></div>
+
 <%@deals.each do |deal|%>
 <div class="image-search"><%=image_tag deal.image_url.to_s%></div>
 <div class="item-name-search">

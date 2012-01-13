@@ -15,16 +15,16 @@
  <%end%>
 <% @questions.each do |question| %>
    <% if question.where && question.how_much %>
- <span class="inline_table"> <%=image_tag('q.png')%></span><span class="inline_tables-a"> <a  href="/questions/<%=question.id%>"> Where can i find <%=question.item%> for a low price? How much is it?</a><br>
+ <span class="inline_table"> <%=image_tag('q.png')%></span><span class="inline_tables-a"><a href="/questions/<%=question.id%>"> Where can i find <%=question.item%> for a low price? How much is it?</a><br>
          <% unless question.additional_details.empty?%> 
-         <%=question.additional_details%>
+         <span class="details"><%=truncate(question.additional_details,:length=>150)%></span><br>
          <%else%>
           <span class="no-details">no additional details</span><br>
          <%end%> 
          <span class="asked-by">asked by</span>
          <span class="username"><%=question.user.username%></span>
          <span class="time-stamp"><%=time_ago_in_words(question.created_at)%> ago</span>
-          <span class="answer-count"><%=question.answers.count%>&nbsp;Answers</span>
+          <span class="answer-count"><%=pluralize(question.answers.count,"Answer")%></span>
            <a class="reply-button" href="/questions/<%=question.id%>">Reply</a><br></span>
             <div class="clear"></div>
             <div class="light-line"></div>
@@ -32,15 +32,14 @@
    <span class="inline_table"> <%=image_tag('q.png')%></span><span class="inline_tables-a">
    <a href="/questions/<%=question.id%>"> Where can i find <%=question.item%> for a low price?</a><br>
            <% unless question.additional_details.empty?%> 
-           <span class="details"><%=question.additional_details%></span><br>
-                      
+           <span class="details"><%=truncate(question.additional_details,:lenth=>150)%></span><br>         
            <%else%>
            <span class="no-details">no additional details</span><br>
            <%end%> 
            <span class="asked-by">asked by</span>
          <span class="username"><%=question.user.username%></span>
          <span class="time-stamp"><%=time_ago_in_words(question.created_at)%> ago</span>
-          <span class="answer-count"><%=question.answers.count%>&nbsp;Answers</span>
+          <span class="answer-count"><%=pluralize(question.answers.count,"Answer")%></span>
            <a class="reply-button" href="/questions/<%=question.id%>">Reply</a><br></span>
             <div class="clear"></div>
            </span>
@@ -49,7 +48,7 @@
    <span class="inline_table"> <%=image_tag('q.png')%></span><span class="inline_tables-a">
    <a href="/questions/<%=question.id%>"> How much  is <%=question.item%> ?</a><br>
             <% unless question.additional_details.empty?%> 
-            <span class="details"> <%=question.additional_details%></span><br>
+            <span class="details"> <%=truncate(question.additional_details,:length=>150)%></span><br>
                       
            <%else%>
             <span class="no-details">no additional details</span><br>
@@ -57,7 +56,7 @@
               <span class="asked-by">asked by</span>
          <span class="username"><%=question.user.username%></span>
          <span class="time-stamp"><%=time_ago_in_words(question.created_at)%> ago</span>
-          <span class="answer-count"><%=question.answers.count%>&nbsp;Answers</span>
+          <span class="answer-count"><%=pluralize(question.answers.count,"Answer")%></span>
            <a class="reply-button" href="/questions/<%=question.id%>">Reply</a><br></span>
             <div class="clear"></div>
            </span>
@@ -68,14 +67,15 @@
 
 </div>
 
-<div style="float:left;margin-left:80px;">
+<div style="float:left;margin-left:180px;">
 
 <%if @dealss.empty?%>
 <div class="empty-box-cat">
 <h3 style"margin:0px;">Share with your community</h3>
 Spotsaving is <br><br>a new network, <br><br>Be the first one<br><br> to tell us what<br><br> you spot from <br><br>your local store<br>
-<br><%=link_to "Tell us ",{:controller=>"deal",:action =>"new"} ,{:class=>"list-button" }%></div>
+<br><%=link_to "Share ",{:controller=>"deal",:action =>"new"} ,{:class=>"list-button" }%></div>
 <%end%>
+
 <%@dealss.each do |deal|%>
 <div class="empty-box">
 <h3 style"margin:0px;">Share with your community</h3>

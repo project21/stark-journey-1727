@@ -424,15 +424,12 @@ border-radius:3px 3px 3px 3px;
 background : -webkit-gradient(linear, left top, left bottombottom, from(rgb(168,168,168)), to(rgb(69,69,69)));  
 }
 .clear {clear:both;}
-div.container{
-margin-top:0px;	
+div.container{	
 width:1026px;
 background:#fff;
- border:solid #dedede 2px;
-
- min-height:850px;
- padding:3px;
-
+border:solid #dedede 2px;
+min-height:950px;
+padding:3px;
 }
 .user-status a{float:right;color:white;text-decoration:none;}
 span a.username{color:white;font-weight:bold;text-decoration:none;font-size:11px;}
@@ -565,16 +562,16 @@ margin-top:40px;
 
 div a.list-button{
 text-decoration:none;  
- padding:4px 15px 4px 15px;
+ padding:4px 13px 4px 13px;
  color:white;
- background:#DB780F;
+ background:#1FE500;
  border:solid #21BA08 1px;
  font-weight:bold;
--moz-border-radius:2px;
--webkit-border-radius:2px;
- border-radius:2px;
- background: -webkit-gradient(linear, 0 0, 0 100%, from(#1FE500),to(#E6A560)); 
- background:-moz-linear-gradient(top, #1FE500, #68F551 100%);
+-moz-border-radius:4px;
+-webkit-border-radius:4px;
+ border-radius:4px;
+ background: -webkit-gradient(linear, 0 0, 0 50%, from(#1FE500),color-stop(50%,#68F551),color-stop(#1FE500)); 
+ background:-moz-linear-gradient(top, #1FE500, #68F551 50%, #1FE500 10%);
  filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#B3630F', endColorstr='#E6A560'); /* IE6 & i7*/
 -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#B3630F', endColorstr='#E6A560')";
  margin-bottom:10px; 

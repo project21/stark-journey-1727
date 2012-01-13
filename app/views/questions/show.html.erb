@@ -4,7 +4,7 @@
    <span class="view-inline_table"> <%=image_tag('q.png')%></span>
    <span class="view-inline_tables"> Where can i find <%=@question.item%> for a low price? How much is it?<br>
          <% unless @question.additional_details.empty?%> 
-         <%=@question.additional_details%><br>
+         <span class="view-no-details"><%=@question.additional_details%></span><br>
           <%else%>
             <span class="view-no-details">No Additional Details</span><br>
          <%end%>
@@ -15,7 +15,7 @@
               
 
               <div style="margin-left:60px;margin-top:20px;">
-              <div class="answer-title"><%=@question.answers.count%>&nbsp;Answers</div>
+              <div class="answer-title"><%=pluralize(@question.answers.count,"Answer")%></div>
               <div class="answer-line"></div>
              <% @question.answers.each do |answer|%>
              <span class="answer-inline_table"><%=link_to image_tag("aro.png"),vote_up1_answers_path(:id=>answer.id),:method=>:post,:remote=>true,:class=>"aro" %><br>
@@ -52,7 +52,7 @@
     <span class="view-inline_table"> <%=image_tag('q.png')%></span>
     <span class="view-inline_tables">Where can i find <%=@question.item%> for a low price?<br>
            <% unless @question.additional_details.empty?%> 
-           <%=question.additional_details%><br>
+           <span class="view-no-details"><%=question.additional_details%></span><br>
                       
            <%else%>
            <span class="view-no-details">no additional details</span><br>
@@ -101,7 +101,7 @@
     <span class="view-inline_tables">
    How much  is <%=@question.item%> ?<br>
             <% unless @question.additional_details.empty?%> 
-           <%=@question.additional_details%><br>
+          <span class="view-no-details"> <%=@question.additional_details%></span><br>
                       
            <%else%>
            <span class="view-no-details">no additional details</span><br>
