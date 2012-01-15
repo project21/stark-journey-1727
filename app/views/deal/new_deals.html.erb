@@ -16,9 +16,9 @@
          <%else%>
           <span class="no-details">no additional details</span><br>
          <%end%> 
-         <span class="asked-by">asked by</span>
-         <span class="username"><%=question.user.username%></span>
-         <span class="time-stamp"><%=time_ago_in_words(question.created_at)%> ago</span>
+         <span class="asked-by">asked by</span>&nbsp;
+         <span class="username"><%=question.user.username%></span>&nbsp;
+         <span class="time-stamp"><%=time_ago_in_words(question.created_at)%> ago</span>&nbsp;
           <span class="answer-count"><%=pluralize(question.answers.count,"Answer")%></span>
            <a class="reply-button" href="/questions/<%=question.id%>">Reply</a><br></span>
             <div class="clear"></div>
@@ -32,9 +32,9 @@
            <%else%>
            <span class="no-details">no additional details</span><br>
            <%end%> 
-           <span class="asked-by">asked by</span>
-         <span class="username"><%=question.user.username%></span>
-         <span class="time-stamp"><%=time_ago_in_words(question.created_at)%> ago</span>
+           <span class="asked-by">asked by</span>&nbsp;
+         <span class="username"><%=question.user.username%></span>&nbsp;
+         <span class="time-stamp"><%=time_ago_in_words(question.created_at)%> ago</span>&nbsp;
           <span class="answer-count"><%=pluralize(question.answers.count,"Answer")%></span>
            <a class="reply-button" href="/questions/<%=question.id%>">Reply</a><br></span>
             <div class="clear"></div>
@@ -49,9 +49,9 @@
            <%else%>
             <span class="no-details">no additional details</span><br>
             <%end%>
-              <span class="asked-by">asked by</span>
-         <span class="username"><%=question.user.username%></span>
-         <span class="time-stamp"><%=time_ago_in_words(question.created_at)%> ago</span>
+              <span class="asked-by">asked by</span>&nbsp;
+         <span class="username"><%=question.user.username%></span>&nbsp;
+         <span class="time-stamp"><%=time_ago_in_words(question.created_at)%> ago</span>&nbsp;
           <span class="answer-count"><%=pluralize(question.answers.count,"Answer")%></span>
            <a class="reply-button" href="/questions/<%=question.id%>">Reply</a><br></span>
             <div class="clear"></div>

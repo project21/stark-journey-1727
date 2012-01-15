@@ -16,7 +16,7 @@ class Deal < ActiveRecord::Base
 	validates_presence_of :fixed_price , :if => "unfixed.blank? and other_details.blank? and percent_off.blank? "
 	validates_presence_of :unfixed , :if => "fixed_price.blank? and other_details.blank? and percent_off.blank? "
 	validates_presence_of :item_name,:message=>"is required"
-    validates_numericality_of :price #, :if => "unfixed.blank? and other_details.blank? and percent_off.blank?"
+    validates_numericality_of :price , :if => "unfixed.blank? and other_details.blank? and percent_off.blank?"
     validates_numericality_of :reg_price ,:allow_nil=>true
     validates_numericality_of :percent_off ,:allow_nil=>true
     validates_numericality_of :n_item_free ,:allow_nil=>true
