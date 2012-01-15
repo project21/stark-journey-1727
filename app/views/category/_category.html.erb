@@ -74,11 +74,11 @@
 <h3 style"margin:0px;">Share with your community</h3>
 Spotsaving is <br><br>a new network, <br><br>Be the first one<br><br> to tell us what<br><br> you spot from <br><br>your local store<br>
 <br><%=link_to "Share ",{:controller=>"deal",:action =>"new"} ,{:class=>"list-button" }%></div>
-<%end%>
+<%else%>
 
-<%@dealss.each do |deal|%>
 <div class="empty-box">
 <h3 style"margin:0px;">Share with your community</h3>
+<%@dealss.each do |deal|%>
 <div class="deal">
 <%unless deal.official%>
      <%unless deal.fixed_price.nil?%>
@@ -155,7 +155,7 @@ Spotsaving is <br><br>a new network, <br><br>Be the first one<br><br> to tell us
     <div class="deal-dotted-line"></div>
 <%end%>
 
-
+<%end%>
 
 </div>
 </div>
