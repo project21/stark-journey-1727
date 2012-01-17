@@ -178,8 +178,8 @@ box-shadow: 0 0 6px 0 #000;
   background:black;
   background: -moz-linear-gradient(top, black, #34363D);
  background:-webkit-gradient(linear, 0 0, 0 100%, from(black), to(#34363D));
- /*filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#000', endColorstr='#34363D');*/
--ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#000',endColorstr='#34363D')";
+ /*filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#000', endColorstr='#34363D');
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#000',endColorstr='#34363D')";*/
 -moz-box-shadow: inset -5px -5px #000;
 -webkit-box-shadow: inset -5px -5px #000;
 box-shadow: inset -5px -5px #000;

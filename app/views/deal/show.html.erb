@@ -14,12 +14,12 @@
 
 <span  class="share">Ask your local community how much and where to find what <%=link_to "Ask",{:controller=>"questions",:action =>"new"} ,{:class=>"list-button" }%></span>
 <div style="float:left;margin-left:220px;text-align:center;">
-<span class="spotted-deals">Tell us the deal you saw at the store</span>
+<span class="spotted-deals">Tell us what you saw at the store</span>
 <span> <%=link_to "Share",{:controller=>"deal",:action =>"new"} ,{:class=>"list-button" }%></span><br>
 
 </div>
  <div class="bold-line"></div><div class="short-bold-line"></div>
- <div style="float:left">
+ <div style="float:left;">
 <% @questions.each do |question| %>
    <% if question.where && question.how_much %>
  <span class="inline_table"> <%=image_tag('q.png')%></span><span class="inline_tables-a"> <a  href="/questions/<%=question.id%>"> Where can i find <%=question.item%> for a low price? How much is it?</a><br>
