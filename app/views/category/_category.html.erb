@@ -7,7 +7,7 @@
 <div class="header-line"></div>
 <div class="clear"></div>
 
- <div style="float:left">
+ <div style="float:left;">
  <%if @questions.empty?%>
  <div class="empty">Spotsaving is a new network,<br><br> Be the first one in Your City<br><br> To ask about something.<br><br>
  <%=link_to "Ask",{:controller=>"questions",:action =>"new"} ,{:class=>"list-button" }%>
@@ -67,7 +67,7 @@
 
 </div>
 
-<div style="float:left;margin-left:170px;">
+<div style="float:left;margin-left:160px;">
 
 <%if @dealss.empty?%>
 <div class="empty-box-cat">
