@@ -231,8 +231,8 @@ padding:20px;
  font-family: Chicago Charcoal sans-serif;
  background: -moz-linear-gradient(top, black, #34363D);
  background:-webkit-gradient(linear, 0 0, 0 100%, from(black), to(#34363D));
- filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#000', endColorstr='#34363D');
-/*-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#000',endColorstr='#34363D')";*/
+ /*filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#000', endColorstr='#34363D');
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#000',endColorstr='#34363D')";*/
  
  
 }
@@ -555,7 +555,7 @@ margin-top:40px;
 } 
 
 .spotted-deals{
- font-weight:bold;
+ font-weight:bold;float:left;
 }
 
 div a.list-button{
