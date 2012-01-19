@@ -13,17 +13,14 @@
 <div class="clear"></div>
 
 <span  class="share">Ask your local community how much and where to find what <%=link_to "Ask",{:controller=>"questions",:action =>"new"} ,{:class=>"list-button" }%></span>
-<div style="float:left;margin-left:220px;text-align:center;">
-<span class="spotted-deals">Tell us the deal you saw at the store</span>
+<div style="float:left;margin-left:210px;text-align:center;">
+<span class="spotted-deals">Tell us what you saw at the store</span>
 <span> <%=link_to "Share",{:controller=>"deal",:action =>"new"} ,{:class=>"list-button" }%></span><br>
 
 </div>
  <div class="bold-line"></div><div class="short-bold-line"></div>
- <div style="float:left">
 
-
-
-
+ <div style="float:left;">
 <% @questions.each do |question| %>
    <% if question.where && question.how_much %>
  <span class="inline_table"> <%=image_tag('q.png')%></span><span class="inline_tables-a"> <a  href="/questions/<%=question.id%>"> Where can i find <%=question.item%> for a low price? How much is it?</a><br>
@@ -32,9 +29,9 @@
          <%else%>
           <span class="no-details">no additional details</span><br>
          <%end%> 
-         <span class="asked-by">asked by</span>
-         <span class="username"><%=question.user.username%></span>
-         <span class="time-stamp"><%=time_ago_in_words(question.created_at)%> ago</span>
+         <span class="asked-by">asked by</span>&nbsp;
+         <span class="username"><%=question.user.username%></span>&nbsp;
+         <span class="time-stamp"><%=time_ago_in_words(question.created_at)%> ago</span>&nbsp;
           <span class="answer-count"><%=pluralize(question.answers.count,"Answer")%></span>
            <a class="reply-button" href="/questions/<%=question.id%>">Reply</a><br></span>
             <div class="clear"></div>
@@ -48,9 +45,9 @@
            <%else%>
            <span class="no-details">no additional details</span><br>
            <%end%> 
-           <span class="asked-by">asked by</span>
-         <span class="username"><%=question.user.username%></span>
-         <span class="time-stamp"><%=time_ago_in_words(question.created_at)%> ago</span>
+           <span class="asked-by">asked by</span>&nbsp;
+         <span class="username"><%=question.user.username%></span>&nbsp;
+         <span class="time-stamp"><%=time_ago_in_words(question.created_at)%> ago</span>&nbsp;
           <span class="answer-count"><%=pluralize(question.answers.count,"Answer")%></span>
            <a class="reply-button" href="/questions/<%=question.id%>">Reply</a><br></span>
             <div class="clear"></div>
@@ -65,9 +62,9 @@
            <%else%>
             <span class="no-details">no additional details</span><br>
             <%end%>
-              <span class="asked-by">asked by</span>
-         <span class="username"><%=question.user.username%></span>
-         <span class="time-stamp"><%=time_ago_in_words(question.created_at)%> ago</span>
+              <span class="asked-by">asked by</span>&nbsp;
+         <span class="username"><%=question.user.username%></span>&nbsp;
+         <span class="time-stamp"><%=time_ago_in_words(question.created_at)%> ago</span>&nbsp;
           <span class="answer-count"><%=pluralize(question.answers.count,"Answer")%></span>
            <a class="reply-button" href="/questions/<%=question.id%>">Reply</a><br></span>
             <div class="clear"></div>
