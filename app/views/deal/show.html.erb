@@ -20,6 +20,10 @@
 </div>
  <div class="bold-line"></div><div class="short-bold-line"></div>
  <div style="float:left">
+
+
+
+
 <% @questions.each do |question| %>
    <% if question.where && question.how_much %>
  <span class="inline_table"> <%=image_tag('q.png')%></span><span class="inline_tables-a"> <a  href="/questions/<%=question.id%>"> Where can i find <%=question.item%> for a low price? How much is it?</a><br>
