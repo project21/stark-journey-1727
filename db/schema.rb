@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111229213832) do
+ActiveRecord::Schema.define(:version => 20120219025434) do
 
   create_table "answers", :force => true do |t|
     t.string   "location"
@@ -62,8 +62,6 @@ ActiveRecord::Schema.define(:version => 20111229213832) do
     t.integer  "category_id"
     t.integer  "submitter_id"
     t.string   "image"
-    t.string   "state"
-    t.string   "zipcode"
     t.string   "town"
     t.text     "details"
     t.decimal  "price"
@@ -72,7 +70,6 @@ ActiveRecord::Schema.define(:version => 20111229213832) do
     t.decimal  "reg_price"
     t.date     "end_date"
     t.boolean  "until_sold"
-    t.string   "phone"
     t.integer  "available_items"
     t.boolean  "official",        :default => false
     t.integer  "quantity"
@@ -81,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20111229213832) do
     t.boolean  "fixed_price"
     t.string   "unfixed"
     t.boolean  "other_details",   :default => false
+    t.string   "sub_city"
   end
 
   create_table "feedbacks", :force => true do |t|
@@ -125,6 +123,11 @@ ActiveRecord::Schema.define(:version => 20111229213832) do
     t.string   "address"
     t.integer  "city_id"
     t.string   "website"
+    t.integer  "user_id"
+    t.string   "town"
+    t.string   "state"
+    t.string   "zipcode"
+    t.string   "phone"
   end
 
   create_table "user_deals", :force => true do |t|
@@ -135,8 +138,8 @@ ActiveRecord::Schema.define(:version => 20111229213832) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "email",                               :default => "",    :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "",    :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
@@ -148,6 +151,7 @@ ActiveRecord::Schema.define(:version => 20111229213832) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
+    t.boolean  "business",                            :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

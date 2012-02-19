@@ -1,0 +1,30 @@
+<tr><td><b>Which part of the city?</b></td></tr>
+<% case @city.id %>
+  <%when 2 %>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>Antelope</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>Carmichael</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>Citrus Heights</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>Down town Sacramento</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>Granite Bay</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>Orangevale</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>Natomas</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>North Sacramento</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>Rocklin</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>Roseville</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>Rancho Cordova</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>South Sacramento</td></tr>
+<%when 3%>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>San Francisco</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>South Bay</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>East Bay</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>Peninsula</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>North Bay</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>Santa Cruz</td></tr>
+<%when 4%>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>Westside south Bay</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>San Fernando Valley</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>Central L.A</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>San Grabriel Valley</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>Long Beach</td></tr>
+<tr><td><%=f.radio_button :sub_city,:size=>"20" %>Antelope Valley</td></tr>
+<%end%> 

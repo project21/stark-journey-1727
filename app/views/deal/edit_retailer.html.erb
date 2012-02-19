@@ -5,38 +5,57 @@ n is any number (1-9)<br/>
 <div class="line"></div>
 <%= form_for @deal ,:html=>{:multipart=>true} do |f|%>
    <%= f.error_messages %>
-        
-<%= f.collection_select( :category_id, Category.all ,:id,:category_name,:prompt=>"category") %><br/>
-<table>
-<tr><td><label>Brand</label></td><td><%=f.text_field :brand%></td></tr>
-<tr><td><label>size/hours</label></td><td><%= f.text_field :size%></td></tr>
-<tr><td><label>quantity</label></td><td><%= f.text_field :quantity%></td></tr>
-<tr><td><label>Product/service name*</label></td><td><%= f.text_field :item_name %></td></tr>
-<tr><td><%= f.radio_button :fixed_price, true,:class=>"fixed-price" %>Actual deal price</td><td><%= f.radio_button :fixed_price,false, :class=>"percent-off" %>Buy n items get percent off or item free</td></tr>
-<tr class="ui-helper-hidden fixed"><td><label>Price</label></td><td><%= f.text_field :price %></td></tr>
-<tr class="ui-helper-hidden percent" ><td><label>percent off</label></td><td><%= f.text_field :percent_off %></td></tr>
-<tr class="ui-helper-hidden percent" ><td>or</td></tr>
-<tr class="ui-helper-hidden percent"><td><label>n items free</label></td><td><%= f.text_field :n_item_free %></td></tr>
+    <table>    
+<tr><td><b>About Product or Service</b></td></tr>
+<tr><td><%= f.collection_select( :category_id, Category.all ,:id,:category_name,:prompt=>"category") %></td></tr>
+<tr><td><label>Product/Item/Service*</label></td><td><%= f.text_field :item_name %><br><span style="color:#808080;">e.g Samsung 42" LCD HDTV</span></td></tr>
+<tr><td>Price *</td></tr>
+<tr><td><%= f.radio_button :fixed_price, true,:checked=>false %>Fixed price
+<%= f.radio_button :unfixed, 'buy_two',:checked=>false %>Buy 2 get one free</td>
+<td><%= f.radio_button :fixed_price, false,:checked=>false %>Percent off
+<%= f.radio_button :other_details, true,:checked=>false %>Other</td>
+</tr>
+<tr class="fixed ui-helper-hidden"><td><label>Sale Price*&nbsp;$</label></td><td><%= f.text_field :price %><br/><span style="color:#808080;">e.g 450.99</span></td></tr>
+<tr class="percent ui-helper-hidden"><td><label>Discount percentage</label></td><td><%= f.text_field :percent_off %>%Off<br/><span style="color:#808080;">e.g 50</span></td></tr>
+<tr class="specify ui-helper-hidden"><td style="font-style:italic;font-weight:bold;">Please specify in the details field below</td></tr>
+
+
+
 <tr><td><label>Regular Price*</label></td><td><%= f.text_field :reg_price %></td></tr>
-<tr><td><label>Deal end date</label></td><td><%=f.date_select  :end_date,:start_year=>2011,:order => [:month,:day,:year],:prompt => {:month => 'Select month',:day => 'Select day', :year => 'Select year'}%> if not specified will be marked as untill sold</td></tr>
+<tr><td><label>Deal end date</label></td><td><%=f.date_select  :end_date,:start_year=>2011,:order => [:month,:day,:year],:prompt => {:month => 'Select month',:day => 'Select day', :year => 'Select year'}%> </td></tr>
+<tr><td>Mark it as until sold<input type="checkbox"></td></tr>
 <tr><td><label>No. of items available</label></td><td><%= f.text_field :available_items %></td></tr>
+<tr><td><label>Deal details</label></td><td><%=f.text_area :details,:rows=>"6",:cols=>"60"%> </td> </tr>
 <%= f.hidden_field :user_id,:value => current_user.id%>
 <tr><td><label>Image of the item(s)/business</label></td><td><%= f.file_field :image %></td></tr>
  <%= f.hidden_field :official,:value=>true%>
  <%= f.hidden_field :image_cache %>
 <%= f.hidden_field :submitter_id,:value => current_user.id%>
+
+<%=render :partial=>'sub_cities',:locals=>{:f=>f}%>
+<% if current_user.store.nil? %>
+<tr><td><b>About the Business</b></td></tr>
 <%=f.fields_for :stores do |store| %>
+<tr><td><label>Website Url</label></td><td><%=store.text_field :website %></td></tr>
 <tr><td><label>Name of the Store/business*</label></td><td><%=store.text_field :store_name %></td></tr>
 <%= store.hidden_field :city_id,:value => @city.id%>
 <tr><td><label>Address*</label></td><td><%=store.text_field :address %></td></tr>
-<%end%> 
-<tr><td><label>City*</label><%=f.text_field :town,:size=>"20" %></td><td><label>state*</label><%=f.text_field :state,:size=>"5" %>
-<label>zipcode*</label><%=f.text_field :zipcode,:size=>"10" %></td>
+<%= store.hidden_field :user_id,:value => current_user.id%>
+<tr><td><label>City*</label></td><td><%=store.text_field :town %></td>
+<td><label>state*</label><%=store.text_field :state,:size=>"5" %>
+<label>zipcode*</label><%=store.text_field :zipcode,:size=>"10" %></td>
 </tr>  
-<tr><td><label>phone number*</label></td><td><%= f.text_field :phone %></td></tr>
+<tr><td><label>phone number*</label></td><td><%= store.text_field :phone %></td></tr>
+<%end%>
+<%else%>
+      <%=f.fields_for :stores do |store| %>
+      <%= store.hidden_field :user_id,:value => current_user.id%>
+     <%end%>
+<%end%>
+
 
 </table>
-<label>Tell us about your business and how else would you want us to advertise and improve your business</label><br/><%=f.text_area :details,:rows=>"6",:cols=>"90"%> <br/>   <%= f.submit "post"%>                   
+   <%= f.submit "post"%>                   
 <%end%>
 
 <div class="info">

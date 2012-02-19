@@ -13,12 +13,12 @@
 
   def create
     @cities=City.find(:all)
-   @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])  
-  @city = City.find(session[:city_id])
-   @points=current_user.karma 
-   @bonus=0
+    @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])  
+    @city = City.find(session[:city_id])
+    @points=current_user.karma 
+    @bonus=0
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
-   @mydeals=current_user.deals.includes(:stores,:comments,:user)
+    @mydeals=current_user.deals.includes(:stores,:comments,:user)
       unless @mydeals.empty?
        @bonus=@mydeals.count * 5
        end
@@ -62,6 +62,7 @@
   end 
   end
   
+  
   def ask_create
   @cities=City.find(:all)
   @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])  
@@ -86,7 +87,6 @@
 
   def show
     @cities=City.find(:all)
-    @questions=Question.where("city_id = ?", session[:city_id]).includes(:user,:answers)
     unless session[:city_id].nil? || session[:city_id].blank?
      @city = City.find_by_id(session[:city_id])
      @deals=Deal.where("city_id = ?", session[:city_id]).includes( :stores)
@@ -290,6 +290,9 @@ end
   end
 
   def retailers
+    unless current_user.business
+      flash.now[:error]="You need business account to access this page.Please Register for free"
+    end
     @cities=City.find(:all)
     @deal=Deal.new 
      unless session[:city_id].nil? || session[:city_id].blank?
@@ -298,6 +301,7 @@ end
     @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
      @deal = @city.deals.build
     @deal.stores.build
+ 
      #comment alert
      @total_comments=0
      @bonus=0
@@ -314,7 +318,7 @@ end
      @new_comments=@comments.count-@old_comments
      @total_comments+=@new_comments
          end
-     end  
+     end 
   end
 
   def search

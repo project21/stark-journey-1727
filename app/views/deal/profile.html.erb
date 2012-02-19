@@ -1,6 +1,50 @@
 
 <div class="clear"></div>
+
+<% if current_user.business %>
+<h3>Administrator</h3>
+<div>Update address</div>
+<div><%=link_to 'List a New Deal',{:controller=>"deal",:action =>"retailers" }%></div>
+<%if @mydeals.empty? %>
+<h3 class="empty-profile">You have not listed any deal</h3>
+ <%end%>
+<%@mydeals.each do |mydeal|  %>
+<div class="image-search"><%=image_tag mydeal.image_url.to_s%></div>
+<div class="item-name-search">
+<a class="profile-item" href="/comment/index?deal_id=<%=mydeal.id%>"><%=mydeal.size%>&nbsp;<%=mydeal.brand%>
+&nbsp;<%=mydeal.item_name%> </a><br/>
+    <% if mydeal.official%>
+    <%=pluralize(mydeal.votes_for,"+vote")%>
+    <%=pluralize(mydeal.votes_against,"-vote")%><br/>
+    <%else%>
+    <%=pluralize(mydeal.plusminus,"vote")%><br/>
+     <%end%>
+<% mydeal.stores.each do |store| %>
+<%=store.store_name%><br/>
+<%end%>
+<%=pluralize(mydeal.comments.count,"comment")%><br/>  
+<% if mydeal.official%>
+<%=link_to "edit" ,edit_retailer_deal_path(mydeal),:class=>"link-underline"%>
+<%else%>
+<%=link_to "edit" ,edit_deal_path(mydeal),:class=>"link-underline"%>
+<%end%>
+<%=link_to "delete" ,delete_deal_path(mydeal),:confirm=>"Are you sure want to delete this deal",:method=>:delete,:class=>"link-underline"%>
+
+<% if mydeal.flagged %>
+<div>This deal has been flagged ,Please delete the deal or make necessary corrections</div>
+<%end%>
+</div>
+<div class="clear"></div>
+<%end%>
+
+<%else%>
+   <% if flash[:error]%>
+   <div class="error"> <%=flash[:error]%></div>
+   <%end%>
+
 <h2>My Profile</h2>
+
+<div><%=link_to 'Share with your community',{:controller=>"deal",:action =>"retailers" }%></div>
 <% unless @total_comments==0 %>
 <div class="comment-bar-alert" >You have &nbsp;<%=pluralize(@total_comments,"New comment")%></div>
 <%else%>
@@ -10,7 +54,6 @@
 Your points: <%=pluralize(@points + @bonus,"point")%><br/>
 <!--credits:$<%=@credits%>-->
 </span>
-
 <div class="underline"></div>
 <div style="float:left;width:350px;">
 <h3>My Questions</h3>
@@ -80,5 +123,7 @@ You can find  <a  href="/questions/<%=ans.question.id%>"><%=ans.question.item%><
 <%end%>
 </div>
 <div class="clear"></div>
+<%end%>
+
 <%end%>
 </div>

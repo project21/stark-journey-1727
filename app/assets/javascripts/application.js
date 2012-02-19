@@ -49,7 +49,7 @@ $('input#deal_reg_price').removeAttr("disabled");
 $("#deal_percent_off").click(function(){
 	$('#deal_percent_off').removeAttr("disabled");
  	$('input#deal_n_item_free').attr("disabled","disabled");
-  $('input#deal_reg_price').attr("disabled","disabled");
+ // $('input#deal_reg_price').attr("disabled","disabled");
  });
    
 $("#deal_n_item_free").click(function(){

@@ -426,7 +426,7 @@ div.container{
 width:1026px;
 background:#fff;
 border:solid #dedede 2px;
-min-height:950px;
+min-height:850px;
 padding:3px;
 }
 .user-status a{float:right;color:white;text-decoration:none;}
@@ -486,7 +486,8 @@ height:200px;
 border:solid #fff 3px;
 float:left;
 }
-.deal {
+.deal {text-align:center;
+  float:left;
 margin:3px;	
 padding:5px;	
 background:#F0F2F5;	
@@ -530,7 +531,8 @@ margin-top:6px;
 text-align:center;
 display:block;
 text-decoration:none;
-width:130px;	
+width:130px;
+margin-left:33px;	
  padding:2px 5px 2px 5px;
  color:white;
  background:#2EB30F;
@@ -602,7 +604,7 @@ font-size:24px;
 margin:7px;
 }
 .buy{font-size:22px;font-weight:bold; color:white;margin:7px;}
-.price{padding:7px;
+.price{padding:7px;display:inline-block;
 background:#25EF3D;	
 font-size:24px;
 font-weight:bold;
@@ -615,6 +617,7 @@ margin:7px;
 background: -webkit-gradient(radial,70% 70%,0%,70% 70%,350,from(#25EF3D), to(#9EF0A8)); 
  background:-moz-radial-gradient(60% 60%,top,#25EF3D, #9EF0A8);
 }
+.original-price{font-size:18px;text-decoration:line-through;}
 .saving{
 font-size:17px; 
 font-weight:bold;
@@ -623,7 +626,7 @@ margin:6px;
 .deal-status{
   font-size:18px; 
 font-weight:bold;
-margin:7px;
+margin:7px;color:
 }
 .votes-inside{	
 font-size:24px;	
@@ -660,7 +663,7 @@ padding:4px 18px 4px 18px;
 .comment-display{margin:7px;}
 .comment-box{border:solid #D7DDEA 3px;color:black;}
 .comment-front-page{
-  padding:3px;
+  padding:3px 30px 3px 30px;
   font-size:12px;
   background:#B2B3BD;
   moz-border-radius:2px;

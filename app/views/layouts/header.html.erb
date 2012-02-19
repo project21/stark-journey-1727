@@ -39,14 +39,15 @@
 <ul class="menu">
 <li><%=link_to 'All post',{:controller=>"deal",:action =>"show" }%></li>
 <li><%=link_to 'New post',{:controller=>"deal",:action =>"new_deals" }%></li>
+<li><%=link_to 'Q&A',{:controller=>"questions",:action =>"index" }%></li>
 <li><%=link_to 'How it works',{:controller=>"deal",:action =>"how_it_works" }%></li>
-
+<li><%=link_to 'Retailer',{:controller=>"deal",:action =>"profile" }%></li>
 </ul>
 
 <span class="search-form">
 <%= form_for  @search,:url=>{:controller=>"deal",:action=>"search"} do |f| %>
   
-    <%= f.text_field :item_name_contains,:class=>"search-box" %>
+    <%= f.text_field :item_name_contains,:class=>"search-box",:size=>"15" %>
     <%= f.submit "Search Item",:class=>"search-button" %>
   <% end %></span> 
 
@@ -85,6 +86,7 @@
 <%= yield %>
 <div class="clear"></div>
 </div>
+
 </div>
 <div class="clear"></div>
 <div class="footer">&copy;2011 spotsaving.com&nbsp;<span><%=link_to "Feedback",{:controller=>'feedbacks',:action=>"new"}%></span></div>

@@ -23,7 +23,8 @@
 
   <p><%= f.label :password_confirmation %></p>
   <p><%= f.password_field :password_confirmation %></p>
-
+  <p>Are you a Retailer?</p>
+  <p><%= f.check_box :business %>Check If you are a local Business
   <p><%= f.submit "Sign up" %></p>
 <% end %>
 

@@ -14,7 +14,7 @@
 <div class="details-border">
      <%unless @deal.fixed_price.nil?%>
          <%if @deal.fixed_price%>   
-    <div class="item-price-view">$<%=@deal.price%></div>
+         <div class="item-price-view">$<%=@deal.price%></div>
     <%else%>
              <div class="item-price-view"><%=@deal.percent_off%>%Off</div>
          <%end%>
@@ -51,35 +51,44 @@
 <%=store.store.store_name%><%end%></h3>
 <div class="view-image"> <%=image_tag (@deal.image_url.to_s )%></div>
 <div class="details-border">
-<% if @deal.fixed_price%>
-         <% if @deal.quantity>1 %>
-        <div class="buy">Buy&nbsp; <%=@deal.quantity%> <span style="margin:7px;font-weight:bold;font-size:13px;color:black;">for</span></div>
-         <%end%>
-   <div class="price"><%=@deal.price%>$</div>
+<%unless @deal.fixed_price.nil?%>
+   <% if @deal.fixed_price%>
+         
+   <div>Sale:<span  class="price">$<%=number_with_precision(@deal.price,:precision=>2)%></span></div>
    <div class="line-separator"></div>
-   <div style="font-size:24px;font-weight:bold;margin:6px;"><%=pluralize(@deal.plusminus,"vote")%></div>
-   <%if @saving %>
-   <div class="saving">Saving:&nbsp;<%=@saving %>$</div>
-    <div class="line-separator"></div>
-   <%end%>
-<%else%>
-<div class="buy"> Buy <%=@deal.quantity%>&nbsp;<span style="margin:7px;font-weight:bold;font-size:13px;color:black;"> and get</span></div>
-             <% unless @deal.n_item_free.nil? %>
-             <div class="item-price-view"><%=@deal.n_item_free.to_s << " " << "free"%></div>
+    <div>Original Price:<span  class="original-price">$<%=number_with_precision(@deal.reg_price,:precision=>2)%></span></div>
+   <div class="line-separator"></div>
+        <%if @saving %>
+        <div class="saving">Saving:&nbsp;$<%=number_with_precision(@saving,:precision=>2) %></div>
+        <div class="line-separator"></div>
+        <%end%>
+  <%else%>
+            <div >Sale:<span class="item-price-view"><%=@deal.percent_off%>%Off</span></div>
+            <div class="line-separator"></div>
+             <div>Original Price:<span  class="original-price">$<%=number_with_precision(@deal.reg_price,:precision=>2)%></span></div>
              <div class="line-separator"></div>
-             <%else%> 
-             <div class="item-price-view"><%=@deal.percent_off.to_s + "%off"%><span style="color:black;font-size:13px;">on next item</span></div>
+   <%end%> 
+<%else%>  
+             <%if @deal.unfixed%>
+             <div class="buy">Buy 2</div> <div class="item-price-view">get 1 free</div>
              <div class="line-separator"></div>
-             <%end%>
- <%end%> 
-<div style="font-size:24px;font-weight:bold;margin:6px;"><%=pluralize(@deal.plusminus,"vote")%></div>
-<div class="line-separator"></div>              
+             <div>Original Price:<span  class="original-price">$<%=number_with_precision(@deal.reg_price,:precision=>2)%></span></div>
+              <div class="line-separator"></div>
+             <%else%>
+             <div class="item-price-view">See Details below </div> 
+              <div class="line-separator"></div>
+             <div>Original Price:<span  class="original-price">$<%=number_with_precision(@deal.reg_price,:precision=>2)%></span></div>
+              <div class="line-separator"></div>    
+             <%end%> 
+<%end%>
+
+            
 <% unless @deal.end_date.nil? %>
      <% if distance_of_time_in_words(@deal.end_date,Date.today).to_i>0 || distance_of_time_in_words(@deal.end_date,Date.today)=="about 1 month" %>
      <div class="deal-status"> Deal ending in&nbsp;<span style="font-weight:bolder;color:black;"><%=distance_of_time_in_words(@deal.end_date,Date.today) %></span></div>
        <div class="line-separator"></div>
      <%else%>
-     <div class="deal-status">Deal is closed</div>
+     <div style="font-weight:bold;font-size:18px;color:red;">Deal is closed</div>
         <div class="line-separator"></div>
      <%end%>		
  <%end%>
@@ -88,6 +97,7 @@
  <div style="margin:7px;color:black;">only&nbsp;<%=@deal.available_items%>&nbsp;available</div>
  <div class="line-separator"></div>
  <%end%>
+ <div style="font-size:24px;font-weight:bold;margin:6px;"><%=pluralize(@deal.plusminus,"vote")%></div>
 <div style="margin:6px;"><%=link_to image_tag("down.png"),vote_down_deal_path(@deal),:method=>:post,:remote=>true ,:class=>"vote-down-view" %>
   <%=link_to image_tag("up.png"),vote_up_deal_path(@deal),:method=>:post,:remote=>true,:class=>"vote-up-view" %></div>
  <%end%>
@@ -97,17 +107,20 @@
 <div>
 <%if @deal.official%>
 <%@store.each do |store|%>
-<%=store.store.address%><%end%><br/>
-<%=@deal.town%>
-<%=@deal.state%>
-<%=@deal.zipcode%><br/>
-<%=@deal.phone%>
+<%=store.store.user.store.address%><br>
+
+<%=store.store.user.store.town%>
+<%=store.store.user.store.state%>
+<%=store.store.user.store.zipcode%><br>
+<%=store.store.user.store.phone%><br>
 <%end%>
+<%end%> 
 </div>
 
 <div class="clear"></div>
 <div class="line"></div>
-<% unless @deal.details.nil? %>
+<% unless @deal.details.empty? %>
+<H3>Deal Details</H3>
 <%=simple_format word_wrap(@deal.details,:line_width=>80)%>
 
 <%end%>

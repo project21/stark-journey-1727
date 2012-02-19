@@ -9,7 +9,8 @@ class Deal < ActiveRecord::Base
 	acts_as_voteable 
 	mount_uploader :image, ImageUploader 
 	validates_presence_of :category_id
-	validates_presence_of :town ,:allow_nil=>true
+	validates_presence_of :sub_city,:allow_nil=>true
+	validates_length_of :town ,:maximum=>30,:allow_nil=>true
 	#validates_presence_of :quantity, :unless => Proc.new { |m| m.percent_off.blank?  },:message=>"is required when you choose pricing other than actual deal price"
 	#validates_presence_of :quantity, :unless => Proc.new { |m| m.n_item_free.blank?  },:message=>"is required when you choose pricing other than actual deal price"
 	validates_presence_of :details, :unless => Proc.new { |m| m.other_details.blank?  }
@@ -21,8 +22,6 @@ class Deal < ActiveRecord::Base
     validates_numericality_of :percent_off ,:allow_nil=>true
     validates_numericality_of :n_item_free ,:allow_nil=>true
     validates_length_of :size ,:maximum=>20,:message=>"Should be number number of items or item size in lb,oz etc."
-    validates_format_of :phone,:with=>/\d\d\d\s\d\d\d\s\d\d\d\d/,:allow_nil=>true,:message=>"should be XXX XXX XXXX	"
-    validates_length_of :state ,:is=>2,:allow_nil=>true,:message=>"Enter only 2 characters"
-    validates_format_of :zipcode, :with=>/\d\d\d\d\d/ ,:allow_nil=>true
+    validates_presence_of :reg_price
     
 end
