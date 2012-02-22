@@ -1,9 +1,27 @@
 
 <div class="clear"></div>
-
-<% if current_user.business %>
+  <% if flash[:error]%>
+   <div class="error"> <%=flash[:error]%></div>
+   <%end%>
+   <% if flash[:notice]%>
+  <div class="note"> <%=flash[:notice]%></div>
+     <%end%>
+<% if user_signed_in? && current_user.business %>
 <h3>Administrator</h3>
 <div>Update address</div>
+<% @mydeals.each do |mydeal| %>
+
+<% StoreDeal.where("deal_id = ?",mydeal.id).includes(:store).each do |deal|%>
+<%if @id!=deal.store.user_id %>
+<%@id=deal.store.user_id%>
+<%=deal.store.user.store.address%><br>
+<%=deal.store.user.store.town%>
+<%=deal.store.user.store.state%>
+<%=deal.store.user.store.zipcode%>
+<%end%>
+<%end%>
+<%end%>
+
 <div><%=link_to 'List a New Deal',{:controller=>"deal",:action =>"retailers" }%></div>
 <%if @mydeals.empty? %>
 <h3 class="empty-profile">You have not listed any deal</h3>
@@ -11,17 +29,51 @@
 <%@mydeals.each do |mydeal|  %>
 <div class="image-search"><%=image_tag mydeal.image_url.to_s%></div>
 <div class="item-name-search">
-<a class="profile-item" href="/comment/index?deal_id=<%=mydeal.id%>"><%=mydeal.size%>&nbsp;<%=mydeal.brand%>
-&nbsp;<%=mydeal.item_name%> </a><br/>
+<a class="profile-item" href="/comment/index?deal_id=<%=mydeal.id%>">
+<%=mydeal.item_name%> </a><br/>
     <% if mydeal.official%>
     <%=pluralize(mydeal.votes_for,"+vote")%>
     <%=pluralize(mydeal.votes_against,"-vote")%><br/>
     <%else%>
     <%=pluralize(mydeal.plusminus,"vote")%><br/>
      <%end%>
-<% mydeal.stores.each do |store| %>
-<%=store.store_name%><br/>
+<!--columns-->
+  <% unless mydeal.end_date.nil? %>
+      <% if distance_of_time_in_words(mydeal.end_date,Date.today).to_i>0 || distance_of_time_in_words(mydeal.end_date,Date.today)=="about 1 month" %>
+      <div class="deal-status"> &nbsp;<span style="font-weight:bolder;color:black;"><%=distance_of_time_in_words(mydeal.end_date,Date.today) %> remaining</span></div>
+      <%else%>
+      <div style="font-weight:bold;color:red;">Deal is closed</div>
+      <%end%>    
+<%else%>
+       <% if distance_of_time_in_words_to_now(mydeal.created_at)>="about 24 hours" %>
+          Deal closed
+    <%else%>
+      Today Only
+    <%end%>
 <%end%>
+
+<%unless mydeal.available_items.nil? %>
+ <div style="margin:7px;color:black;">only&nbsp;<%=mydeal.available_items%></div>
+<%else%> --
+<%end%>
+
+ <%unless mydeal.fixed_price.nil?%>
+   <% if mydeal.fixed_price%>     
+   <div>Sale:<span  class="price">$<%=number_with_precision(mydeal.price,:precision=>2)%></span></div>
+  <%else%>
+            <div ><%=mydeal.percent_off%>%Off</span></div>
+           
+   <%end%> 
+<%else%>  
+             <%if mydeal.unfixed%>
+             <div>Buy 2 get 1 free</div>
+             <%else%>
+             <div >view Details  </div> 
+             <%end%> 
+<%end%>   
+
+Regular price$<%=number_with_precision(mydeal.reg_price,:precision=>2)%>
+
 <%=pluralize(mydeal.comments.count,"comment")%><br/>  
 <% if mydeal.official%>
 <%=link_to "edit" ,edit_retailer_deal_path(mydeal),:class=>"link-underline"%>
@@ -29,7 +81,9 @@
 <%=link_to "edit" ,edit_deal_path(mydeal),:class=>"link-underline"%>
 <%end%>
 <%=link_to "delete" ,delete_deal_path(mydeal),:confirm=>"Are you sure want to delete this deal",:method=>:delete,:class=>"link-underline"%>
-
+<% if mydeal.until_sold %>
+ <%=link_to "Sold out?" ,delete_deal_path(mydeal),:confirm=>"Are you sure, This deal is sold out?",:method=>:delete,:class=>"link-underline"%>
+<%end%>
 <% if mydeal.flagged %>
 <div>This deal has been flagged ,Please delete the deal or make necessary corrections</div>
 <%end%>
@@ -42,6 +96,7 @@
    <div class="error"> <%=flash[:error]%></div>
    <%end%>
 
+<!--Regular users accouns  start here-->
 <h2>My Profile</h2>
 
 <div><%=link_to 'Share with your community',{:controller=>"deal",:action =>"retailers" }%></div>
@@ -57,9 +112,10 @@ Your points: <%=pluralize(@points + @bonus,"point")%><br/>
 <div class="underline"></div>
 <div style="float:left;width:350px;">
 <h3>My Questions</h3>
-<%if @questions.empty? %>
+<%if user_signed_in? && @questions.empty? %>
 <h3 class="empty-profile">You have not asked a question yet</h3>
  <%end%>
+ <%if user_signed_in?%>
 <%@questions.each do |ques| %>
      <% if ques.where && ques.how_much %>
       <a  href="/questions/<%=ques.id%>">Where can i find <%=ques.item%> for a low price?How much is it?</a><br>
@@ -99,8 +155,7 @@ You can find  <a  href="/questions/<%=ans.question.id%>"><%=ans.question.item%><
 <%@mydeals.each do |mydeal|  %>
 <div class="image-search"><%=image_tag mydeal.image_url.to_s%></div>
 <div class="item-name-search">
-<a class="profile-item" href="/comment/index?deal_id=<%=mydeal.id%>"><%=mydeal.size%>&nbsp;<%=mydeal.brand%>
-&nbsp;<%=mydeal.item_name%> </a><br/>
+<a class="profile-item" href="/comment/index?deal_id=<%=mydeal.id%>"><%=mydeal.item_name%> </a><br/>
     <% if mydeal.official%>
     <%=pluralize(mydeal.votes_for,"+vote")%>
     <%=pluralize(mydeal.votes_against,"-vote")%><br/>
@@ -124,6 +179,6 @@ You can find  <a  href="/questions/<%=ans.question.id%>"><%=ans.question.item%><
 </div>
 <div class="clear"></div>
 <%end%>
-
+<%end%>
 <%end%>
 </div>

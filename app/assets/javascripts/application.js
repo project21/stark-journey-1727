@@ -122,6 +122,8 @@ $('.note').live('click',function(){$(this).hide();});
 $('.error').live('click',function(){$(this).hide();});
 $('.announce').live('click',function(){$(this).addClass('ui-helper-hidden');});
 
+$("#deal_until_sold_1").attr('checked',false);
+$("#deal_until_sold_0").attr('checked',false);
 $("#deal_unfixed_buy_two").attr('checked',false);
 $("#deal_other_details_true").attr('checked',false);
 $("#deal_fixed_price_false").attr('checked',false);
@@ -134,6 +136,7 @@ $("td #deal_unfixed_buy_two").click(function() {
    $("tr.fixed").addClass("ui-helper-hidden");
    $("tr.percent").addClass("ui-helper-hidden");
    $("tr.specify").addClass("ui-helper-hidden");
+    $("tr.saving").removeClass("ui-helper-hidden");
     } );
 $("td #deal_other_details_true").click(function() { 
    $("#deal_unfixed_buy_two").attr('checked',false);
@@ -142,11 +145,13 @@ $("td #deal_other_details_true").click(function() {
     $("tr.fixed").addClass("ui-helper-hidden");
     $("tr.percent").addClass("ui-helper-hidden");
      $("tr.specify").toggleClass("ui-helper-hidden");
+     $("tr.saving").removeClass("ui-helper-hidden");
     });
  $("td #deal_fixed_price_false").click(function(){
    $("#deal_other_details_true").attr('checked',false);
     $("#deal_unfixed_buy_two").attr('checked',false);
      $("tr.percent").toggleClass("ui-helper-hidden");
+     $("tr.saving").removeClass("ui-helper-hidden");
      $("tr.fixed").addClass("ui-helper-hidden");
      $("tr.specify").addClass("ui-helper-hidden");
  });
@@ -155,7 +160,8 @@ $("td #deal_other_details_true").click(function() {
  $("#deal_unfixed_buy_two").attr('checked',false);
    $("tr.fixed").toggleClass("ui-helper-hidden");
     $("tr.percent").addClass("ui-helper-hidden");
-  $("tr.specify").addClass("ui-helper-hidden");  
+  $("tr.specify").addClass("ui-helper-hidden"); 
+  $("tr.saving").addClass("ui-helper-hidden"); 
  });
 
 

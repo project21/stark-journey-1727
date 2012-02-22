@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120219025434) do
+ActiveRecord::Schema.define(:version => 20120221020144) do
 
   create_table "answers", :force => true do |t|
     t.string   "location"
@@ -53,9 +53,7 @@ ActiveRecord::Schema.define(:version => 20120219025434) do
   end
 
   create_table "deals", :force => true do |t|
-    t.string   "size"
     t.string   "item_name"
-    t.string   "brand"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "city_id"
@@ -79,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20120219025434) do
     t.string   "unfixed"
     t.boolean  "other_details",   :default => false
     t.string   "sub_city"
+    t.decimal  "saving"
   end
 
   create_table "feedbacks", :force => true do |t|

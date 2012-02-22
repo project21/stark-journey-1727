@@ -17,13 +17,16 @@ n is any number (1-9)<br/>
 </tr>
 <tr class="fixed ui-helper-hidden"><td><label>Sale Price*&nbsp;$</label></td><td><%= f.text_field :price %><br/><span style="color:#808080;">e.g 450.99</span></td></tr>
 <tr class="percent ui-helper-hidden"><td><label>Discount percentage</label></td><td><%= f.text_field :percent_off %>%Off<br/><span style="color:#808080;">e.g 50</span></td></tr>
+<tr class="saving ui-helper-hidden"><td><label>Savings*</label></td><td><%= f.text_field :saving %></td></tr>
 <tr class="specify ui-helper-hidden"><td style="font-style:italic;font-weight:bold;">Please specify in the details field below</td></tr>
 
 
 
 <tr><td><label>Regular Price*</label></td><td><%= f.text_field :reg_price %></td></tr>
-<tr><td><label>Deal end date</label></td><td><%=f.date_select  :end_date,:start_year=>2011,:order => [:month,:day,:year],:prompt => {:month => 'Select month',:day => 'Select day', :year => 'Select year'}%> </td></tr>
-<tr><td>Mark it as until sold<input type="checkbox"></td></tr>
+<tr><td><b>Deal end date</b></td></tr>
+<tr><td><%= f.radio_button :until_sold, true,:checked=>false %>Today Only
+<%= f.radio_button :until_sold, false,:checked=>false %>Until Sold Out</td>
+<tr><td><%=f.date_select  :end_date,:default=>{:year=>2012},:start_year=>2012,:order => [:month,:day,:year],:prompt => {:month => 'Select month',:day => 'Select day', :year => 'Select year'}%> </td></tr>
 <tr><td><label>No. of items available</label></td><td><%= f.text_field :available_items %></td></tr>
 <tr><td><label>Deal details</label></td><td><%=f.text_area :details,:rows=>"6",:cols=>"60"%> </td> </tr>
 <%= f.hidden_field :user_id,:value => current_user.id%>

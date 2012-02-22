@@ -21,6 +21,7 @@
         <%else%>
               <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>"><%=truncate( store_deal.item_name,:length=>30)%></a><br/>
              <span class="item-price"><%= store_deal.percent_off%>%Off</span><br/>
+            
          <%end%>
      <%else%>
             <%if store_deal.unfixed%>
@@ -31,6 +32,7 @@
              <a class="link-underline" href="/comment/index?deal_id=<%=store_deal.id%>">See details</a> <br/>      
              <%end%> 
      <%end%>
+     
 <span class="image"> <%=image_tag (store_deal.image_url.to_s )%></span><br/>
 <div >
   <%=link_to image_tag("down.png"),vote_down_deal_path(store_deal),:method=>:post,:remote=>true,:class=>"vote-down" %>
@@ -40,7 +42,7 @@
  <div>
 <a class="view-button" href="/comment/index?deal_id=<%=store_deal.id%>">view deal</a>
 </div>
-   
+        
         <% store_deal.stores.each do |store|%>
         <div class="store-name">
         <%=truncate(store.store_name,:length=>15) %>&nbsp; <span class="static-text">in</span>&nbsp;
@@ -58,6 +60,7 @@
    <%end%>
 <%else%>   
        <%if store_deal.unfixed%>
+        
             Buy 2&nbsp;<a class="item" href="/comment/index?deal_id=<%=store_deal.id%>"><%=truncate( store_deal.item_name,:length=>20)%></a><br><span class="item-price">get 1 free</span>
              <%else%>
              <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>">
@@ -74,13 +77,12 @@
  <div>
 <a class="view-button" href="/comment/index?deal_id=<%=store_deal.id%>">view deal</a>
 </div> 
-         <% store_deal.stores.each do |store|%>
-        <div class="store-name">
-        <%=truncate(store.store_name,:length=>15) %>&nbsp; <span class="static-text">in</span>&nbsp;
-          <%=truncate( store.town,:length=>15 )%>
-        <%end%>
-        </div>
-        
+<% StoreDeal.where("deal_id = ?",store_deal.id).includes(:store).each do |deal|%>
+<div class="store-name">
+ <%=truncate(deal.store.user.store.store_name,:length=>15)%>&nbsp; <span class="static-text">in</span>&nbsp;
+ <%=truncate(deal.store.user.store.town,:length=>15 )%>
+<%end%>
+</div>             
 <%end%>  
    <span class="comment-front-page"><%=pluralize(store_deal.comments.count,"comment")%></span><br/>
    <% unless store_deal.flagged %>
@@ -93,7 +95,7 @@
  <%end%>
  </div>	
  <br>
- <span class="time"> spotted <%=time_ago_in_words(store_deal.created_at)%>&nbsp;ago&nbsp;by &nbsp;<%=store_deal.user.username%></span>
+ <span class="time"> posted <%=time_ago_in_words(store_deal.created_at)%>&nbsp;ago</span>
  </div>
   <%end%> 
   <div class="clear"></div>

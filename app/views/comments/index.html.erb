@@ -47,7 +47,7 @@
 
 <%else%>
 <div class="official-bar">OFFICIAL</div>
-<h3 style="text-decoration:underline;"><%=@deal.size%>&nbsp;<%=@deal.brand%>&nbsp;<%=@deal.item_name%>&nbsp;at&nbsp;<%@store.each do |store|%>
+<h3 style="text-decoration:underline;"><%=@deal.item_name%>&nbsp;at&nbsp;<%@store.each do |store|%>
 <%=store.store.store_name%><%end%></h3>
 <div class="view-image"> <%=image_tag (@deal.image_url.to_s )%></div>
 <div class="details-border">
@@ -65,7 +65,8 @@
   <%else%>
             <div >Sale:<span class="item-price-view"><%=@deal.percent_off%>%Off</span></div>
             <div class="line-separator"></div>
-             <div>Original Price:<span  class="original-price">$<%=number_with_precision(@deal.reg_price,:precision=>2)%></span></div>
+             <div>Original Price:<span  class="original-price">$<%=number_with_precision(@deal.reg_price,:precision=>2)%>each</span></div>
+             <div >Saving:&nbsp;$<%=number_with_precision(@saving,:precision=>2) %></div>
              <div class="line-separator"></div>
    <%end%> 
 <%else%>  
@@ -73,25 +74,34 @@
              <div class="buy">Buy 2</div> <div class="item-price-view">get 1 free</div>
              <div class="line-separator"></div>
              <div>Original Price:<span  class="original-price">$<%=number_with_precision(@deal.reg_price,:precision=>2)%></span></div>
+             <div class="saving">Saving:&nbsp;$<%=number_with_precision(@saving,:precision=>2) %></div>
               <div class="line-separator"></div>
              <%else%>
              <div class="item-price-view">See Details below </div> 
               <div class="line-separator"></div>
              <div>Original Price:<span  class="original-price">$<%=number_with_precision(@deal.reg_price,:precision=>2)%></span></div>
+             <div class="saving">Saving:&nbsp;$<%=number_with_precision(@saving,:precision=>2) %></div>
               <div class="line-separator"></div>    
              <%end%> 
 <%end%>
 
             
 <% unless @deal.end_date.nil? %>
-     <% if distance_of_time_in_words(@deal.end_date,Date.today).to_i>0 || distance_of_time_in_words(@deal.end_date,Date.today)=="about 1 month" %>
-     <div class="deal-status"> Deal ending in&nbsp;<span style="font-weight:bolder;color:black;"><%=distance_of_time_in_words(@deal.end_date,Date.today) %></span></div>
-       <div class="line-separator"></div>
-     <%else%>
-     <div style="font-weight:bold;font-size:18px;color:red;">Deal is closed</div>
-        <div class="line-separator"></div>
+      <% if distance_of_time_in_words(@deal.end_date,Date.today).to_i>0 || distance_of_time_in_words(@deal.end_date,Date.today)=="about 1 month" %>
+      <div class="deal-status"> Deal ending in&nbsp;<span style="font-weight:bolder;color:black;"><%=distance_of_time_in_words(@deal.end_date,Date.today) %></span></div>
+      <%else%>
+      <div style="font-weight:bold;font-size:18px;color:red;">Deal is closed</div>
      <%end%>		
- <%end%>
+<%else%>
+       <% if distance_of_time_in_words_to_now(@deal.created_at)>="about 24 hours"  %>
+         Deal closed
+        
+      <%elsif @deal.until_sold%>
+      TODAY ONLY
+      <%else%>
+      Until Sold out
+    <%end%>
+<%end%>
     
  <%unless @deal.available_items.nil? %>
  <div style="margin:7px;color:black;">only&nbsp;<%=@deal.available_items%>&nbsp;available</div>
@@ -105,14 +115,16 @@
 
 
 <div>
+
 <%if @deal.official%>
 <%@store.each do |store|%>
+<%=store.store.user.store.store_name%><br>
 <%=store.store.user.store.address%><br>
-
 <%=store.store.user.store.town%>
 <%=store.store.user.store.state%>
 <%=store.store.user.store.zipcode%><br>
 <%=store.store.user.store.phone%><br>
+<a href= <%=store.store.user.store.website%> >Visit Website</a><br>
 <%end%>
 <%end%> 
 </div>

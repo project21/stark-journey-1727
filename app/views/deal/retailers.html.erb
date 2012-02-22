@@ -1,30 +1,29 @@
 <div class="container">
+
 <h2>Why partner with spotsaving?</h2>
 <p>Spotsaving will help you sell your products quicker and grow your audience by advertising your discounted and  clearance <br> merchandise for free. </p>
 <div class="line"></div>
 <%= form_for @deal ,:url=>{:action =>"retailer_create"},:html=>{:multipart=>true} do |f|%>
-   <%= f.error_messages %>
-        
-
+<%= f.error_messages %>      
 <table>
 <tr><td><b>About Product or Service</b></td></tr>
 <tr><td><%= f.collection_select( :category_id, Category.all ,:id,:category_name,:prompt=>"category") %></td></tr>
 <tr><td><label>Product/Item/Service*</label></td><td><%= f.text_field :item_name %><br><span style="color:#808080;">e.g Samsung 42" LCD HDTV</span></td></tr>
 <tr><td>Price *</td></tr>
-<tr><td><%= f.radio_button :fixed_price, true,:checked=>false %>Fixed price
+<tr><td><%= f.radio_button :fixed_price, true,:checked=>false %>Fixed Sale price
 <%= f.radio_button :unfixed, 'buy_two',:checked=>false %>Buy 2 get one free</td>
 <td><%= f.radio_button :fixed_price, false,:checked=>false %>Percent off
 <%= f.radio_button :other_details, true,:checked=>false %>Other</td>
 </tr>
 <tr class="fixed ui-helper-hidden"><td><label>Sale Price*&nbsp;$</label></td><td><%= f.text_field :price %><br/><span style="color:#808080;">e.g 450.99</span></td></tr>
 <tr class="percent ui-helper-hidden"><td><label>Discount percentage</label></td><td><%= f.text_field :percent_off %>%Off<br/><span style="color:#808080;">e.g 50</span></td></tr>
+<tr class="saving ui-helper-hidden"><td><label>Savings*</label></td><td><%= f.text_field :saving %></td></tr>
 <tr class="specify ui-helper-hidden"><td style="font-style:italic;font-weight:bold;">Please specify in the details field below</td></tr>
-
-
-
-<tr><td><label>Regular Price*</label></td><td><%= f.text_field :reg_price %></td></tr>
-<tr><td><label>Deal end date</label></td><td><%=f.date_select  :end_date,:start_year=>2011,:order => [:month,:day,:year],:prompt => {:month => 'Select month',:day => 'Select day', :year => 'Select year'}%> </td></tr>
-<tr><td>Mark it as until sold<input type="checkbox"></td></tr>
+<tr><td><label>Regular Price/Service value*</label></td><td><%= f.text_field :reg_price %></td></tr>
+<tr><td><b>Deal end date</b></td></tr>
+<tr><td><%= f.radio_button :until_sold, "1",:class=>"until-sold" %>Today Only
+<%= f.radio_button :until_sold, "0" ,:class=>"until-sold"%>Until Sold Out</td>
+<td><%=f.date_select  :end_date,:default=>{:year=>2012},:start_year=>2012,:order => [:month,:day,:year],:prompt => {:month => 'Select month',:day => 'Select day', :year => 'Select year'}%> </td></tr>
 <tr><td><label>No. of items available</label></td><td><%= f.text_field :available_items %></td></tr>
 <tr><td><label>Deal details</label></td><td><%=f.text_area :details,:rows=>"6",:cols=>"60"%> </td> </tr>
 <%= f.hidden_field :user_id,:value => current_user.id%>

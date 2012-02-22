@@ -53,7 +53,7 @@
   @city = City.find(session[:city_id])
   @deal=@city.deals.build(params[:deal])
    if @deal.save
-    redirect_to @deal
+    redirect_to :controller=>"deal" ,:action=>"profile"
      flash[:notice]="Thank you for choosing spotsaving,you can view your deals on your profile"
     else
     render 'retailers' 
@@ -90,6 +90,7 @@
     unless session[:city_id].nil? || session[:city_id].blank?
      @city = City.find_by_id(session[:city_id])
      @deals=Deal.where("city_id = ?", session[:city_id]).includes( :stores)
+     @store=StoreDeal.where("deal_id = ?",@deal).includes(:store)
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
      @total_comments=0
      @bonus=0
@@ -408,8 +409,12 @@ end
     else
     @credits+= @bonus * 0.002          
     end  
-           end           
-end   
+           end 
+else
+redirect_to :controller=>"deal",:action=>"show"  
+flash.now[:error]="You need business account to access this page.Please Register for free"                   
+end 
+  
 end
 
 def how_it_works

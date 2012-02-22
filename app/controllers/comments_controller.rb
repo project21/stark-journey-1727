@@ -10,7 +10,9 @@ class CommentsController < ApplicationController
    @deal=Deal.find_by_id(params[:deal_id])
    if @deal.reg_price && @deal.price
    @saving=@deal.reg_price-@deal.price
- end
+   else
+    @saving=@deal.saving
+   end
    @comments = @deal.comments.includes(:user)
    @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
   
