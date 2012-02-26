@@ -1,5 +1,5 @@
 
-
+<div class="home-header-bar"><%=image_tag ("city.png")%><span class="city-title"><%=@city.name %></span></div>
  <div class="notice"> </div>
  <div class="errors"> </div>
  <% if flash[:error]%>
@@ -20,8 +20,7 @@
       <span class="static-text">for</span>&nbsp;<span class="item-price">$<%=number_with_precision(store_deal.price,:precision=>2) %></span><br/>
         <%else%>
               <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>"><%=truncate( store_deal.item_name,:length=>30)%></a><br/>
-             <span class="item-price"><%= store_deal.percent_off%>%Off</span><br/>
-            
+             <span class="item-price"><%= store_deal.percent_off%>%Off</span><br/> 
          <%end%>
      <%else%>
             <%if store_deal.unfixed%>
@@ -29,7 +28,7 @@
              <%else%>
              <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>">
              <%=truncate(store_deal.item_name,:length=>30)%> </a>&nbsp; <br/>
-             <a class="link-underline" href="/comment/index?deal_id=<%=store_deal.id%>">See details</a> <br/>      
+             <a class="link-underline" href="/comment/index?deal_id=<%=store_deal.id%>">View details</a> <br/>      
              <%end%> 
      <%end%>
      
@@ -65,13 +64,13 @@
              <%else%>
              <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>">
              <%=truncate(store_deal.item_name,:length=>30)%> </a>&nbsp; <br/>
-             <a class="link-underline" href="/comment/index?deal_id=<%=store_deal.id%>">See details</a> <br/>      
+             <a class="link-underline" href="/comment/index?deal_id=<%=store_deal.id%>">View details</a> <br/>      
              <%end%> 
   <%end%>           
   <span class="image"> <%=image_tag (store_deal.image_url.to_s )%></span><br/>
   <div >
   <%=link_to image_tag("down.png"),vote_down_deal_path(store_deal),:method=>:post,:remote=>true,:class=>"vote-down" %>
- <%=link_to image_tag("up.png"),vote_up_deal_path(store_deal),:method=>:post,:remote=>true,:class=>"vote-up" %>
+  <%=link_to image_tag("up.png"),vote_up_deal_path(store_deal),:method=>:post,:remote=>true,:class=>"vote-up" %>
   <span class="votes"><%=pluralize(store_deal.plusminus,"vote")%></span>
  </div>
  <div>
@@ -84,11 +83,11 @@
 <%end%>
 </div>             
 <%end%>  
-   <span class="comment-front-page"><%=pluralize(store_deal.comments.count,"comment")%></span><br/>
+   <a href="/comment/index?deal_id=<%=store_deal.id%>" class="comment-front-page"><%=image_tag("bubble.png")%>&nbsp;<%=pluralize(store_deal.comments.count,"comment")%></a><br/>
    <% unless store_deal.flagged %>
-   <%=link_to "flag this",flagg_deal_path(store_deal),:method=>:post,:remote=>true,:confirm=>"Are you sure, want to flag this?" ,:class=>"flag"%>
+   <%=link_to image_tag("flag.png")+"flag",flagg_deal_path(store_deal),:method=>:post,:remote=>true,:confirm=>"Are you sure, want to flag this?" ,:class=>"flag"%>
    <%if store_deal.official%>
-   <div class="official">Official</div>
+   <div class="official"><%=image_tag("official.png")%></div>
    <%end%>
  <%else%>
  <span class="flagged">flagged</span>

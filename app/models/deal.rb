@@ -23,6 +23,7 @@ class Deal < ActiveRecord::Base
     validates_numericality_of :percent_off ,:allow_nil=>true
     validates_numericality_of :n_item_free ,:allow_nil=>true
     validates_inclusion_of :until_sold,:in=>[true,false] , :if=>"end_date.blank?" 
+    validates_length_of :custom_details ,:within => 10..30,:unless => Proc.new { |m| m.other_details.blank?  }
    # validates_presence_of :end_date ,:if=>"until_sold.blank?"
     
 end

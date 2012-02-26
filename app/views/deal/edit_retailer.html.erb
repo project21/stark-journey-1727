@@ -16,9 +16,9 @@ n is any number (1-9)<br/>
 <%= f.radio_button :other_details, true,:checked=>false %>Other</td>
 </tr>
 <tr class="fixed ui-helper-hidden"><td><label>Sale Price*&nbsp;$</label></td><td><%= f.text_field :price %><br/><span style="color:#808080;">e.g 450.99</span></td></tr>
-<tr class="percent ui-helper-hidden"><td><label>Discount percentage</label></td><td><%= f.text_field :percent_off %>%Off<br/><span style="color:#808080;">e.g 50</span></td></tr>
+<tr class="percent ui-helper-hidden"><td><label>Discount percentage</label></td><td><%= f.text_field :percent_off %>%Off<br/><span style="color:#808080;">e.g 50%</span></td></tr>
+<tr class="specify ui-helper-hidden"><td><label>Sale Details</label><span style="color:#808080;">e.g Buy 1 get 50% off on next item</span></td><td><%= f.text_field :custom_details %></td></tr>
 <tr class="saving ui-helper-hidden"><td><label>Savings*</label></td><td><%= f.text_field :saving %></td></tr>
-<tr class="specify ui-helper-hidden"><td style="font-style:italic;font-weight:bold;">Please specify in the details field below</td></tr>
 
 
 
@@ -27,7 +27,7 @@ n is any number (1-9)<br/>
 <tr><td><%= f.radio_button :until_sold, true,:checked=>false %>Today Only
 <%= f.radio_button :until_sold, false,:checked=>false %>Until Sold Out</td>
 <tr><td><%=f.date_select  :end_date,:default=>{:year=>2012},:start_year=>2012,:order => [:month,:day,:year],:prompt => {:month => 'Select month',:day => 'Select day', :year => 'Select year'}%> </td></tr>
-<tr><td><label>No. of items available</label></td><td><%= f.text_field :available_items %></td></tr>
+<tr><td><label>No. of items available</label><i style="color:#808080">(Optional)</i></td><td><%= f.text_field :available_items %></td></tr>
 <tr><td><label>Deal details</label></td><td><%=f.text_area :details,:rows=>"6",:cols=>"60"%> </td> </tr>
 <%= f.hidden_field :user_id,:value => current_user.id%>
 <tr><td><label>Image of the item(s)/business</label></td><td><%= f.file_field :image %></td></tr>
@@ -39,7 +39,7 @@ n is any number (1-9)<br/>
 <% if current_user.store.nil? %>
 <tr><td><b>About the Business</b></td></tr>
 <%=f.fields_for :stores do |store| %>
-<tr><td><label>Website Url</label></td><td><%=store.text_field :website %></td></tr>
+<tr><td><label>Website Url</label><i style="color:#808080">(Optional)</i></td><td><%=store.text_field :website %></td></tr>
 <tr><td><label>Name of the Store/business*</label></td><td><%=store.text_field :store_name %></td></tr>
 <%= store.hidden_field :city_id,:value => @city.id%>
 <tr><td><label>Address*</label></td><td><%=store.text_field :address %></td></tr>
@@ -48,7 +48,7 @@ n is any number (1-9)<br/>
 <td><label>state*</label><%=store.text_field :state,:size=>"5" %>
 <label>zipcode*</label><%=store.text_field :zipcode,:size=>"10" %></td>
 </tr>  
-<tr><td><label>phone number*</label></td><td><%= store.text_field :phone %></td></tr>
+<tr><td><label>phone number</label><i style="color:#808080">(Optional)</i></td><td><%= store.text_field :phone %></td></tr>
 <%end%>
 <%else%>
       <%=f.fields_for :stores do |store| %>

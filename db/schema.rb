@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120221020144) do
+ActiveRecord::Schema.define(:version => 20120222231006) do
 
   create_table "answers", :force => true do |t|
     t.string   "location"
@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(:version => 20120221020144) do
     t.boolean  "until_sold"
     t.integer  "available_items"
     t.boolean  "official",        :default => false
-    t.integer  "quantity"
     t.integer  "n_item_free"
     t.integer  "percent_off"
     t.boolean  "fixed_price"
@@ -78,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20120221020144) do
     t.boolean  "other_details",   :default => false
     t.string   "sub_city"
     t.decimal  "saving"
+    t.string   "custom_details"
   end
 
   create_table "feedbacks", :force => true do |t|

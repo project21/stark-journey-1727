@@ -43,7 +43,6 @@
 <li><%=link_to 'How it works',{:controller=>"deal",:action =>"how_it_works" }%></li>
 <li><%=link_to 'Retailer',{:controller=>"deal",:action =>"profile" }%></li>
 </ul>
-
 <span class="search-form">
 <%= form_for  @search,:url=>{:controller=>"deal",:action=>"search"} do |f| %>
   
@@ -51,15 +50,11 @@
     <%= f.submit "Search Item",:class=>"search-button" %>
   <% end %></span> 
 
-
 </div>
 </div>
-
 
 <div class="main">
-<div class="container">
 <div class="clear"></div>
-<span class="cat-link" >Category</span> 
 <ul class="categories ">
 <li><%= link_to 'Grocery',{:controller=>"category",:action =>"index" }%></li>
 <li><%= link_to 'Electronics',{:controller=>"category",:action =>"electro" }%></li>
@@ -81,8 +76,8 @@
 <%end%>
 </ul>
 
-<div class="announce">Spotsaving is new and currently is still undergoing through development and testing.For any suggestions/advice and technical issues, please report to <%=link_to "Feedback",{:controller=>'feedbacks',:action=>"new"}%><span style="float:right"><%=image_tag("cancel.png")%></span></div>
-
+<div class="announce">Spotsaving is new and currently is still undergoing through development and testing.For any suggestions/advice and technical issues, please report to <%=link_to "info@spotsaving.com",{:controller=>'feedbacks',:action=>"new"}%><span style="float:right"><%=image_tag("cancel.png")%></span></div>
+<div class="container">
 <%= yield %>
 <div class="clear"></div>
 </div>
