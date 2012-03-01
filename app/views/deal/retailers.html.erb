@@ -16,8 +16,8 @@
 <%= f.radio_button :other_details, true,:checked=>false %>Other</td>
 </tr>
 <tr class="fixed ui-helper-hidden"><td><label>Sale Price*&nbsp;</label></td><td>$<%= f.text_field :price %><br/><span style="color:#808080;">e.g $350.00</span></td></tr>
-<tr class="percent ui-helper-hidden"><td><label>Discount percentage</label></td><td><%= f.text_field :percent_off %>%Off<br/><span style="color:#808080;">e.g 50</span></td></tr>
-<tr class="specify ui-helper-hidden"><td><label>Sale Details*</label>&nbsp;<i>Up to 30 characters</i></td><td><%= f.text_area :custom_details,:rows=>"3" %><br/><span style="color:#808080;">e.g Buy 1 get 50% off on next item</span></td></tr>
+<tr class="percent ui-helper-hidden"><td><label>Discount percentage</label></td><td><%= f.text_field :percent_off %>%Off<br/><span style="color:#808080;">e.g 50%</span></td></tr>
+<tr class="specify ui-helper-hidden"><td><label>Sale Details*</label>&nbsp;<i style="color:#808080;">(Up to 32 characters)</i></td><td><%= f.text_area :custom_details,:rows=>"3" %><br/><span style="color:#808080;">e.g Buy 1 get 50% off on next item</span></td></tr>
 <tr class="saving ui-helper-hidden"><td><label>Savings*</label></td><td>$<%= f.text_field :saving %><br><span style="color:#808080;">e.g $80.00</span></td></tr>
 <tr><td><label>Regular Price/Service value*</label></td><td><%= f.text_field :reg_price %></td></tr>
 <tr><td><b>Deal end date*</b></td></tr>

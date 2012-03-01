@@ -1,15 +1,10 @@
 
+<div class="header-bar"><%=image_tag ("city.png")%><span class="city-title"><%=@city.name %></span>&diams;&diams;New Deals</div>
 <div class="notice">
   <%=flash[:notice]%>
   </div>
   <div class="errors"> <%=flash[:error]%></div>
-<h2>All new post</h2>
-<div class="header-line"></div>
 <div class="clear"></div>
-
-
-
-
 
 <%@deals.each do |deal|%>
 <div style="float:left;">
@@ -52,36 +47,40 @@
       <span class="flagged">flagged</span>
       <%end%>
 <%else%>
+      <%unless deal.fixed_price.nil?%>
          <% if deal.fixed_price%>
-  <a class="item" href="/comment/index?deal_id=<%=deal.id%>"><%=deal.size%>&nbsp;<%=truncate(deal.brand,:length=>30)%><br/>
- <%=truncate(deal.item_name,:length=>30)%> </a><br/> <span >for</span> <span class="item-price"><%=deal.price%>$</span><br/>
-<%else%>
-   <a class="item" href="/comment/index?deal_id=<%=deal.id%>">Buy&nbsp;<%=deal.quantity%>&nbsp;<%=deal.size%>&nbsp;<%=truncate(deal.brand,:length=>30)%><br/>
-<%=truncate(deal.item_name,:length=>30)%> </a>&nbsp; <span class="static-text">and get</span><br/>
- <% unless deal.n_item_free.nil? %>
-    <span class="item-price"><%=deal.n_item_free.to_s << " " << "free"%> </span> 
-    <%else%> 
-    <span class="item-price"><%=deal.percent_off.to_s + "%off"%></span>&nbsp;on next item  
-    <%end%>   
- <br/>
+         <a class="item" href="/comment/index?deal_id=<%=deal.id%>">
+         <%=truncate(deal.item_name,:length=>30)%> </a><br/> <span >for</span> <span class="item-price">$<%=deal.price%></span><br/>
+         <%else%>
+         <a class="item" href="/comment/index?deal_id=<%=deal.id%>"><%=truncate( deal.item_name,:length=>22)%></a><br/>
+             <span class="item-price"><%= deal.percent_off%>%Off</span><br/>
+         <%end%>
+      <%else%>      
+          <%if deal.unfixed%>
+            <a class="item" href="/comment/index?deal_id=<%=deal.id%>"> Buy 2&nbsp;<%=truncate( deal.item_name,:length=>30)%></a><br/><span class="item-price">get 1 free</span>
+             <%else%>
+             <a class="item" href="/comment/index?deal_id=<%=deal.id%>">
+             <%=truncate(deal.item_name,:length=>30)%> </a><br/>
+             <a class="link-underline" href="/comment/index?deal_id=<%=deal.id%>">View details</a> <br/>      
+             <%end%>  
 <%end%>
 <span class="image"> <%=image_tag (deal.image_url.to_s )%></span><br/>
 <%=link_to image_tag("down.png"),vote_down_deal_path(deal),:method=>:post,:remote=>true ,:class=>"vote-down"  %>
  <%=link_to image_tag("up.png"),vote_up_deal_path(deal),:method=>:post,:remote=>true ,:class=>"vote-up"  %>
  <span class="votes"><%=pluralize(deal.plusminus,"vote")%></span><br/>
  <a class="view-button" href="/comment/index?deal_id=<%=deal.id%>">view deal</a> 
-         <% deal.stores.each do |store|%>
+         <% StoreDeal.where("deal_id = ?",deal.id).includes(:store).each do |deal|%>
         <div class="store-name">
-        <%=truncate(store.store_name,:length=>15) %>&nbsp; <span class="static-text">in</span>&nbsp;
-        <%end%>
-        <%=truncate( deal.town,:length=>15 )%>
+        <%=truncate(deal.store.user.store.store_name,:length=>15) %>&nbsp; <span class="static-text">in</span>&nbsp;
+        <%=truncate( deal.store.user.store.town,:length=>15 )%>
+         <%end%>
         </div>   
       
-         <span class="comment-front-page"><%=pluralize(deal.comments.count,"comment")%></span><br/>
+         <span class="comment-front-page"><%=image_tag("bubble.png")%>&nbsp;<%=pluralize(deal.comments.count,"comment")%></span><br/>
          <% unless deal.flagged %>
-      <%=link_to "flagg this",flagg_deal_path(deal),:method=>:post,:remote=>true,:confirm=>"Are you sure, want to flag this?" ,:class=>"flag" %>
+      <%=link_to image_tag("flag.png")+ "flagg",flagg_deal_path(deal),:method=>:post,:remote=>true,:confirm=>"Are you sure, want to flag this?" ,:class=>"flag" %>
         <%if deal.official%>
-       <span class="official">Official</span>
+       <span class="official"><%=image_tag("official.png")%></span>
        <%end%>
        <%else%>
    <span class="flagged">flagged</span>

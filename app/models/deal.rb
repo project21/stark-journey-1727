@@ -10,7 +10,7 @@ class Deal < ActiveRecord::Base
 	mount_uploader :image, ImageUploader 
 	validates_presence_of :category_id
 	validates_presence_of :sub_city,:allow_nil=>true
-	validates_length_of :town ,:maximum=>30,:allow_nil=>true
+	validates_length_of :town ,:maximum=>37,:allow_nil=>true
 	#validates_presence_of :quantity, :unless => Proc.new { |m| m.percent_off.blank?  },:message=>"is required when you choose pricing other than actual deal price"
 	#validates_presence_of :quantity, :unless => Proc.new { |m| m.n_item_free.blank?  },:message=>"is required when you choose pricing other than actual deal price"
 	validates_presence_of :details #, :unless => Proc.new { |m| m.other_details.blank?  }
@@ -23,7 +23,7 @@ class Deal < ActiveRecord::Base
     validates_numericality_of :percent_off ,:allow_nil=>true
     validates_numericality_of :n_item_free ,:allow_nil=>true
     validates_inclusion_of :until_sold,:in=>[true,false] , :if=>"end_date.blank?" 
-    validates_length_of :custom_details ,:within => 10..30,:unless => Proc.new { |m| m.other_details.blank?  }
+    validates_length_of :custom_details ,:within => 10..35,:unless => Proc.new { |m| m.other_details.blank?  }
    # validates_presence_of :end_date ,:if=>"until_sold.blank?"
     
 end

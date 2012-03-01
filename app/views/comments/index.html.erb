@@ -44,27 +44,25 @@
 <%end%> 
 
 <%else%>
-<div class="header-bar"><%=image_tag ("city.png")%><span class="city-title"><%=@city.name %></span>&nbsp;<span style="float:right;"><%=image_tag("official.png")%>Official Deal</span></div>
+<div class="header-bar"><span style="float:left;"><%=image_tag ("city.png")%></span><span class="city-title"><%=@city.name %></span>&nbsp;<span style="float:right;"><%=image_tag("official.png")%>Official Deal</span></div>
 
 <div class="view-image"> <%=image_tag (@deal.image_url.to_s )%></div>
 <div class="details-border">
 <h1 class="item-title-view"><%=@deal.item_name%></h1>
 <%unless @deal.fixed_price.nil?%>
-   <% if @deal.fixed_price%>
-         
-   <div>Sale:<span  class="price">$<%=number_with_precision(@deal.price,:precision=>2)%></span></div>
+   <% if @deal.fixed_price%>     
+   <div class="price-tag"><%=image_tag("tag.jpg")%><div  class="price">$<%=number_with_precision(@deal.price,:precision=>2)%></div></div>
    
   <%else%>
-            <div >Sale:<span class="item-price-view"><%=@deal.percent_off%>%Off</span></div>
-            <div class="line-separator"></div>
-             
+            <div class="price-tag"><%=image_tag("tag.jpg")%><div class="price"><%=@deal.percent_off%>%Off</div></div>
+                  
    <%end%> 
 <%else%>  
              <%if @deal.unfixed%>
-             <div class="buy">Buy 2</div> <div class="item-price-view">get 1 free</div>
+             <div class="buy"><%=image_tag("buy2big.jpeg")%></div>
                 
              <%else%>
-             <div class="custom-details" ><%=@deal.custom_details%></div>   
+             <div class="price-tag"><%=image_tag("tag.jpg")%><div class="custom-details" ><%=@deal.custom_details%></div></div>  
              <%end%> 
 <%end%>
 <ul class="deal-info">
@@ -75,18 +73,18 @@
             
 <% unless @deal.end_date.nil? %>
       <% if distance_of_time_in_words(@deal.end_date,Date.today).to_i>0 || distance_of_time_in_words(@deal.end_date,Date.today)=="about 1 month" %>
-      <li>  <div class="deal-status"> Deal ending in</div><div style="font-weight:bolder;color:black;"><%=distance_of_time_in_words(@deal.end_date,Date.today) %></div></li>
+      <li>  <div class="deal-status"> DEAL ENDING IN</div><div style="font-weight:bolder;color:black;color:#14C826;"><%=distance_of_time_in_words(@deal.end_date,Date.today) %></div></li>
       <%else%>
      <li><div class="deal-status"> DEAL ENDING</div> <div style="font-weight:bold;font-size:18px;color:red;">Deal is closed</div></li>
      <%end%>		
 <%else%>
        <% if distance_of_time_in_words_to_now(@deal.created_at)>="about 24 hours"  %>
-       <li><div class="deal-status"> DEAL ENDING</div><div> Deal closed</div></li>
+       <li><div class="deal-status"> DEAL ENDING</div><div class="in-active-deal"> Deal closed</div></li>
         
       <%elsif @deal.until_sold%>
-       <li><div class="deal-status"> DEAL ENDING</div><div>TODAY ONLY</div></li>
+       <li><div class="deal-status "> DEAL ENDING</div><div class="active-deal">TODAY ONLY</div></li>
       <%else%>
-       <li><div class="deal-status"> DEAL ENDING</div><div>Until Sold out</div></li>
+       <li><div class="deal-status"> DEAL ENDING</div><div class="active-deal">Until Sold out</div></li>
        </ul>
     <%end%>
 <%end%>

@@ -36,29 +36,29 @@
  <!--columns-->
 <%@mydeals.each do |mydeal|  %>
 <ul class="account-columns">
-<li><%=image_tag("black_view.png")%><%=mydeal.item_name%> 
+<li><%=image_tag("black_view.png")%><span class="item-name"><%=mydeal.item_name%> </span>
          <% if mydeal.flagged %>
          <div>This deal has been flagged ,Please delete the deal or make necessary corrections</div>
          <%end%>
 </li>   
 <% unless mydeal.end_date.nil? %>
       <% if distance_of_time_in_words(mydeal.end_date,Date.today).to_i>0 || distance_of_time_in_words(mydeal.end_date,Date.today)=="about 1 month" %>
-      <li><div class="deal-status"> &nbsp;<span style="font-weight:bolder;color:black;"><%=distance_of_time_in_words(mydeal.end_date,Date.today) %> remaining</span></div></li>
+      <li><div class="deal-status"> &nbsp;<span class="active-deal"><%=distance_of_time_in_words(mydeal.end_date,Date.today) %> remaining</span></div></li>
       <%else%>
-      <li><div style="font-weight:bold;color:red;">Deal is closed</div></li>
+      <li><div style="font-weight:bold;color:red;">Deal closed</div></li>
       <%end%>    
 <%else%>
        <% if distance_of_time_in_words_to_now(mydeal.created_at)>="about 24 hours" %>
-        <li>  Deal closed </li>
+        <li class="in-active-deal">  Deal closed </li>
        <%elsif mydeal.until_sold%>
-       <li>Today Only</li>
+       <li class="active-deal">Today Only</li>
        <%else%>
-        <li>Until sold out</li>
+        <li class="active-deal">Until sold out</li>
       <%end%>
 <%end%>
 
 <%unless mydeal.available_items.nil? %>
- <li><div style="margin:7px;color:black;">only&nbsp;<%=mydeal.available_items%></div></li>
+ <li><div style="margin:7px;color:black;"><%=mydeal.available_items%></div></li>
 <%else%><li> --  <% unless mydeal.until_sold %> <br>
         <%=link_to "Sold out?" ,delete_deal_path(mydeal),:confirm=>"Are you sure, This deal is sold out?",:method=>:delete,:class=>"link-underline"%>
         <%end%>
@@ -67,7 +67,7 @@
 
  <%unless mydeal.fixed_price.nil?%>
    <% if mydeal.fixed_price%>     
-   <li><span  class="price">$<%=number_with_precision(mydeal.price,:precision=>2)%></span></li>
+   <li><span>$<%=number_with_precision(mydeal.price,:precision=>2)%></span></li>
   <%else%>
            <li> <div ><%=mydeal.percent_off%>%Off</span></div></li>       
    <%end%> 

@@ -1,17 +1,13 @@
+<div class="header-bar"><%=image_tag ("city.png")%><span class="city-title"><%=@city.name %></span>&diams;&diams;<%=@category.category_name%></div>
 <div class="notice">
   <%=flash[:notice]%>
   <div class="errors"><%=flash[:error]%></div>
   </div>
-<h2><%=@category.category_name%></h2>
 <div class="clear"></div>
-<div class="header-line"></div>
-<div class="clear"></div>
-
 
 <%if @dealss.empty?%>
+<div class="empty">Oups! Sorry, We dont have deals in this category yet. Please Come back later. </div>
 
-Spotsaving is <br><br>a new network, <br><br>Be the first one<br><br> to tell us what<br><br> you spot from <br><br>your local store<br>
-<br><%=link_to "Share ",{:controller=>"deal",:action =>"new"} ,{:class=>"list-button" }%></div>
 <%else%>
 
 <%@dealss.each do |deal|%>
@@ -50,18 +46,24 @@ Spotsaving is <br><br>a new network, <br><br>Be the first one<br><br> to tell us
      
       
 <%else%> 
-  <% if deal.fixed_price%>
-  <a class="item" href="/comment/index?deal_id=<%=deal.id%>"><%=deal.size%>&nbsp;<%=truncate(deal.brand,:length=>30)%><br/>
- <%=truncate(deal.item_name,:length=>30)%> </a><br/> <span class="static-text">for</span> <span class="item-price">$<%=deal.price%></span><br/>
-<%else%>
-   <a class="item" href="/comment/index?deal_id=<%=deal.id%>">Buy&nbsp;<%=deal.quantity%>&nbsp;<%=deal.size%>&nbsp;<%=truncate(deal.brand,:length=>30)%><br/>
-<%=truncate(deal.item_name,:length=>30)%> </a>&nbsp; <span class="static-text">and get</span><br/>
- <% unless deal.n_item_free.nil? %>
-    <span class="item-price"><%=deal.n_item_free.to_s << " " << "free"%> </span> 
-    <%else%> 
-    <span class="item-price"><%=deal.percent_off.to_s + "%off"%> </span> &nbsp;<span >on next item</span>
-    <%end%>   
- <br/>
+  
+   <%unless deal.fixed_price.nil?%>
+     <% if deal.fixed_price%>
+       <a class="item" href="/comment/index?deal_id=<%=deal.id%>"><br/>
+       <%=truncate(deal.item_name,:length=>30)%> </a><br/> <span class="static-text">for</span> <span class="item-price">$<%=deal.price%></span><br/>
+     <%else%>
+        <a class="item" href="/comment/index?deal_id=<%=deal.id%>"><%=truncate( deal.item_name,:length=>22)%></a><br/>
+        <span class="item-price"><%= deal.percent_off%>Off</span><br/>
+        <%end%>
+  <%else%>
+        <%if deal.unfixed%>
+            Buy 2 <a class="item" href="/comment/index?deal_id=<%=deal.id%>"><%=truncate( deal.item_name,:length=>30)%></a><br/><span class="item-price">get 1 free</span>
+             <%else%>
+             <a class="item" href="/comment/index?deal_id=<%=deal.id%>">
+             <%=truncate(deal.item_name,:length=>30)%> </a><br/>
+             <a class="link-underline" href="/comment/index?deal_id=<%=deal.id%>">See details</a> <br/>      
+             <%end%> 
+            
 <%end%>
 <span class="image"> <%=image_tag (deal.image_url.to_s )%></span><br/>
 <%=link_to image_tag("down.png"),vote_down_deal_path(deal),:method=>:post,:remote=>true ,:class=>"vote-down"  %>
@@ -69,19 +71,19 @@ Spotsaving is <br><br>a new network, <br><br>Be the first one<br><br> to tell us
  <span class="votes"><%=pluralize(deal.plusminus,"vote")%></span><br/>
  <a class="view-button" href="/comment/index?deal_id=<%=deal.id%>">view deal</a>
 
-    <% deal.stores.each do |club| %>
+    <% StoreDeal.where("deal_id = ?",deal.id).includes(:store).each  do |deal| %>
     <div class="store-name">
-    <%= truncate(club.store_name,:length=>15) %>&nbsp; <span class="static-text">by</span>&nbsp;
-     <%end%>   
-    <%=truncate(deal.town,:length=>15)%>
+    <%= truncate(deal.store.user.store.store_name,:length=>15) %>&nbsp; <span class="static-text">in</span>&nbsp;   
+    <%=truncate(deal.store.user.store.town,:length=>15)%>
+      <%end%>
     </div>
 
 <%end%>      
-         <span class="comment-front-page"><%=pluralize(deal.comments.count,"comment")%></span><br/>
+         <span class="comment-front-page"><%=image_tag("bubble.png")%>&nbsp;<%=pluralize(deal.comments.count,"comment")%></span><br/>
          <% unless deal.flagged %>
-      <%=link_to "flag this",flagg_deal_path(deal),:method=>:post,:remote=>true,:confirm=>"Are you sure, want to flag this?" ,:class=>"flag" %>
+      <%=link_to image_tag("flag.png")+"flag this",flagg_deal_path(deal),:method=>:post,:remote=>true,:confirm=>"Are you sure, want to flag this?" ,:class=>"flag" %>
         <%if deal.official%>
-       <span class="official">Official</span>
+       <div class="official"><%=image_tag("official.png")%></div>
        <%end%>
        <%else%>
    <span class="flagged">flagged</span>
