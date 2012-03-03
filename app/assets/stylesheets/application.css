@@ -9,7 +9,7 @@ html{margin:0px;}
 html body{
 margin:0;
 padding:0;
-font-family: verdana, arial, helvetica, sans-serif;
+font-family: Arial,Helvetica,sans-serif;
 font-size:14px;
 /*background:#388DDC; 
 background:-moz-linear-gradient(top, #388DDC, #AAC3DA 70%);
@@ -588,15 +588,15 @@ text-decoration:none;
 }
 .details-border{
 float:left;
-width:400px;
-margin-left:10px;
-
+width:360px;
+margin-left:3px;
+margin-right:50px;
 }
 .item-title-view{line-height:20px;}
 .location{
-  float:right;
+  float:left;
   margin-right:10px;
- font-weight:bold;
+
 }
 .line-separator{
  border-bottom:solid #808080 1px;
@@ -631,7 +631,8 @@ font-size:22px;
  border-right: 1px solid #BDBDBD;
  min-height: 50px;
   text-align: center;
-  width: 117px;
+  width: 100px;
+  margin-left:0px;
 }
 .vote-bar{
   background-color: #E6E6E6;
@@ -657,8 +658,8 @@ left:10px;
 color:#ECE0DF;
 text-shadow: 2px 2px 2px #000; 
 }
-.active-deal{color:#14C826;font-weight:bold;}
-.in-active-deal{color:red;font-weight:bold;}
+.active-deal{color:#14C826;}
+.in-active-deal{color:red;}
 .details{margin:10px;width:770px;}
 .original-price{font-size:18px;text-decoration:line-through;}
 .savings{
@@ -679,7 +680,7 @@ margin:6px;
 margin-top:15px;
 margin-left:10px;	
 padding:10px;
- width:750px;
+ width:705px;
  background:#E6E6E6;
  font-weight:bold;
  -moz-border-radius:0 4 4 0px;
@@ -689,37 +690,59 @@ padding:10px;
 background: -webkit-gradient(linear, 0 0, 0 50%, from(#E6E6E6 ), 
 color-stop(90%,#E6E6E6 ),color-stop(50%,#fff));
 border-bottom:solid #808080 1px;
+border-top:solid #E6E6E6 2px;
 }
 #comment-body{
   margin-left:10px;
+}
+.add-comment{
+  font-weight:bold;color:#808080;margin-left:15px;
+  padding:5px;
+  background:#dedede;
+  width:160px;
+  border:solid #ccc 1px;
 }
 .line{
  border-bottom:solid #000 3px; 
  width:800px;
  margin-left:100px;
 }
+.bottom-line{
+  border-bottom:solid #000 3px; 
+ width:800px;
+ margin-left:100px;
+ margin-bottom:50px;
+}
 .line-view{
- border-bottom:solid #000 3px; 
- width:770px;
+ border-bottom:solid #dedede 1px; 
+ width:725px;
  margin-left:10px;
+}
+.line-view-separator{
+  border-bottom:solid #000 3px; 
+ width:98%;
+ margin:10px;
 }
 .post-button{
 padding:4px 18px 4px 18px;
- background:#0D4FDE;
- border:solid #112D69 1px;
+ background:#369EC1;
+ border:solid #369EC1 1px;
  font-weight:bold;
 -moz-border-radius:2px;
 -webkit-border-radius:2px;
  border-radius:2px;
  color:white;
- background: -webkit-gradient(linear, 0 0, 0 100%, from(#0D4FDE),to(10%,#77A0F8)); 
- background:-moz-linear-gradient(top, #0D4FDE, #77A0F8 100%);
- filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#0D4FDE)', endColorstr='#77A0F8'); /* IE6 & i7*/
--ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#0D4FDE)',endColorstr='#77A0F8')"; 
+ background: -webkit-gradient(linear, 0 0, 0 100%, from(#369EC1),to(10%,#82C3D9)); 
+ background:-moz-linear-gradient(top, #369EC1, #82C3D9 100%);
+ filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#369EC1)', endColorstr='#82C3D9'); /* IE6 & i7*/
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#369EC1)',endColorstr='#82C3D9')";
+margin-left:650px; 
+margin-top:5px;
+margin-bottom:50px;
 }
 #comments{margin:7px;}
 .comment-display{margin:7px;}
-.comment-box{border:solid #D7DDEA 3px;color:black;}
+.comment-box{border:solid #D7DDEA 3px;color:black;margin-left:15px;}
 .comment-front-page{
   padding:3px 30px 3px 30px;
   font-size:12px;
@@ -728,7 +751,7 @@ padding:4px 18px 4px 18px;
 .comment-front-page:hover{text-decoration:underline;} 
 .note{
 padding:9px;
-width:98%;
+width:97%;
 background:#C6EFA4;	
 border:solid #7CDD2C 1px;	
 font-weight:bold; 
@@ -739,7 +762,7 @@ moz-border-radius:5px;
 }
 .error{
 padding:9px;
-width:98%;
+width:97%;
 background:#F09994;	
 border:solid #ED3126 1px;	
 font-weight:bold;	
@@ -958,7 +981,6 @@ background:-webkit-gradient(linear, 0 0, 0 100%, from(#F1EFEF), to(#d5d5d5));
 -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#F1EFEF',endColorstr='#d5d5d5')";
 }
 .account-address{
-  font-weight:bold;
   float:right;
   color:#7D7D7D;
 }
@@ -1017,12 +1039,16 @@ margin-top:0px;
 div a.item{
  font-weight:bold; 
 text-decoration:none;
-color:#002398;
+color:#166891;
 }
 div a.item:hover{
 text-decoration:underline;
-color:#002398;
+color:#166891;
 font-weight:bolder;
+}
+.address-line{
+   border:solid #808080 2px;
+   width:120px;
 }
 .price-text{font-size:18px;float:left;}
 .item-price{
@@ -1109,7 +1135,21 @@ margin:5px;
     }
 .empty-profile{
   color:#808080;
+  padding:30px;
+  background:#dedede;
+  margin:15px;
+  width:700px;
+  text-align:center;
+  -moz-border-radius:3px;
+-webkit-border-radius:3px;
+  border-radius:3px;
 }
+.map img{width:220px;height:220px;margin-top:3px;}
+.store{font-weight:bold;font-size:18px;text-decoration:underline;color:#166891;margin-bottom:5px;display:block;margin-left:10px;}
+.phone{color:#4E4F56;font-weight:bold;display:block;margin-left:10px;}
+.address{color:#808080;display:block;margin-left:10px;}
+a.website{display:block;margin-left:10px;}
+
 /*.vote-up img{
 text-decoration:none;	
  padding:2px 5px 2px 5px;

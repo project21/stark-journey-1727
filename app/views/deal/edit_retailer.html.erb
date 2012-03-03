@@ -1,7 +1,8 @@
 <div class="container">
-<div class="list">List items you have on sale/clearance for free</div>
+<div class="header-bar">Edit Deal</div>
+<div>
 Asterik (*) means that field is required<br/>
-n is any number (1-9)<br/>
+n is any number (1-9)</div>
 <div class="line"></div>
 <%= form_for @deal ,:html=>{:multipart=>true} do |f|%>
    <%= f.error_messages %>
@@ -48,7 +49,7 @@ n is any number (1-9)<br/>
 <td><label>state*</label><%=store.text_field :state,:size=>"5" %>
 <label>zipcode*</label><%=store.text_field :zipcode,:size=>"10" %></td>
 </tr>  
-<tr><td><label>phone number</label><i style="color:#808080">(Optional)</i></td><td><%= store.text_field :phone %></td></tr>
+<tr><td><label>phone number</label>*</td><td><%= store.text_field :phone %></td></tr>
 <%end%>
 <%else%>
       <%=f.fields_for :stores do |store| %>
