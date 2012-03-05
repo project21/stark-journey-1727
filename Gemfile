@@ -15,6 +15,7 @@ gem 'execjs'
 gem 'carrierwave'
 gem "meta_search",'>= 1.1.0.pre'
 gem "thumbs_up"
+gem 'geocoder'
 gem 'fog'
 # Gems used only for assets and not required
 # in production environments by default.
