@@ -35,7 +35,7 @@ html a:hover{background:none;color:black;}
 .sign-in-background{
   background-image:url('shooting.jpg');
   background-repeat:repeat-y
-  height:900px;
+  
 }
 .main{
   width:1000px !important;
@@ -734,7 +734,6 @@ padding:4px 18px 4px 18px;
  color:white;
  background: -webkit-gradient(linear, 0 0, 0 100%, from(#369EC1),to(10%,#82C3D9)); 
  background:-moz-linear-gradient(top, #369EC1, #82C3D9 100%);
- filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#369EC1)', endColorstr='#82C3D9'); /* IE6 & i7*/
 -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#369EC1)',endColorstr='#82C3D9')";
 margin-left:650px; 
 margin-top:5px;
