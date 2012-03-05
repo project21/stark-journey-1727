@@ -1,6 +1,6 @@
 
-
-<h2 style="margin-left:100px;">Create A Deal</h2>
+<div class="header-bar">Local Deal Listing&nbsp; &#62;&#62;&nbsp;<%=@city.name %>&nbsp;Region</div>
+<h2 style="margin-left:100px;color:#808080;">Create A Deal</h2>
 <p style="margin-left:100px;font-weight:bold;">Spotsaving will help you sell your products quicker and grow your audience by advertising your discounted/On-clearance <br> merchandise and Service for free. </p>
 <div class="line"></div>
 <%= form_for @deal ,:url=>{:action =>"retailer_create"},:html=>{:multipart=>true} do |f|%>
@@ -37,7 +37,7 @@
 <% if current_user.store.nil? %>
 <tr><td><b>About the Business</b></td></tr>
 <%=f.fields_for :stores do |store| %>
-<tr><td><label>Website Url</label><i style="color:#808080">(Optional)</i><br><span style="color:#808080;">Business website,Facebool or Yelp</span></td><td><%=store.text_field :website %></td></tr>
+<tr><td><label>Website Url</label><i style="color:#808080">(Optional)</i><br><span style="color:#808080;">Business website,Facebook or Yelp</span></td><td><%=store.text_field :website %></td></tr>
 <tr><td><label>Name of the Store/business*</label></td><td><%=store.text_field :store_name %></td></tr>
 <%= store.hidden_field :city_id,:value => @city.id%>
 <tr><td><label>Address*</label></td><td><%=store.text_field :address %></td></tr>
@@ -46,7 +46,7 @@
 <td><label>state*</label><%=store.text_field :state,:size=>"5" %>
 <label>zipcode*</label><%=store.text_field :zipcode,:size=>"10" %></td>
 </tr>  
-<tr><td><label>phone number</label><i style="color:#808080">(Optional)</i></td><td><%= store.text_field :phone %></td></tr>
+<tr><td><label>phone number</label>*</td><td><%= store.text_field :phone %></td></tr>
 <%end%>
 <%else%>
       <%=f.fields_for :stores do |store| %>
@@ -54,7 +54,9 @@
      <%end%>
 <%end%>
 </table>
-<div style="margin-left:100px;">
+<div style="margin-left:100px;margin-bottom:30px;">
 <%= f.submit "post"%> 
-</div>                    
+</div>
+ <div class="bottom-line"></div>                  
 <%end%>
+

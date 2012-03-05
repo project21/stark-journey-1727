@@ -15,12 +15,14 @@
 <% StoreDeal.where("deal_id = ?",mydeal.id).includes(:store).each do |deal|%>
 <%if @id!=deal.store.user_id %>
 <%@id=deal.store.user_id%>
-<span style="color:black;"><%=deal.store.user.store.store_name%></span><br>
+<span style="color:black;font-weight:bold;"><%=deal.store.user.store.store_name%></span><br>
 <%=deal.store.user.store.address%><br>
 <%=deal.store.user.store.town%>
 <%=deal.store.user.store.state%>
-<%=deal.store.user.store.zipcode%>
+<%=deal.store.user.store.zipcode%><br>
+<span style="font-weight:bold;"><%=deal.store.user.store.phone%></span>
 <div>Update address</div>
+<div class="address-line"></div>
 <%end%>
 <%end%>
 <%end%>
@@ -36,25 +38,27 @@
  <!--columns-->
 <%@mydeals.each do |mydeal|  %>
 <ul class="account-columns">
-<li><%=image_tag("black_view.png")%><span class="item-name"><%=mydeal.item_name%> </span>
+<li><%=image_tag("black_view.png")%><span class="item-name"><%=mydeal.item_name%>  </span>
          <% if mydeal.flagged %>
          <div>This deal has been flagged ,Please delete the deal or make necessary corrections</div>
          <%end%>
 </li>   
 <% unless mydeal.end_date.nil? %>
-      <% if distance_of_time_in_words(mydeal.end_date,Date.today).to_i>0 || distance_of_time_in_words(mydeal.end_date,Date.today)=="about 1 month" %>
+      <% if mydeal.end_date >= Date.today %>
       <li><div class="deal-status"> &nbsp;<span class="active-deal"><%=distance_of_time_in_words(mydeal.end_date,Date.today) %> remaining</span></div></li>
       <%else%>
-      <li><div style="font-weight:bold;color:red;">Deal closed</div></li>
+      <li><div style="color:red;">Deal closed</div></li>
       <%end%>    
 <%else%>
-       <% if distance_of_time_in_words_to_now(mydeal.created_at)>="about 24 hours" %>
-        <li class="in-active-deal">  Deal closed </li>
-       <%elsif mydeal.until_sold%>
-       <li class="active-deal">Today Only</li>
+       <%if mydeal.until_sold%>
+                <% if mydeal.created_at + 24.hours < Time.now %>
+                <li class="in-active-deal">  Deal closed </li>
+                <%else%>
+                <li class="active-deal">Today Only</li>
+                <%end%>
        <%else%>
         <li class="active-deal">Until sold out</li>
-      <%end%>
+       <%end%>
 <%end%>
 
 <%unless mydeal.available_items.nil? %>

@@ -8,6 +8,7 @@ gem 'rails', '3.1.0.rc8'
 group :development do
 gem 'sqlite3'
 end
+gem 'geocoder'
 gem "dynamic_form"
 gem 'devise'
 gem 'rack', '1.3.3'
