@@ -13,17 +13,17 @@
       <%unless deal.fixed_price.nil?%>
          <%if deal.fixed_price%>
   <a class="item" href="/comment/index?deal_id=<%=deal.id%>">
- <%=truncate(deal.item_name,:length=>30)%> </a><br/> <span >for</span> <span class="item-price">$<%=deal.price%></span><br/>
+ <%=truncate(deal.item_name,:length=>22)%> </a><br/> <span >for</span> <span class="item-price">$<%=deal.price%></span><br/>
       <%else%>
               <a class="item" href="/comment/index?deal_id=<%=deal.id%>"><%=truncate( deal.item_name,:length=>22)%></a><br/>
              <span class="item-price"><%= deal.percent_off%>%Off</span><br/>
          <%end%>
      <%else%>
             <%if deal.unfixed%>
-            <a class="item" href="/comment/index?deal_id=<%=deal.id%>"> Buy 2&nbsp;<%=truncate( deal.item_name,:length=>30)%></a><br/><span class="item-price">get 1 free</span>
+            <a class="item" href="/comment/index?deal_id=<%=deal.id%>"> Buy 2&nbsp;<%=truncate( deal.item_name,:length=>22)%></a><br/><span class="item-price">get 1 free</span>
              <%else%>
              <a class="item" href="/comment/index?deal_id=<%=deal.id%>">
-             <%=truncate(deal.item_name,:length=>30)%> </a><br/>
+             <%=truncate(deal.item_name,:length=>22)%> </a><br/>
              <a class="link-underline" href="/comment/index?deal_id=<%=deal.id%>">See details</a> <br/>      
              <%end%> 
      <%end%>
@@ -50,17 +50,17 @@
       <%unless deal.fixed_price.nil?%>
          <% if deal.fixed_price%>
          <a class="item" href="/comment/index?deal_id=<%=deal.id%>">
-         <%=truncate(deal.item_name,:length=>30)%> </a><br/> <span >for</span> <span class="item-price">$<%=deal.price%></span><br/>
+         <%=truncate(deal.item_name,:length=>22)%> </a><br/> <span >for</span> <span class="item-price">$<%=deal.price%></span><br/>
          <%else%>
          <a class="item" href="/comment/index?deal_id=<%=deal.id%>"><%=truncate( deal.item_name,:length=>22)%></a><br/>
              <span class="item-price"><%= deal.percent_off%>%Off</span><br/>
          <%end%>
       <%else%>      
           <%if deal.unfixed%>
-            <a class="item" href="/comment/index?deal_id=<%=deal.id%>"> Buy 2&nbsp;<%=truncate( deal.item_name,:length=>30)%></a><br/><span class="item-price">get 1 free</span>
+            <a class="item" href="/comment/index?deal_id=<%=deal.id%>"> Buy 2&nbsp;<%=truncate( deal.item_name,:length=>22)%></a><br/><span class="item-price">get 1 free</span>
              <%else%>
              <a class="item" href="/comment/index?deal_id=<%=deal.id%>">
-             <%=truncate(deal.item_name,:length=>30)%> </a><br/>
+             <%=truncate(deal.item_name,:length=>22)%> </a><br/>
              <a class="link-underline" href="/comment/index?deal_id=<%=deal.id%>">View details</a> <br/>      
              <%end%>  
 <%end%>

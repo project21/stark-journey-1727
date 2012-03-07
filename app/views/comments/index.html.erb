@@ -73,7 +73,11 @@
             
 <% unless @deal.end_date.nil? %>
       <% if @deal.end_date >= Date.today %>
-      <li>  <div class="deal-status"> DEAL ENDING IN</div><div style="font-weight:bolder;color:black;color:#14C826;"><%=distance_of_time_in_words(@deal.end_date,Date.today) %></div></li>
+                <%if distance_of_time_in_words(@deal.end_date,Date.today)== "less than a minute"%>
+                <li><div class="deal-status"> DEAL ENDING IN</div><div style="font-weight:bolder;color:black;color:#14C826;">Last Day</div></li>
+                <%else%>
+                <li><div class="deal-status"> DEAL ENDING IN</div><div style="font-weight:bolder;color:black;color:#14C826;"><%=distance_of_time_in_words(@deal.end_date,Date.today) %></div></li>
+                 <%end%>
       <%else%>
       <li><div class="deal-status"> DEAL ENDING</div> <div style="font-weight:bold;font-size:18px;color:red;">Deal is closed</div></li>
       <%end%>		

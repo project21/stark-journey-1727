@@ -3,6 +3,10 @@
 <h2 style="margin-left:100px;color:#808080;">Create A Deal</h2>
 <p style="margin-left:100px;font-weight:bold;">Spotsaving will help you sell your products quicker and grow your audience by advertising your discounted/On-clearance <br> merchandise and Service for free. </p>
 <div class="line"></div>
+<div style="margin-left:100px;color:#808080;">
+Asterik (*) means that field is required<br/>
+e.g=example
+</div>
 <%= form_for @deal ,:url=>{:action =>"retailer_create"},:html=>{:multipart=>true} do |f|%>
 <%= f.error_messages %>      
 <table style="margin-left:100px;font-size:13px;">
@@ -19,7 +23,7 @@
 <tr class="percent ui-helper-hidden"><td><label>Discount percentage</label></td><td><%= f.text_field :percent_off %>%Off<br/><span style="color:#808080;">e.g 50%</span></td></tr>
 <tr class="specify ui-helper-hidden"><td><label>Sale Details*</label>&nbsp;<i style="color:#808080;">(Up to 32 characters)</i></td><td><%= f.text_area :custom_details,:rows=>"3" %><br/><span style="color:#808080;">e.g Buy 1 get 50% off on next item</span></td></tr>
 <tr class="saving ui-helper-hidden"><td><label>Savings*</label></td><td>$<%= f.text_field :saving %><br><span style="color:#808080;">e.g $80.00</span></td></tr>
-<tr><td><label>Regular Price/Service value*</label></td><td><%= f.text_field :reg_price %></td></tr>
+<tr><td><label>Regular Price/Service value*</label></td><td><%= f.text_field :reg_price %><br><span style="color:#808080;">e.g $200.00</span></td></tr>
 <tr><td><b>Deal end date*</b></td></tr>
 <tr><td><%= f.radio_button :until_sold, "0" ,:class=>"until-sold"%>Until Sold Out     <%= f.radio_button :until_sold, "1",:class=>"until-sold" %>Today Only 
 </td>
@@ -60,3 +64,12 @@
  <div class="bottom-line"></div>                  
 <%end%>
 
+<div class="info">
+<b>Note:</b><br/>
+<ul>
+<li>Clothing category includes purses and luggages</li>
+<li>Houseware category includes bedding,kitchenware and other home appliances</li>
+<li>Home improvement includes lawn and gardening</li>
+<li>Electronis includes Games and computers</li>
+</ul>
+</div>
