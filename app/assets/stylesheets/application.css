@@ -854,15 +854,13 @@ a.vote-up img:hover{
 background:#9BEE6D;	
  background: -moz-linear-gradient(top, #fff, #9BEE6D);
 background:-webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#9BEE6D));
- filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#fff', endColorstr='#9BEE6D');
--ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#fff',endColorstr='#9BEE6D')";   
+   
 }
 a.vote-down img:hover{
 background:red;	
 background: -moz-linear-gradient(top, #fff, red);
 background:-webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(red));
- filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#fff', endColorstr='red');
--ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#fff',endColorstr='red')";   
+
 }
 .votes{
   padding:2px;
