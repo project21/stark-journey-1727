@@ -101,7 +101,7 @@
  <%end%>
 
  <span class="vote-bar"><%=link_to image_tag("up.png")+"Great Deal",vote_up_deal_path(@deal),:method=>:post,:remote=>true,:class=>"vote-up-view" %>
- <%=link_to image_tag("down.png")+"Not",vote_down_deal_path(@deal),:method=>:post,:remote=>true ,:class=>"vote-down-view" %>&nbsp;&nbsp;
+ <%=link_to image_tag("down.png")+"Not",vote_down_deal_path(@deal),:method=>:post,:remote=>true ,:class=>"vote-down-view" %>
   <%=pluralize(@deal.plusminus,"vote")%></span>
  <%end%>
  </div>
@@ -153,7 +153,7 @@
 <div class="add-comment">Add a comment</div>
 <%= form_for :comment,:remote => true,:url=>{:controller=>"comments",:action=>"create"},:html => { :id => 'new-comment'} do |f| %>
 <%= f.hidden_field :deal_id ,:value=>@deal.id%>
-  <%= f.text_area :body,:rows=>"4",:cols=>"98",:class=>"comment-box" %><br/>
+  <%= f.text_area :body,:rows=>"4",:cols=>"75",:class=>"comment-box" %><br/>
   <% if user_signed_in? %>
   <%= f.hidden_field :user_id,:value => current_user.id%>
   <%end%>
