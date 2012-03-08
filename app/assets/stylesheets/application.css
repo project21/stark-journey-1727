@@ -660,7 +660,7 @@ text-shadow: 2px 2px 2px #000;
 }
 .active-deal{color:#14C826;}
 .in-active-deal{color:red;}
-.details{margin:10px;width:770px;}
+.details{margin:10px;width:730px;}
 .original-price{font-size:18px;text-decoration:line-through;}
 .savings{
 font-weight:bold;
