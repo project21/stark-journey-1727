@@ -657,6 +657,11 @@ ul.deal-info li:first-child{width:110px;}
     font-weight:bold;
     margin-top:10px;
     display:inline-block;
+    background:-moz-linear-gradient(top, #E6E6E6, #FCFDFD, #E6E6E6 80%);
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#E6E6E6 ), 
+color-stop(100%,#E6E6E6 ),color-stop(30%,#FCFDFD));
+filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FCFDFD', endColorstr='#E6E6E6'); /* IE6 & i7*/
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FCFDFD', endColorstr='#E6E6E6')";
 }
 .buy{margin-left:30px;}
 .price
@@ -973,7 +978,7 @@ margin-top:0px;
 
 }
 .home-header-bar img{float:left;margin-top:-5px;}
-.header-bar img{float:left;margin-top:-5px;}
+.header-bar img{float:left;margin-top:-2px;}
 .account-header-bar{
 color:white;
  padding:10px;
@@ -1011,7 +1016,7 @@ background:-webkit-gradient(linear, 0 0, 0 100%, from(#F1EFEF), to(#d5d5d5));
 .account-columns{list-style-type:none;}
 .account-columns li{float:left;width:100px;padding-right:5px;}
 .account-columns li:first-child{width:140px;padding-right:40px;}
-.account-columns li:last-child{width:140px;}
+.account-columns li:last-child{width:180px;}
 .account-columns li:nth-child(3){width:70px;padding-right:30px;}
 .account-columns li:nth-child(5){width:50px;padding-right:5px;}
 .list-new-deal a{
@@ -1169,7 +1174,7 @@ margin:5px;
 .store{font-weight:bold;font-size:18px;text-decoration:underline;color:#166891;margin-bottom:5px;display:block;margin-left:10px;}
 .phone{color:#4E4F56;font-weight:bold;display:block;margin-left:10px;}
 .address{color:#808080;display:block;margin-left:10px;}
-a.website{display:block;margin-left:10px;}
+a.website{display:block;margin-left:20px;}
 
 /*.vote-up img{
 text-decoration:none;	
