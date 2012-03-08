@@ -54,7 +54,7 @@
    <div class="price-tag"><%=image_tag("tag.jpg")%><div  class="price">$<%=number_with_precision(@deal.price,:precision=>2)%></div></div>
    
   <%else%>
-            <div class="price-tag"><%=image_tag("tag.jpg")%><div class="price"><%=@deal.percent_off%>%Off</div></div>
+        <div class="price-tag"><%=image_tag("tag.jpg")%><div class="price"><%=@deal.percent_off%>%Off</div></div>
                   
    <%end%> 
 <%else%>  
@@ -101,9 +101,8 @@
  <%end%>
 
  <span class="vote-bar"><%=link_to image_tag("up.png")+"Great Deal",vote_up_deal_path(@deal),:method=>:post,:remote=>true,:class=>"vote-up-view" %>
- <%=link_to image_tag("down.png")+"Not",vote_down_deal_path(@deal),:method=>:post,:remote=>true ,:class=>"vote-down-view" %>
-  
- <span style="float:right;display:inline-block;"><%=pluralize(@deal.plusminus,"vote")%></span></span>
+ <%=link_to image_tag("down.png")+"Not",vote_down_deal_path(@deal),:method=>:post,:remote=>true ,:class=>"vote-down-view" %>&nbsp;&nbsp;
+  <%=pluralize(@deal.plusminus,"vote")%></span>
  <%end%>
  </div>
 
