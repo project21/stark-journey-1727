@@ -9,6 +9,9 @@
   <div class="note"> <%=flash[:notice]%></div>
      <%end%>
 <div class="clear"></div>
+<%if @deals.empty? %>
+  <div class="empty">We are coming to <%=@city.name %> very soon!</div>
+<%end%>
 
 <% @deals.each do |store_deal| %>
 <div style="float:left;">
@@ -19,15 +22,15 @@
       <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>"><%=truncate( store_deal.item_name,:length=>22)%></a><br/>
       <span class="static-text">for</span>&nbsp;<span class="item-price">$<%=number_with_precision(store_deal.price,:precision=>2) %></span><br/>
         <%else%>
-              <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>"><%=truncate( store_deal.item_name,:length=>30)%></a><br/>
+              <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>"><%=truncate( store_deal.item_name,:length=>22)%></a><br/>
              <span class="item-price"><%= store_deal.percent_off%>%Off</span><br/> 
          <%end%>
      <%else%>
             <%if store_deal.unfixed%>
-            <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>">Buy 2&nbsp;<%=truncate( store_deal.item_name,:length=>30)%></a><br/><span class="item-price">get 1 free</span>
+            <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>">Buy 2&nbsp;<%=truncate( store_deal.item_name,:length=>22)%></a><br/><span class="item-price">get 1 free</span>
              <%else%>
              <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>">
-             <%=truncate(store_deal.item_name,:length=>30)%> </a>&nbsp; <br/>
+             <%=truncate(store_deal.item_name,:length=>22)%> </a>&nbsp; <br/>
              <a class="link-underline" href="/comment/index?deal_id=<%=store_deal.id%>">View details</a> <br/>      
              <%end%> 
      <%end%>
@@ -54,16 +57,16 @@
     <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>"><%=truncate( store_deal.item_name,:length=>30)%></a><br/>
     <span class="static-text">for</span>&nbsp;<span class="item-price">$<%= number_with_precision(store_deal.price,:precision=>2) %></span><br/>
    <%else%>
-    <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>"><%=truncate( store_deal.item_name,:length=>30)%></a><br>
+    <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>"><%=truncate( store_deal.item_name,:length=>22)%></a><br>
    <span class="item-price"><%= store_deal.percent_off%>%Off</span><br/>
    <%end%>
 <%else%>   
        <%if store_deal.unfixed%>
         
-            Buy 2&nbsp;<a class="item" href="/comment/index?deal_id=<%=store_deal.id%>"><%=truncate( store_deal.item_name,:length=>20)%></a><br><span class="item-price">get 1 free</span>
+            Buy 2&nbsp;<a class="item" href="/comment/index?deal_id=<%=store_deal.id%>"><%=truncate( store_deal.item_name,:length=>22)%></a><br><span class="item-price">get 1 free</span>
              <%else%>
              <a class="item" href="/comment/index?deal_id=<%=store_deal.id%>">
-             <%=truncate(store_deal.item_name,:length=>30)%> </a>&nbsp; <br/>
+             <%=truncate(store_deal.item_name,:length=>22)%> </a>&nbsp; <br/>
              <a class="link-underline" href="/comment/index?deal_id=<%=store_deal.id%>">View details</a> <br/>      
              <%end%> 
   <%end%>           

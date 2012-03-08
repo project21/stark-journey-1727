@@ -103,7 +103,7 @@
  <span class="vote-bar"><%=link_to image_tag("up.png")+"Great Deal",vote_up_deal_path(@deal),:method=>:post,:remote=>true,:class=>"vote-up-view" %>
  <%=link_to image_tag("down.png")+"Not",vote_down_deal_path(@deal),:method=>:post,:remote=>true ,:class=>"vote-down-view" %>
   
- <span style="float:right;margin-top:7px;display:inline-block;"><%=pluralize(@deal.plusminus,"vote")%></span></span>
+ <span style="float:right;display:inline-block;"><%=pluralize(@deal.plusminus,"vote")%></span></span>
  <%end%>
  </div>
 

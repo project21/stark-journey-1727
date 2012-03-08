@@ -8,7 +8,7 @@
   <div class="note"> <%=flash[:notice]%></div>
      <%end%>
 <% if user_signed_in? && current_user.business %>
-<h1 style="width:650px;float:left;">Manage Account</h1>
+<h1 style="width:650px;float:left;line-height:30px;">Manage Account</h1>
 <div class="list-new-deal"><%=link_to image_tag("add.png")+'List A New Deal',{:controller=>"deal",:action =>"retailers" }%></div>
 <div class="account-address">
 <% @mydeals.each do |mydeal| %>

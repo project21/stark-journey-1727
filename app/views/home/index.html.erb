@@ -11,7 +11,7 @@
 
 <div class="root-login">
 <h3 style="font-family:Copperplate Gothic Light;"><b>DISCOVER GREAT PRICES IN YOUR CITY </b></h3>
-<div class="prompt">Select your city before proceeding and have fun</div>
+<div class="prompt">Select your city before proceeding </div>
 <div style="margin-left:175px;margin-right:auto;">
 <%= form_for :city, :url=>{:action =>"next"} do |f| %>
 <%= f.collection_select(:city_id, City.all, :id, :name ,:prompt=>"Select your City",:size=>"60") %>
