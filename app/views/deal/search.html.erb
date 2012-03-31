@@ -18,11 +18,10 @@
 <div class="image-search"><%=image_tag deal.image_url.to_s%></div>
 <div class="item-name-search">
  
-<a class="item-search-link" href="/comment/index?deal_id=<%=deal.id%>"><%=deal.size%>&nbsp;<%=deal.brand%>
-&nbsp;<%=deal.item_name%> </a>    <br/>
-    <% deal.stores.each do |club| %>
-    <span style="color:808080;"><%= club.store_name %>&nbsp;in
-    <%=deal.town%> </span><br/>
+<a class="item-search-link" href="/comment/index?deal_id=<%=deal.id%>"><%=deal.item_name%> </a>    <br/>
+    <%StoreDeal.where("deal_id = ?",deal.id).includes(:store).each do |club| %>
+    <span style="color:808080;"><%= club.store.user.store.store_name %>&nbsp;in
+    <%=club.store.user.store.town%> </span><br/>
     <%if deal.official %>
      <span class="official">Official</span>
      <%end%>   

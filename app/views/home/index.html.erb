@@ -4,14 +4,14 @@
 <div class="main">
 
 <%=image_tag("spot-logo.png",:alt=>"How much is? where can i find?price")%>
-<span style="display:inline-block;margin-top:0px;text-align:center;text-shadow:1px 1px black;">SAVE THOUSANDS ANNUALLY ON YOUR DAILY PURCHASES THROUGH INFORMATION SHARING</span>
+<span style="display:inline-block;margin-top:0px;text-align:center;text-shadow:1px 1px black;margin-left:140px;">SAVE THOUSANDS ANNUALLY ON YOUR DAILY PURCHASES </span>
 </div>
 
 </div>
 
 <div class="root-login">
-<h3 style="font-family:Copperplate Gothic Light;"><b>DISCOVER GREAT PRICES IN YOUR CITY THROUGH YOUR LOCAL COMMUNITY</b></h3>
-<div class="prompt">Select your city before proceeding and have fun</div>
+<h3 style="font-family:Copperplate Gothic Light;"><b>DISCOVER GREAT PRICES IN YOUR CITY </b></h3>
+<div class="prompt">Select your city before proceeding </div>
 <div style="margin-left:175px;margin-right:auto;">
 <%= form_for :city, :url=>{:action =>"next"} do |f| %>
 <%= f.collection_select(:city_id, City.all, :id, :name ,:prompt=>"Select your City",:size=>"60") %>
@@ -25,8 +25,7 @@
 <div style="font-size:12px;color:#dedede;text-align:center;">&copy;2011 spotsaving.com</div>
 </div>
 
-<h2 style="color:#b0b0b0;">A fun and social way of discovering deals in your city</h2>
-<h2 style="color:#b0b0b0;">How much is? where can i find?price</h2>
+
 
 <div class="clear"></div>
 <!--<div class="footer">&copy;2011 spotsaving.com&nbsp;<span><%=link_to "Feedback",{:controller=>'feedbacks',:action=>"new"}%></span></div>-->

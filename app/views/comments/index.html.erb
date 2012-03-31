@@ -64,11 +64,9 @@
         <div class="line-separator"></div>
         <%end%>
   <%else%>
-            <div >Sale:<span class="item-price-view"><%=@deal.percent_off%>%Off</span></div>
-            <div class="line-separator"></div>
-             <div>Original Price:<span  class="original-price">$<%=number_with_precision(@deal.reg_price,:precision=>2)%>each</span></div>
-             <div >Saving:&nbsp;$<%=number_with_precision(@saving,:precision=>2) %></div>
-             <div class="line-separator"></div>
+
+        <div class="price-tag"><%=image_tag("tag.jpg")%><div class="price"><%=@deal.percent_off%>%Off</div></div>
+                  
    <%end%> 
 <%else%>  
              <%if @deal.unfixed%>
@@ -89,7 +87,11 @@
 <% unless @deal.end_date.nil? %>
 
       <% if @deal.end_date >= Date.today %>
-      <li>  <div class="deal-status"> DEAL ENDING IN</div><div style="font-weight:bolder;color:black;color:#14C826;"><%=distance_of_time_in_words(@deal.end_date,Date.today) %></div></li>
+                <%if distance_of_time_in_words(@deal.end_date,Date.today)== "less than a minute"%>
+                <li><div class="deal-status"> DEAL ENDING IN</div><div style="font-weight:bolder;color:black;color:#14C826;">Last Day</div></li>
+                <%else%>
+                <li><div class="deal-status"> DEAL ENDING IN</div><div style="font-weight:bolder;color:black;color:#14C826;"><%=distance_of_time_in_words(@deal.end_date,Date.today) %></div></li>
+                <%end%>
       <%else%>
       <li><div class="deal-status"> DEAL ENDING</div> <div style="font-weight:bold;font-size:18px;color:red;">Deal is closed</div></li>
       <%end%>		
@@ -112,11 +114,13 @@
 
  <div style="color:black;color:#FF6600;">only&nbsp;<%=@deal.available_items%>&nbsp;available</div>
 
+
+ <span class="vote-bar"><%=link_to image_tag("up.png")+"Great Deal",vote_up_deal_path(@deal),:method=>:post,:remote=>true,:class=>"vote-up-view" %>
+ <%=link_to image_tag("down.png")+"Not",vote_down_deal_path(@deal),:method=>:post,:remote=>true ,:class=>"vote-down-view" %>
+  <%=pluralize(@deal.plusminus,"vote")%></span>
+
  <%end%>
- <div style="font-size:24px;font-weight:bold;margin:6px;"><%=pluralize(@deal.plusminus,"vote")%></div>
-<div style="margin:6px;"><%=link_to image_tag("down.png"),vote_down_deal_path(@deal),:method=>:post,:remote=>true ,:class=>"vote-down-view" %>
-  <%=link_to image_tag("up.png"),vote_up_deal_path(@deal),:method=>:post,:remote=>true,:class=>"vote-up-view" %></div>
- <%end%>
+ 
 </div>
 
 
@@ -147,8 +151,11 @@
 <div class="line-view-separator"></div>
 
 <% unless @deal.details.empty? %>
-<H3>Deal Details</H3>
-<%=simple_format word_wrap(@deal.details,:line_width=>80)%>
+
+<H3 style="margin-left:10px;margin-bottom:2px;color:#949494">Deal Details</H3>
+<div class="line-view"></div>
+<div class="details"><%=@deal.details%></div>
+<div class="line-view"></div>
 
 <%end%>
 <div id="comments_count"><%=pluralize(@comments.count,"comment")%></div>
@@ -172,7 +179,7 @@
 
 <%= form_for :comment,:remote => true,:url=>{:controller=>"comments",:action=>"create"},:html => { :id => 'new-comment'} do |f| %>
 <%= f.hidden_field :deal_id ,:value=>@deal.id%>
-  <%= f.text_area :body,:rows=>"4",:cols=>"98",:class=>"comment-box" %><br/>
+  <%= f.text_area :body,:rows=>"4",:cols=>"75",:class=>"comment-box" %><br/>
   <% if user_signed_in? %>
   <%= f.hidden_field :user_id,:value => current_user.id%>
   <%end%>

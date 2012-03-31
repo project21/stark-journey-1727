@@ -54,7 +54,7 @@
   @deal=@city.deals.build(params[:deal])
    if @deal.save
     redirect_to :controller=>"deal" ,:action=>"profile"
-     flash[:notice]="Thank you for choosing spotsaving,you can view your deals on your profile"
+     flash[:notice]="Thank you for choosing spotsaving, your Deal has been posted"
     else
     render 'retailers' 
     flash[:error]="Error occured,data was not saved"

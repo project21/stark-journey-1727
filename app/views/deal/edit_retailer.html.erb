@@ -1,12 +1,13 @@
 <div class="container">
 <div class="header-bar">Edit Deal</div>
-<div>
+<div style="margin-left:100px;color:#808080;">
 Asterik (*) means that field is required<br/>
-n is any number (1-9)</div>
+e.g=example
+</div>
 <div class="line"></div>
 <%= form_for @deal ,:html=>{:multipart=>true} do |f|%>
    <%= f.error_messages %>
-    <table>    
+    <table style="margin-left:100px;font-size:13px;">    
 <tr><td><b>About Product or Service</b></td></tr>
 <tr><td><%= f.collection_select( :category_id, Category.all ,:id,:category_name,:prompt=>"category") %></td></tr>
 <tr><td><label>Product/Item/Service*</label></td><td><%= f.text_field :item_name %><br><span style="color:#808080;">e.g Samsung 42" LCD HDTV</span></td></tr>

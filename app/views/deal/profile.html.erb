@@ -8,7 +8,7 @@
   <div class="note"> <%=flash[:notice]%></div>
      <%end%>
 <% if user_signed_in? && current_user.business %>
-<h1 style="width:650px;float:left;">Manage Account</h1>
+<h1 style="width:650px;float:left;line-height:30px;">Manage Account</h1>
 <div class="list-new-deal"><%=link_to image_tag("add.png")+'List A New Deal',{:controller=>"deal",:action =>"retailers" }%></div>
 <div class="account-address">
 <% @mydeals.each do |mydeal| %>
@@ -45,7 +45,11 @@
 </li>   
 <% unless mydeal.end_date.nil? %>
       <% if mydeal.end_date >= Date.today %>
-      <li><div class="deal-status"> &nbsp;<span class="active-deal"><%=distance_of_time_in_words(mydeal.end_date,Date.today) %> remaining</span></div></li>
+              <%if distance_of_time_in_words(mydeal.end_date,Date.today)== "less than a minute"%>
+              <li><div class="active-deal">Last Day</div></li>
+              <%else%>
+              <li><div class="deal-status"> &nbsp;<span class="active-deal"><%=distance_of_time_in_words(mydeal.end_date,Date.today) %> remaining</span></div></li>
+               <%end%>
       <%else%>
       <li><div style="color:red;">Deal closed</div></li>
       <%end%>    
@@ -57,16 +61,17 @@
                 <li class="active-deal">Today Only</li>
                 <%end%>
        <%else%>
-        <li class="active-deal">Until sold out</li>
+        <li class="active-deal">Until sold out 
+                 <br>
+                <%=link_to "Sold out?" ,delete_deal_path(mydeal),:confirm=>"Are you sure, is this deal sold out?",:method=>:delete,:class=>"link-underline"%>
+                  
+        </li>
        <%end%>
 <%end%>
 
 <%unless mydeal.available_items.nil? %>
  <li><div style="margin:7px;color:black;"><%=mydeal.available_items%></div></li>
-<%else%><li> --  <% unless mydeal.until_sold %> <br>
-        <%=link_to "Sold out?" ,delete_deal_path(mydeal),:confirm=>"Are you sure, This deal is sold out?",:method=>:delete,:class=>"link-underline"%>
-        <%end%>
-         </li>
+<%else%><li> --  </li>
 <%end%>
 
  <%unless mydeal.fixed_price.nil?%>

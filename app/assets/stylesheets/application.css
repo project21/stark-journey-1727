@@ -21,6 +21,7 @@ min-height:100%;
 height:auto;
 margin-bottom:-40px;
 }
+html img {border:none;}
 html a:hover{background:none;color:black;}
 .home-background{
   background-image:url('box.png');
@@ -34,9 +35,9 @@ html a:hover{background:none;color:black;}
 }
 .sign-in-background{
   background-image:url('shooting.jpg');
-  background-repeat:repeat-y
-  height:900px;
+  background-repeat:repeat-y;
 }
+
 .main{
   width:1000px !important;
   height:auto !important;
@@ -73,7 +74,7 @@ margin-top:200px;
  border-radius:3px;
  display:block;
  width:400px;
- height:450px;
+ height:500px;
  background:#fff;
 }
 .spot{
@@ -81,7 +82,7 @@ margin-top:200px;
  padding:15px;
 }
 .sign-up-form h2{
-background:#3473F4;
+background:black;
 color:white;
 margin-top:0px;
 padding:20px;
@@ -90,6 +91,11 @@ padding:20px;
  border-radius:3px;
  font-weight:bold;
  text-align:center;
+background:-moz-linear-gradient(top, black, #5C5E60, black 40%);
+background:-webkit-gradient(linear, 0 0, 0 50%, from(black ), 
+color-stop(90%,black ),color-stop(50%,#5C5E60));
+ filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#525657', endColorstr='#000');
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#525657',endColorstr='#000')";  
 }
 .sign-up-form p{
 padding-left:10px;
@@ -108,7 +114,7 @@ margin-top:200px;
 }
 
 .sign-in h2{
-background:#3473F4;
+background:#000;
 color:white;
 margin-top:0px;
 padding:20px;
@@ -117,6 +123,11 @@ padding:20px;
  border-radius:3px;
  font-weight:bold;
  text-align:center;
+ background:-moz-linear-gradient(top, black, #5C5E60, black 40%);
+background: -webkit-gradient(linear, 0 0, 0 50%, from(black ), 
+color-stop(90%,black ),color-stop(50%,#5C5E60));
+ filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#525657', endColorstr='#000');
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#525657',endColorstr='#000')"; 
 }
 .sign-in p{margin:15px;}
 .root-login
@@ -213,8 +224,8 @@ box-shadow: inset -5px -5px #000;
  border-radius:5px;
  background: -webkit-gradient(linear, 0 0, 0 50%, from(#68E811),color-stop(10%,#A0F25F),color-stop(80%,#68E811)); 
  background:-moz-linear-gradient(top, #68E811, #A0F25F 50%,#68E811 10%);
- filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#68E811', endColorstr='#A0F25F'); /* IE6 & i7*/
--ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#68E811', endColorstr='#A0F25F')"; 
+ filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#BFF09D', endColorstr='#68E811'); /* IE6 & i7*/
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#BFF09D', endColorstr='#68E811')"; 
  border:solid  white 2px;
  font-family: Chicago Charcoal sans-serif;
 }
@@ -232,8 +243,8 @@ padding:20px;
  font-family: Chicago Charcoal sans-serif;
  background: -moz-linear-gradient(top, black, #34363D);
  background:-webkit-gradient(linear, 0 0, 0 100%, from(black), to(#34363D));
- /*filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#000', endColorstr='#34363D');
--ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#000',endColorstr='#34363D')";*/ 
+ filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#525657', endColorstr='#000');
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#525657',endColorstr='#000')";
  
 }
 div.root-form{
@@ -361,10 +372,9 @@ background: -webkit-gradient(linear, 0 0, 0 70%, from(#fff) ,to(#E8EAEE));
 
 ul.categories li a
 {text-decoration:none;font-weight:bold;
- color:black;
- border-left: 1px solid rgba(255,255,255,0.1);  
+ color:black; 
 border-right: 1px solid rgba(0,0,0,0.1);  
-padding:3px;
+padding-right:3px;
 line-height:0px 5px;
 }
 ul.categories li a:hover
@@ -592,7 +602,7 @@ width:360px;
 margin-left:3px;
 margin-right:50px;
 }
-.item-title-view{line-height:20px;}
+.item-title-view{line-height:25px;}
 .location{
   float:left;
   margin-right:10px;
@@ -634,6 +644,7 @@ font-size:22px;
   width: 100px;
   margin-left:0px;
 }
+ul.deal-info li:first-child{width:110px;}
 .vote-bar{
   background-color: #E6E6E6;
     background-image: none;
@@ -646,6 +657,11 @@ font-size:22px;
     font-weight:bold;
     margin-top:10px;
     display:inline-block;
+    background:-moz-linear-gradient(top, #E6E6E6, #FCFDFD, #E6E6E6 80%);
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#E6E6E6 ), 
+color-stop(100%,#E6E6E6 ),color-stop(30%,#FCFDFD));
+filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FCFDFD', endColorstr='#E6E6E6'); /* IE6 & i7*/
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FCFDFD', endColorstr='#E6E6E6')";
 }
 .buy{margin-left:30px;}
 .price
@@ -653,14 +669,15 @@ font-size:22px;
 position:absolute;
 font-size:60px;
 font-weight:bold;
-top:130px;
+top:120px;
 left:10px;
 color:#ECE0DF;
 text-shadow: 2px 2px 2px #000; 
+line-height:45px;
 }
 .active-deal{color:#14C826;}
 .in-active-deal{color:red;}
-.details{margin:10px;width:770px;}
+.details{margin:10px;width:730px;}
 .original-price{font-size:18px;text-decoration:line-through;}
 .savings{
 font-weight:bold;
@@ -691,6 +708,8 @@ background: -webkit-gradient(linear, 0 0, 0 50%, from(#E6E6E6 ),
 color-stop(90%,#E6E6E6 ),color-stop(50%,#fff));
 border-bottom:solid #808080 1px;
 border-top:solid #E6E6E6 2px;
+filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FCFDFD', endColorstr='#E6E6E6'); /* IE6 & i7*/
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FCFDFD', endColorstr='#E6E6E6')";
 }
 #comment-body{
   margin-left:10px;
@@ -734,9 +753,9 @@ padding:4px 18px 4px 18px;
  color:white;
  background: -webkit-gradient(linear, 0 0, 0 100%, from(#369EC1),to(10%,#82C3D9)); 
  background:-moz-linear-gradient(top, #369EC1, #82C3D9 100%);
- filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#369EC1)', endColorstr='#82C3D9'); /* IE6 & i7*/
 -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#369EC1)',endColorstr='#82C3D9')";
-margin-left:650px; 
+filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#369EC1', endColorstr='#82C3D9');
+margin-left:480px; 
 margin-top:5px;
 margin-bottom:50px;
 }
@@ -813,7 +832,8 @@ margin-left:90px;
 a.vote-up-view 
 {text-decoration:none;}
 a.vote-down-view 
-{text-decoration:none;}
+{text-decoration:none;
+padding-right:40px;}
 a.vote-up-view img
 {text-decoration:none;
  padding:0px 5px 0px 5px;  
@@ -823,7 +843,6 @@ a.vote-up-view img
  border:solid #dedede 1px; 
  margin-right:3px; 
  margin-top:5px;
-
 }
 .vote-down-view img:hover{
  background:#FC7A69;     
@@ -831,19 +850,17 @@ a.vote-up-view img
 .vote-up-view img:hover{
  background:#9BEE6D;     
 }
-.vote-up img:hover{
+a.vote-up img:hover{
 background:#9BEE6D;	
  background: -moz-linear-gradient(top, #fff, #9BEE6D);
 background:-webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#9BEE6D));
- filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#fff', endColorstr='#9BEE6D');
--ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#fff',endColorstr='#9BEE6D')";   
+   
 }
-.vote-down img:hover{
+a.vote-down img:hover{
 background:red;	
 background: -moz-linear-gradient(top, #fff, red);
 background:-webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(red));
- filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#fff', endColorstr='red');
--ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#fff',endColorstr='red')";   
+
 }
 .votes{
   padding:2px;
@@ -938,6 +955,8 @@ color:white;
 background: -webkit-gradient(linear, 0 0, 0 50%, from(black ), 
 color-stop(90%,black ),color-stop(50%,#5C5E60));
 border-bottom:solid #54C2DC 3px;
+ filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#5C5E60', endColorstr='#000');
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#5C5E60',endColorstr='#000')"; 
 }
 .home-header-bar{
 color:white;
@@ -952,10 +971,12 @@ color:white;
 background: -webkit-gradient(linear, 0 0, 0 50%, from(black ), 
 color-stop(90%,black ),color-stop(50%,#5C5E60));
 margin-top:0px;
+ filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#5C5E60', endColorstr='#000');
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#5C5E60',endColorstr='#000')"; 
 
 }
 .home-header-bar img{float:left;margin-top:-5px;}
-.header-bar img{float:left;margin-top:-5px;}
+.header-bar img{float:left;margin-top:-2px;}
 .account-header-bar{
 color:white;
  padding:10px;
@@ -968,6 +989,8 @@ color:white;
  background:-moz-linear-gradient(top, black, #5C5E60, black 40%);
 background: -webkit-gradient(linear, 0 0, 0 50%, from(black ), 
 color-stop(90%,black ),color-stop(50%,#5C5E60));
+ filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#5C5E60', endColorstr='#000');
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#5C5E60',endColorstr='#000')"; 
 }
 .account-deals-header{ 
 padding:8px;
@@ -991,7 +1014,7 @@ background:-webkit-gradient(linear, 0 0, 0 100%, from(#F1EFEF), to(#d5d5d5));
 .account-columns{list-style-type:none;}
 .account-columns li{float:left;width:100px;padding-right:5px;}
 .account-columns li:first-child{width:140px;padding-right:40px;}
-.account-columns li:last-child{width:140px;}
+.account-columns li:last-child{width:180px;}
 .account-columns li:nth-child(3){width:70px;padding-right:30px;}
 .account-columns li:nth-child(5){width:50px;padding-right:5px;}
 .list-new-deal a{
@@ -1068,7 +1091,8 @@ margin:5px;
 .item-name-search{
   float:left;
 }
-.empty{padding:35px;
+.empty
+{padding:35px;
   padding-bottom:50px;
   width:420px;
   height:100px;
@@ -1148,7 +1172,7 @@ margin:5px;
 .store{font-weight:bold;font-size:18px;text-decoration:underline;color:#166891;margin-bottom:5px;display:block;margin-left:10px;}
 .phone{color:#4E4F56;font-weight:bold;display:block;margin-left:10px;}
 .address{color:#808080;display:block;margin-left:10px;}
-a.website{display:block;margin-left:10px;}
+a.website{display:block;margin-left:20px;}
 
 /*.vote-up img{
 text-decoration:none;	
