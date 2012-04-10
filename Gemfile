@@ -45,4 +45,8 @@ gem 'jquery-rails'
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'rspec-rails'
+  gem "factory_girl_rails"
+  gem 'capybara'
+  gem "guard-rspec"
 end
