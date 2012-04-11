@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  location: MyString
+  pricing: MyString
+  answer_details: MyText
+
+two:
+  location: MyString
+  pricing: MyString
+  answer_details: MyText
