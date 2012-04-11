@@ -1,0 +1,144 @@
+<div class="header-bar"><span style="float:left;"><%=image_tag ("city.png")%></span><span class="city-title"><%=@city.name %></span>&nbsp;<span style="float:right;"><%=image_tag("official.png")%>Official Deal</span></div>
+<div class="notice"> </div>
+ <div class="errors"> </div>
+<% if flash[:error] %>
+<div class="error" ><%=flash[:error] %></div>
+<%end%>
+
+<div class="view-image"> <%=image_tag (@deal.image_url.to_s )%></div>
+<div class="details-border">
+<%unless @deal.fixed_price.nil?%>
+   <% if @deal.fixed_price%>
+         
+   <div>Sale:<span  class="price">$<%=number_with_precision(@deal.price,:precision=>2)%></span></div>
+   <div class="line-separator"></div>
+    <div>Original Price:<span  class="original-price">$<%=number_with_precision(@deal.reg_price,:precision=>2)%></span></div>
+   <div class="line-separator"></div>
+        <%if @saving %>
+        <div class="saving">Saving:&nbsp;$<%=number_with_precision(@saving,:precision=>2) %></div>
+        <div class="line-separator"></div>
+        <%end%>
+  <%else%>
+
+        <div class="price-tag"><%=image_tag("tag.jpg")%><div class="price"><%=@deal.percent_off%>%Off</div></div>
+                  
+   <%end%> 
+<%else%>  
+             <%if @deal.unfixed%>
+
+             <div class="bu"><%=image_tag("buy2big.jpeg")%></div>
+                
+
+             <%else%>
+             <div class="item-price-view">See Details below </div> 
+              <div class="line-separator"></div>
+             <div>Original Price:<span  class="original-price">$<%=number_with_precision(@deal.reg_price,:precision=>2)%></span></div>
+             <div class="saving">Saving:&nbsp;$<%=number_with_precision(@saving,:precision=>2) %></div>
+              <div class="line-separator"></div>    
+             <%end%> 
+<%end%>
+
+            
+<% unless @deal.end_date.nil? %>
+
+      <% if @deal.end_date >= Date.today %>
+                <%if distance_of_time_in_words(@deal.end_date,Date.today)== "less than a minute"%>
+                <li><div class="deal-status"> DEAL ENDING IN</div><div style="font-weight:bolder;color:black;color:#14C826;">Last Day</div></li>
+                <%else%>
+                <li><div class="deal-status"> DEAL ENDING IN</div><div style="font-weight:bolder;color:black;color:#14C826;"><%=distance_of_time_in_words(@deal.end_date,Date.today) %></div></li>
+                <%end%>
+      <%else%>
+      <li><div class="deal-status"> DEAL ENDING</div> <div style="font-weight:bold;font-size:18px;color:red;">Deal is closed</div></li>
+      <%end%>   
+<%else%>
+       
+       <%if @deal.until_sold%>
+                      <% if @deal.created_at + 24.hours < Time.now %>
+                      <li><div class="deal-status"> DEAL ENDING</div><div class="in-active-deal"> Deal closed</div></li>
+                      <%else%>
+                      <li><div class="deal-status"> DEAL ENDING</div><div class="active-deal">TODAY ONLY</div></li>
+                      <%end%>
+       <%else%>
+       <li><div class="deal-status"> DEAL ENDING</div><div class="active-deal">Until Sold out</div></li>
+       </ul>
+       <%end%>
+
+<%end%>
+    
+ <%unless @deal.available_items.nil? %>
+
+ <div style="color:black;color:#FF6600;">only&nbsp;<%=@deal.available_items%>&nbsp;available</div>
+
+
+ <span class="vote-bar"><%=link_to image_tag("up.png")+"Great Deal",vote_up_deal_path(@deal),:method=>:post,:remote=>true,:class=>"vote-up-view" %>
+ <%=link_to image_tag("down.png")+"Not",vote_down_deal_path(@deal),:method=>:post,:remote=>true ,:class=>"vote-down-view" %>
+  <%=pluralize(@deal.plusminus,"vote")%></span>
+
+ <%end%>
+ 
+</div>
+
+
+<div class="location">
+<%if @deal.official%>
+<%@store.each do |store|%>
+<div class="map"> 
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{store.store.user.store.latitude}%2C#{store.store.user.store.longitude}" %></div>
+<span class="store"><%=store.store.user.store.store_name%></span>
+<span class="address">
+
+<%=store.store.user.store.address%><br>
+<%=store.store.user.store.town%>
+<%=store.store.user.store.state%>
+<%=store.store.user.store.zipcode%><br>
+
+</span>
+ 
+<span class="phone"><%=image_tag("phone.png")%><%=store.store.user.store.phone%></span><br>
+<a href= <%=store.store.user.store.website%> class="website" >Visit Website</a><br>
+
+<%end%>
+<%end%> 
+</div>
+
+<div class="clear"></div>
+
+<div class="line-view-separator"></div>
+
+<% unless @deal.details.empty? %>
+
+<H3 style="margin-left:10px;margin-bottom:2px;color:#949494">Deal Details</H3>
+<div class="line-view"></div>
+<div class="details"><%=@deal.details%></div>
+<div class="line-view"></div>
+
+<%end%>
+<div id="comments_count"><%=pluralize(@comments.count,"comment")%></div>
+
+<% @comments.each do |comment|%>
+<div id="comments">
+<% if comment.user%>
+<span class="inline_table"><%=image_tag ("noprofile.jpg")%></span>
+<span class="inline_tables"><span style="text-decoration:underline;"><%=comment.user.username%></span>&nbsp;<span style="color:#808080;">said</span><br/>
+<%=comment.body%></span><br/>
+<%end%>
+</div>
+
+<div class="clear"></div>
+<span class="time"><%=time_ago_in_words(comment.created_at)%>&nbsp;ago</span><br/>
+<span class="line"></span>
+<%end%>
+<div class="comment-display"></div>
+
+<div class="add-comment">Add a comment</div>
+
+<%= form_for :comment,:remote => true,:url=>{:controller=>"comments",:action=>"create"},:html => { :id => 'new-comment'} do |f| %>
+<%= f.hidden_field :deal_id ,:value=>@deal.id%>
+  <%= f.text_area :body,:rows=>"4",:cols=>"75",:class=>"comment-box" %><br/>
+  <% if user_signed_in? %>
+  <%= f.hidden_field :user_id,:value => current_user.id%>
+  <%end%>
+  <%= f.submit "post",:class=>"post-button" %>
+<% end %>
+
+
