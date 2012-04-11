@@ -127,8 +127,8 @@
 <div class="location">
 <%if @deal.official%>
 <%@store.each do |store|%>
-<div class="map">
-<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{store.store.user.store.latitude}%2C#{store.store.user.store.longitude}" %></div>
+<div class="map"> 
+</div>
 <span class="store"><%=store.store.user.store.store_name%></span>
 <span class="address">
 

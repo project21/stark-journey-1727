@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{store.store.user.store.latitude}%2C#{store.store.user.store.longitude}" %>
 <%= link_to 'Edit', edit_comment_path(@comment) %> |
 <%= link_to 'Back', comments_path %>
