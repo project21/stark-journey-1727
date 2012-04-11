@@ -10,7 +10,7 @@
 <%unless @deal.fixed_price.nil?%>
    <% if @deal.fixed_price%>
          
-   <div>Sale:<span  class="price">$<%=number_with_precision(@deal.price,:precision=>2)%></span></div>
+   <div class="price-tag"><%=image_tag("tag.jpg")%><div class="price">$<%=number_with_precision(@deal.price,:precision=>2)%></div></div>
    <div class="line-separator"></div>
     <div>Original Price:<span  class="original-price">$<%=number_with_precision(@deal.reg_price,:precision=>2)%></span></div>
    <div class="line-separator"></div>
