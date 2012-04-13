@@ -49,7 +49,7 @@
   
    <%unless deal.fixed_price.nil?%>
      <% if deal.fixed_price%>
-       <a class="item" href="/comment/index?deal_id=<%=deal.id%>"><br/>
+       <a class="item" href="/comment/index?deal_id=<%=deal.id%>">
        <%=truncate(deal.item_name,:length=>22)%> </a><br/> <span class="static-text">for</span> <span class="item-price">$<%=deal.price%></span><br/>
      <%else%>
         <a class="item" href="/comment/index?deal_id=<%=deal.id%>"><%=truncate( deal.item_name,:length=>22)%></a><br/>
@@ -96,5 +96,5 @@
 
 <%end%>
 
-
+  <div class="clear"></div>
 
