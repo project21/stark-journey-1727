@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120305042924) do
+ActiveRecord::Schema.define(:version => 20120415215605) do
 
   create_table "answers", :force => true do |t|
     t.string   "location"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20120305042924) do
     t.integer  "ip_count",   :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
   end
 
   create_table "questions", :force => true do |t|

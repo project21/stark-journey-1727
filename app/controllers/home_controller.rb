@@ -15,9 +15,9 @@ class HomeController < ApplicationController
    unless @city.blank? 
    session[:city_id] = @city.id
    redirect_to show_deals_path
- else
-  redirect_to :controller=>"home" ,:action=>"index" 
-end
+   else
+   redirect_to :controller=>"home" ,:action=>"index" 
+   end
   end  
 
   def new

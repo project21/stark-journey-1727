@@ -1,0 +1,40 @@
+
+ 
+
+ <div class="home-background">
+
+<div class="selling-line">
+<div class="main">
+
+<%=image_tag("spot-logo.png",:alt=>"How much is? where can i find?price")%>
+<span style="line-height:30px;display:inline-block;margin-top:0px;text-align:center;text-shadow:1px 1px black;margin-left:140px;">DISCOVER ITEMS ON CLEARANCE & DISCOUNTED PRODUCTS AND SERVICES IN YOUR CITY</span>
+</div>
+
+</div>
+
+<div class="root-login">
+<h3 style="font-family:Copperplate Gothic Light;"><b>LOWER YOUR DAILY EXPENSES  </b></h3>
+<div class="prompt">Enter your Email </div>
+<div style="margin-left:105px;margin-right:auto;">
+<%= form_for @email ,:url=>{:action =>"create"} do |f| %>
+ <%= f.error_messages %> 
+<label style="font-size:22px;"><b>Email</b></label>&nbsp;<%= f.text_field :email,:size=>"20",:class=>"email-input" %>
+<%= f.hidden_field :ip_address,:value=>request.remote_ip %>
+<br/>
+<br/>
+</div>
+<div class="root-form">
+<%=f.submit "Continue",:class=>"continue-button" %>
+<%end%>
+</div>
+
+<div style="font-size:12px;color:#dedede;text-align:center;">&copy;2011 spotsaving.com</div>
+<div class="clear"></div>x 
+</div>
+
+
+
+<div class="clear"></div>
+<!--<div class="footer">&copy;2011 spotsaving.com&nbsp;<span><%=link_to "Feedback",{:controller=>'feedbacks',:action=>"new"}%></span></div>-->
+</div>
+

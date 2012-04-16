@@ -1,4 +1,8 @@
 Deals::Application.routes.draw do
+  get "ips/index"
+
+  post "ips/create"
+
   get "questions/index"
 
   get "questions/new"
@@ -115,7 +119,7 @@ resources :cities do
 end
   
 
-root :to => "home#index"
+root :to => "ips#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
