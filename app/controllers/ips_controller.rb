@@ -6,7 +6,7 @@ class IpsController < ApplicationController
     redirect_to :controller=>"deal" ,:action=>"show"
  else   
    unless session[:city_id].nil? || session[:city_id].blank? 
-    #redirect_to :controller=>"deal" ,:action=>"show"
+    redirect_to :controller=>"deal" ,:action=>"show"
    else
    	#redirect_to :controller=>"home" ,:action=>"index"
    end
