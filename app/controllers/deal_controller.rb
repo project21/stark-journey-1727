@@ -89,7 +89,7 @@
     @cities=City.find(:all)
     unless session[:city_id].nil? || session[:city_id].blank?
      @city = City.find_by_id(session[:city_id])
-     @deals=Deal.where("city_id = ?", session[:city_id]).includes( :stores).rank_tally()
+     @deals=Deal.where("city_id = ?", session[:city_id]).includes( :stores)
      @store=StoreDeal.where("deal_id = ?",@deal).includes(:store)
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
      @total_comments=0
