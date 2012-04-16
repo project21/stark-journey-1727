@@ -119,42 +119,40 @@ def vote_up
      @store_deals=StoreDeal.where("stores.city_id = ?", session[:city_id]).includes(:deal, :store)
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
      @items=Deal.find(params[:id])
-if user_signed_in?
-  unless current_user.voted_for?(@items) || current_user.voted_against?(@items) 
-    current_user.vote_for(@items)
+     @ip=Ip.find_by_ip_address(request.remote_ip)
+#if user_signed_in?
+  unless @ip.voted_for?(@items) || @ip.voted_against?(@items) 
+    Ip.find_by_ip_address(request.remote_ip).vote_for(@items)
     flash.now[:notice]="Thank you for voting"
   else
     flash.now[:error]="Sorry you already voted for this deal"
     respond_with(@items,:layout => !request.xhr?)
   end  
 
-else
+#else
 
- flash.now[:error]="You have to login or sign up to vote for this deal "
-end
+# flash.now[:error]="You have to login or sign up to vote for this deal "
+#end
 end 
-   # render :nothing => true, :status => 200
- # rescue ActiveRecord::RecordInvalid
-  #  render :nothing => true, :status => 404
   
- #   end
  def vote_down
      @city = City.find(session[:city_id])
      @store_deals=StoreDeal.where("stores.city_id = ?", session[:city_id]).includes(:deal, :store)
      @search = Deal.where(" city_id=?",session[:city_id]).includes(:stores,:comments).search(params[:search])
      @items=Deal.find(params[:id])
-if user_signed_in?
-    unless current_user.voted_for?(@items) || current_user.voted_against?(@items)
-    current_user.vote_against(@items)
+     @ip=Ip.find_by_ip_address(request.remote_ip)
+#if user_signed_in?
+    unless @ip.voted_for?(@items) || @ip.voted_against?(@items)
+    @ip.vote_against(@items)
     flash.now[:notice]="Thank you for voting"
     respond_with(@items,:layout => !request.xhr?)
     else
     flash.now[:error]="Sorry you already voted for this deal"
     respond_with(@items,:layout => !request.xhr?)
     end
- else
- flash.now[:error]="You have to login or sign up to vote for this deal "
- end  
+# else
+# flash.now[:error]="You have to login or sign up to vote for this deal "
+#end  
 end 
 
   def update 
