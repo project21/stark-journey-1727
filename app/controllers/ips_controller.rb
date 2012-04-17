@@ -10,6 +10,8 @@ class IpsController < ApplicationController
    else  
          if Ip.find_by_ip_address(request.remote_ip).ip_address == request.remote_ip
    	     redirect_to :controller=>"home" ,:action=>"index"
+        else
+         redirect_to :controller=>"ips" ,:action=>"index"
          end
    end
   end 
