@@ -7,12 +7,12 @@ class IpsController < ApplicationController
  else   
    unless session[:city_id].nil? || session[:city_id].blank? 
     redirect_to :controller=>"deal" ,:action=>"show"
-   #else  
-       # if Ip.find_by_ip_address(request.remote_ip).ip_address == request.remote_ip
-   	   #  redirect_to :controller=>"home" ,:action=>"index"
-        #else
-       #  redirect_to :controller=>"ips" ,:action=>"index"
-        # end
+   else  
+         if Ip.find_by_ip_address(request.remote_ip).ip_address == request.remote_ip
+   	     redirect_to :controller=>"home" ,:action=>"index"
+         else
+         redirect_to :controller=>"ips" ,:action=>"index"
+          end
    end
   end 
   end
