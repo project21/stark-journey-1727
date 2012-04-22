@@ -1,4 +1,5 @@
 class IpsController < ApplicationController
+  # caches_page :index
   def index
 
   	@email=Ip.new 

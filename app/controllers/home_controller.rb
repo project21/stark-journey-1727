@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-   
+   #caches_page :index
   def index
  if user_signed_in?
     redirect_to :controller=>"deal" ,:action=>"show"
