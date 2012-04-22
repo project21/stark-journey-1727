@@ -1,6 +1,6 @@
   class DealController < ApplicationController
-  caches_page :show
-  cache_sweeper :deal_sweeper, :only => [:create, :delete, :retailer_create]
+  #caches_page :show
+  #cache_sweeper :deal_sweeper, :only => [:create, :delete, :retailer_create]
   respond_to :js
   before_filter :authenticate_user!, :only=>[:create,:retailers]
   layout "header"
